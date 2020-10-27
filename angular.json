@@ -11,8 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js"
+            },
             "outputPath": "dist/mini-game-royale-web-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -24,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/tailwind.scss"
             ],
             "scripts": []
           },
@@ -60,8 +64,11 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js"
+            },
             "browserTarget": "mini-game-royale-web-front:build"
           },
           "configurations": {
@@ -119,6 +126,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "mini-game-royale-web-front"
 }
