@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { AppService, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
     this.appService.loginUser(body).subscribe({
       next: data => {
         console.log("API Success: ", data)
+        AppService.KEY = data.token
+        AppService.user = data.data as User
+        console.log("User data: ", AppService.user)
         this.router.navigateByUrl('/home')
       },
       error: error => {

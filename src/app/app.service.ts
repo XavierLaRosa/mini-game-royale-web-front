@@ -7,9 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
   static URL = 'http://localhost:3000'
-  static CORS = 'https://cors-anywhere.herokuapp.com/'
   static KEY = ''
-  headers = new HttpHeaders({"Access-Control-Allow-Origin": "*"})
+  static user: User
   constructor(private http: HttpClient) { }
 
   loginUser(body: Object): Observable<any> {
@@ -20,4 +19,17 @@ export class AppService {
   regsiterUser(body: Object): Observable<any> {
     return this.http.post<any>(AppService.URL+'/users', body)
   }
+}
+
+export class User {
+  constructor(
+    public _id: number,
+    public username: string,
+    public friends: string[],
+    public pending_friends_sent: string[],
+    public pending_friends_received: string[],
+    public pending_game_invites: string[],
+    public active_games: string[],
+    public games: string[]
+  ){}
 }

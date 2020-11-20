@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     this.appService.regsiterUser(body).subscribe({
       next: data => {
         console.log("API Success: ", data)
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl('/')
       },
       error: error => {
         console.log("API Error: ", error)
