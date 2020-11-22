@@ -40,7 +40,7 @@
                     + this.appService.getUserData().pending_game_invites.length}})
             </div>
             <div class="h-64 overflow-y-scroll">
-                <div class="w-full" *ngFor="let game of this.appService.getUserData().games">
+                <div class="w-full flex flex-col" *ngFor="let game of this.appService.getUserData().games">
                     <div class="w-full p-4 flex flex-row justify-between items-center">
                         <div class="flex flex-col justify-start items-center self-start">
                             <p class="w-full text-sm font-bold">
@@ -56,12 +56,12 @@
                             </button>
                         </div>
                     </div>
-                    <div class="w-10/12 border-b-2 border-purple-400">
+                    <div class="w-11/12 border-b-2 border-purple-400 self-end">
                         
                     </div>
                 </div>
 
-                <div class="w-full" *ngFor="let game of this.appService.getUserData().pending_game_invites">
+                <div class="w-full flex flex-col" *ngFor="let game of this.appService.getUserData().pending_game_invites">
                     <div class="w-full p-4 flex flex-row justify-between items-center">
                         <div class="flex flex-col justify-start items-center self-start">
                             <p class="w-full text-sm font-bold">
@@ -80,7 +80,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="w-10/12 border-b-2 border-purple-400">
+                    <div class="w-11/12 border-b-2 border-purple-400 self-end">
                         
                     </div>
                 </div>
