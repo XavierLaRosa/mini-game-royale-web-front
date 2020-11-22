@@ -14,6 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GameListItemComponent } from './components/game-list-item/game-list-item.component';
+import { FriendListItemComponent } from './components/friend-list-item/friend-list-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GameListItemComponent } from './components/game-list-item/game-list-ite
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    GameListItemComponent
+    GameListItemComponent,
+    FriendListItemComponent
   ],
   imports: [
     BrowserModule,
