@@ -35,7 +35,7 @@
         </div>
 
         <div class="bg-purple-500 w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
-            <div class="bg-white p-2 px-3 rounded-tr-lg text-left w-full h-18 text-black">
+            <div class="bg-white py-2 px-3 rounded-tr-lg text-left w-full h-18 text-black">
                 Games ({{this.appService.getUserData().games.length 
                     + this.appService.getUserData().pending_game_invites.length}})
             </div>
@@ -46,10 +46,15 @@
         </div>
 
         <div class="bg-purple-500 flex flex-col justify-around items-center w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
-            <div class="bg-white p-2 px-3 rounded-tr-lg text-left w-full h-18 text-black">
-                Friends ({{this.appService.getUserData().friends.length 
-                    + this.appService.getUserData().pending_friends_sent.length 
-                    + this.appService.getUserData().pending_friends_received.length }})
+            <div class="bg-white flex flex-row justify-between items-center py-2 px-3 rounded-tr-lg text-left w-full h-18">
+                <p class="text-black">
+                    Friends ({{this.appService.getUserData().friends.length 
+                        + this.appService.getUserData().pending_friends_sent.length 
+                        + this.appService.getUserData().pending_friends_received.length }})
+                </p>
+                <button class="rounded-lg bg-green-400 p-2 text-sm">
+                    add
+                </button>
             </div>
             <div class="h-64 overflow-y-scroll w-full">
                 <app-friend-list-item [type]="'friends'" [friends]="this.appService.getUserData().friends"></app-friend-list-item>
