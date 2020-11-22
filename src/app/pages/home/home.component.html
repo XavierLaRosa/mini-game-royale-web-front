@@ -4,7 +4,7 @@
         <p class="text-lg">settings</p>
     </nav>
     <div class="w-full flex flex-col justify-center items-center">
-        <div class="bg-purple-500 p-2 flex flex-col justify-around items-center w-8/12 rounded-lg shadow my-2">
+        <div class="bg-purple-500 p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2">
             <p class="text-2xl text-center my-2">
             Choose your Game
             </p>
@@ -34,32 +34,59 @@
             </div>
         </div>
 
-        <div class="bg-purple-500 flex flex-col justify-around items-center w-8/12 rounded-tr-lg rounded-bl-lg shadow my-2">
+        <div class="bg-purple-500 flex flex-col justify-around items-center w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
             <div class="bg-white p-2 px-3 rounded-tr-lg text-left w-full h-18 text-black">
                 Games ({{this.appService.getUserData().games.length 
                     + this.appService.getUserData().pending_game_invites.length}})
             </div>
-            <div class="w-full p-3" *ngFor="let game of this.appService.getUserData().games">
-                test games
+            <div class="w-full p-4 flex flex-row justify-between items-center" *ngFor="let game of this.appService.getUserData().games">
+                <div class="flex flex-col justify-start items-center self-start">
+                    <p class="w-full text-sm font-bold">
+                        {{ game.name }} <br> vs. {{ game.player_1_id.username }}
+                    </p>
+                    <p class="w-full text-xs">
+                        {{ game.round }}/{{ game.max_round }} rounds, {{ game.current_turn_id.username}}'s turn
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <button class="rounded-lg bg-green-400 p-2 m-1 text-sm w-full">
+                        continue
+                    </button>
+                </div>
             </div>
-            <div class="w-full p-3" *ngFor="let game of this.appService.getUserData().pending_game_invites">
-                test pending games
+            <div class="w-full p-4 flex flex-row justify-between items-center" *ngFor="let game of this.appService.getUserData().pending_game_invites">
+                <div class="flex flex-col justify-start items-center self-start">
+                    <p class="w-full text-sm font-bold">
+                        {{ game.player_1_id.username }} invited you for {{ game.name }}
+                    </p>
+                    <p class="w-full text-xs">
+                        {{ game.max_round }} rounds
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <button class="rounded-lg bg-green-400 p-2 m-1 text-sm w-full">
+                        join
+                    </button>
+                    <button class="rounded-lg bg-red-400 p-2 m-1 text-sm w-full">
+                        decline
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="bg-purple-500 flex flex-col justify-around items-center w-8/12 rounded-tr-lg rounded-bl-lg shadow my-2">
+        <div class="bg-purple-500 flex flex-col justify-around items-center w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
             <div class="bg-white p-2 px-3 rounded-tr-lg text-left w-full h-18 text-black">
                 Friends ({{this.appService.getUserData().friends.length 
                     + this.appService.getUserData().pending_friends_sent.length 
                     + this.appService.getUserData().pending_friends_received.length }})
             </div>
-            <div class="w-full p-3" *ngFor="let game of this.appService.getUserData().friends">
+            <div class="w-full p-3" *ngFor="let friend of this.appService.getUserData().friends">
                 test friends
             </div>
-            <div class="w-full p-3" *ngFor="let game of this.appService.getUserData().pending_friends_sent">
+            <div class="w-full p-3" *ngFor="let friend of this.appService.getUserData().pending_friends_sent">
                 test friends sent
             </div>
-            <div class="w-full p-3" *ngFor="let game of this.appService.getUserData().pending_friends_received">
+            <div class="w-full p-3" *ngFor="let friend of this.appService.getUserData().pending_friends_received">
                 test friends received
             </div>
         </div>
