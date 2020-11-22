@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
       next: data => {
         console.log("API Success: ", data)
         AppService.KEY = data.token
-        AppService.user = data.data as User
-        console.log("User data: ", AppService.user)
+        AppService.id = data.user._id
         this.router.navigateByUrl('/home')
       },
       error: error => {
