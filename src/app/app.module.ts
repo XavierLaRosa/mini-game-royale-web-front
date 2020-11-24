@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GameListItemComponent } from './components/game-list-item/game-list-item.component';
 import { FriendListItemComponent } from './components/friend-list-item/friend-list-item.component';
+import { SearchFriendComponent } from './pages/search-friend/search-friend.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FriendListItemComponent } from './components/friend-list-item/friend-li
     RegisterComponent,
     HomeComponent,
     GameListItemComponent,
-    FriendListItemComponent
+    FriendListItemComponent,
+    SearchFriendComponent
   ],
   imports: [
     BrowserModule,
