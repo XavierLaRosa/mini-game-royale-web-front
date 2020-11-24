@@ -33,6 +33,13 @@ export class AppService {
     return this.http.get<any>(AppService.URL+`/users/contains/${keyword}`)
   }
 
+  sendFriendRequest(id: number) {
+    return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}`, {})
+  }
+
+  confirmFriendRequestSent(id: number) {
+    return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
+  }
 }
 
 export class User {

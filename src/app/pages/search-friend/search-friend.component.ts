@@ -36,4 +36,23 @@ export class SearchFriendComponent implements OnInit {
     })
   }
 
+  addClicked(_id: number){
+    this.appService.sendFriendRequest(_id).subscribe({
+      next: data => {
+        console.log("API Success: ", data)
+        this.appService.confirmFriendRequestSent(_id).subscribe({
+          next: data => {
+            console.log("API Success: ", data)
+          },
+          error: error => {
+            console.log("API Error: ", error)
+          }
+        })
+      },
+      error: error => {
+        console.log("API Error: ", error)
+      }
+    })
+  }
+
 }
