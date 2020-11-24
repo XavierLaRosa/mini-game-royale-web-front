@@ -28,6 +28,11 @@ export class AppService {
   getUserData(): User{
     return AppService.user
   }
+
+  getUserMatching(keyword: string): Observable<any> {
+    return this.http.get<any>(AppService.URL+`/users/contains/${keyword}`)
+  }
+
 }
 
 export class User {
