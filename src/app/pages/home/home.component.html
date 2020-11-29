@@ -1,56 +1,28 @@
 <div *ngIf="this.appService.getUserData()" class="h-screen bg-purple-600 text-white flex flex-col justify-between items-center">
     <nav class="bg-purple-500 p-3 w-full flex flex-row justify-between">
         <p class="text-lg">MGR</p>
-        <p class="text-lg">settings</p>
+        <p routerLink="/notifications" class="text-lg">Notifications</p>
     </nav>
     <div class="w-full flex flex-col justify-center items-center">
         <div class="bg-purple-500 p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2">
             <p class="text-2xl text-center my-2">
             Choose your Game
             </p>
-            <div class="flex flex-row justify-around items-center w-full">
-                <div class="bg-gray-200 p-3 flex flex-col justify-center items-center w-24 h-24 m-2 rounded-lg shadow">
-                    <p class="text-black font-bold text-center">
-                    Categories
-                    </p>
-                </div>
-                <div class="bg-gray-200 p-3 flex flex-col justify-center items-center w-24 h-24 m-2 rounded-lg shadow">
-                    <p class="text-black font-bold text-center">
-                    Coming soon
-                    </p>
-                </div>
-            </div>
-            <div class="flex flex-row justify-around items-center w-full">
-                <div class="bg-gray-200 p-3 flex flex-col justify-center items-center w-24 h-24 m-2 rounded-lg shadow">
-                    <p class="text-black font-bold text-center">
-                    Coming soon
-                    </p>
-                </div>
-                <div class="bg-gray-200 p-3 flex flex-col justify-center items-center w-24 h-24 m-2 rounded-lg shadow">
-                    <p class="text-black font-bold text-center">
-                    Coming soon
-                    </p>
-                </div>
-            </div>
         </div>
 
         <div class="bg-purple-500 w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
-            <div class="bg-white py-2 px-3 rounded-tr-lg text-left w-full h-18 text-black">
-                Games ({{this.appService.getUserData().games.length 
-                    + this.appService.getUserData().pending_game_invites.length}})
+            <div class="bg-white py-2 px-3 rounded-tr-lg text-left w-full text-black">
+                Games ({{this.appService.getUserData().games.length}})
             </div>
             <div class="h-64 overflow-y-scroll w-full">
                 <app-game-list-item [isPendingGames]="false" [games]="this.appService.getUserData().games"></app-game-list-item>
-                <app-game-list-item [isPendingGames]="true" [games]="this.appService.getUserData().pending_game_invites"></app-game-list-item>
             </div>
         </div>
 
         <div class="bg-purple-500 flex flex-col justify-around items-center w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
-            <div class="bg-white flex flex-row justify-between items-center py-2 px-3 rounded-tr-lg text-left w-full h-18">
+            <div class="bg-white flex flex-row justify-between items-center py-2 px-3 rounded-tr-lg text-left w-full">
                 <p class="text-black">
-                    Friends ({{this.appService.getUserData().friends.length 
-                        + this.appService.getUserData().pending_friends_sent.length 
-                        + this.appService.getUserData().pending_friends_received.length }})
+                    Friends ({{this.appService.getUserData().friends.length}})
                 </p>
                 <button routerLink="/search-friends" class="rounded-lg bg-green-400 p-2 text-sm">
                     add
@@ -58,9 +30,6 @@
             </div>
             <div class="h-64 overflow-y-scroll w-full">
                 <app-friend-list-item [type]="'friends'" [friends]="this.appService.getUserData().friends"></app-friend-list-item>
-                <app-friend-list-item [type]="'received'" [friends]="this.appService.getUserData().pending_friends_received"></app-friend-list-item>
-                <app-friend-list-item [type]="'sent'" [friends]="this.appService.getUserData().pending_friends_sent"></app-friend-list-item>
-
             </div>
 
         </div>

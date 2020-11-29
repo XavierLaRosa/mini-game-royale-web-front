@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { GameListItemComponent } from './components/game-list-item/game-list-item.component';
 import { FriendListItemComponent } from './components/friend-list-item/friend-list-item.component';
 import { SearchFriendComponent } from './pages/search-friend/search-friend.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchFriendComponent } from './pages/search-friend/search-friend.compo
     HomeComponent,
     GameListItemComponent,
     FriendListItemComponent,
-    SearchFriendComponent
+    SearchFriendComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

@@ -42,6 +42,12 @@ export class AppService {
   }
 }
 
+export enum Notification {
+    GAME = 'GAME',
+    TO_FRIEND = 'TO_FRIEND',
+    FROM_FRIEND = 'FROM_FRIEND',
+}
+
 export class User {
   constructor(
     public _id: number,
