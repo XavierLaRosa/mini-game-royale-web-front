@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Notification, User } from 'src/app/app.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AppService, Notification, User } from 'src/app/app.service';
 export class NotificationsComponent implements OnInit {
 
   keyword: string
+  faChevronLeft = faChevronLeft
   notifications: {_id: number, username: string, type: Notification}[]
   constructor(public appService: AppService) { }
 

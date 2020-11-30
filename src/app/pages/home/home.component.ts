@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faBell, faComments, faMicrophoneAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
 
 @Component({
@@ -7,7 +8,10 @@ import { AppService, User } from 'src/app/app.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  faBell = faBell
+  faComments = faComments
+  faMicrophoneAlt = faMicrophoneAlt
+  faUserPlus = faUserPlus
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {

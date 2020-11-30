@@ -1,7 +1,9 @@
 <div *ngIf="this.appService.getUserData()" class="bg-purple-600 text-white flex flex-col justify-between items-center">
     <nav class="bg-purple-500 p-3 w-full flex flex-row justify-between">
         <p class="text-lg">MGR</p>
-        <p routerLink="/notifications" class="text-lg">Notifications</p>
+        <p routerLink="/notifications" class="text-lg">
+            <fa-icon [icon]="faBell" size="lg"></fa-icon>
+        </p>
     </nav>
     <div class="w-full flex flex-col justify-center items-center">
         
@@ -10,19 +12,19 @@
                 Choose your Game
             </p>
             <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow mr-2">
-                    test
+                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow mr-2 flex flex-col justify-center items-center">
+                    <fa-icon [icon]="faComments" size="2x"></fa-icon>
                 </div>
-                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow ml-2">
-                    test
+                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow ml-2 flex flex-col justify-center items-center">
+                    <fa-icon [icon]="faMicrophoneAlt" size="2x"></fa-icon>
                 </div>
             </div>
             <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow mr-2">
-                    test
+                <div class="h-24 w-24 bg-purple-400 opacity-25 text-white text-center rounded-lg shadow mr-2 flex flex-col justify-center items-center">
+                    coming soon...
                 </div>
-                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow ml-2">
-                    test
+                <div class="h-24 w-24 bg-purple-400 opacity-25 text-white text-center rounded-lg shadow ml-2 flex flex-col justify-center items-center">
+                    coming soon...
                 </div>
             </div>
         </div>
@@ -42,8 +44,8 @@
                 <p class="text-black">
                     Friends ({{this.appService.getUserData().friends.length}})
                 </p>
-                <button routerLink="/search-friends" class="rounded-lg text-sm text-green-400">
-                    add
+                <button routerLink="/search-friends">
+                    <fa-icon [icon]="faUserPlus" class="text-green-400"></fa-icon>
                 </button>
             </div>
             <div class="h-64 overflow-y-scroll w-full">
@@ -53,6 +55,6 @@
         </div>
     </div>
     <footer class="bg-purple-500 p-3 w-full flex flex-row justify-between">
-        <p class="text-sm">Developed by Xavier La Rosa</p>
+        <p class="text-sm">Developed by <span class="font-bold">Xavier La Rosa</span></p>
     </footer>
 </div>

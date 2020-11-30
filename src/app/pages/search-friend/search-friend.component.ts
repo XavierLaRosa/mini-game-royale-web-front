@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { AppService, User } from 'src/app/app.service';
 })
 export class SearchFriendComponent implements OnInit {
   keyword: string
+  faChevronLeft = faChevronLeft
+  faSearch = faSearch
   matches: {_id: number, username: string}[]
   constructor(public appService: AppService) { }
 
