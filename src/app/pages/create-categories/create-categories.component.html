@@ -21,8 +21,27 @@
                         select
                     </button>
                 </div>
-
             </div>
+
+            <div class="bg-purple-500 overflow-y-scroll w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
+                <p class="text-lg font-bold w-full text-left px-2">
+                    Choose Category
+                </p>
+                <select class="text-black p-3 w-full" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()">
+                    <option *ngFor="let category of categories" [ngValue]="category._id">
+                      {{ category.category }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="bg-purple-500 overflow-y-scroll w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
+                <p class="text-lg font-bold w-full text-left px-2">
+                    Choose Max Rounds
+                </p>
+                <input type="number" class="text-black p-3 w-full" max="10" min="1" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
+            </div>
+
+            <button (click)="create()" class="text-2xl">Create</button>
     </div>
     <footer class="bg-purple-500 p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>

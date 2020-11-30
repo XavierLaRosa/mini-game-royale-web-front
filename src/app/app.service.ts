@@ -40,6 +40,12 @@ export class AppService {
   confirmFriendRequestSent(id: number) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
   }
+
+  getCategories(): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL + `/categories`, {headers})
+  }
 }
 
 export enum Notification {
