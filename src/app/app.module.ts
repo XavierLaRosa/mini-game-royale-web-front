@@ -17,6 +17,7 @@ import { GameListItemComponent } from './components/game-list-item/game-list-ite
 import { FriendListItemComponent } from './components/friend-list-item/friend-list-item.component';
 import { SearchFriendComponent } from './pages/search-friend/search-friend.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     GameListItemComponent,
     FriendListItemComponent,
     SearchFriendComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    CreateCategoriesComponent
   ],
   imports: [
     BrowserModule,

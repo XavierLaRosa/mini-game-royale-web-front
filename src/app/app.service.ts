@@ -83,3 +83,29 @@ export class User {
     }[]
   ){}
 }
+
+export class Session {
+  constructor(
+    public _id: number,
+    public player_1_id: number,
+    public player_2_id: number,
+    public player_1_wins: number,
+    public player_2_wins: number
+  ){}
+}
+
+export class Game {
+  constructor(
+    public _id: number,
+    public name: string,
+    public session_id: number,
+    public genre_id: number,
+    public current_turn_id:  {_id: number, username: string},
+    public player_1_id:  {_id: number, username: string},
+    public player_2_id:  {_id: number, username: string},
+    public player_1_points: number,
+    public player_2_points: number,
+    public round: number,
+    public max_round: number
+  ){}
+}
