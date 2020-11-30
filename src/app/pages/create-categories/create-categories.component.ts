@@ -8,10 +8,15 @@ import { AppService, User } from 'src/app/app.service';
   styleUrls: ['./create-categories.component.css']
 })
 export class CreateCategoriesComponent implements OnInit {
+  sessionSubmission = {
+    player_1_id: 0,
+    player_2_id: 0
+  }
   faChevronLeft = faChevronLeft
   faSearch = faSearch
   keyword: string
   friends: {_id: number, username: string}[]
+  friend_id: number
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
@@ -21,6 +26,7 @@ export class CreateCategoriesComponent implements OnInit {
         AppService.user = data as User
         console.log("User data: ", AppService.user)
         this.friends = JSON.parse(JSON.stringify(AppService.user.friends))
+        this.sessionSubmission.player_1_id = AppService.user._id
       },
       error: error => {
         console.log("API Error: ", error)
@@ -41,5 +47,10 @@ export class CreateCategoriesComponent implements OnInit {
     } else {
       this.friends = JSON.parse(JSON.stringify(AppService.user.friends))
     }
+  }
+
+  friendSelected(_id: number){
+    this.friend_id = _id
+    this.sessionSubmission.player_2_id = this.friend_id
   }
 }
