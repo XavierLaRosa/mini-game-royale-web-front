@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { AppService, User } from 'src/app/app.service';
+import { AppService, Friend, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-search-friend',
@@ -28,10 +28,19 @@ export class SearchFriendComponent implements OnInit {
   }
 
   searchClicked(){
+    this.matches = []
     this.appService.getUserMatching(this.keyword).subscribe({
       next: data => {
         console.log("API Success: ", data)
-        this.matches = data as {_id: number, username: string}[]
+        data.forEach(d => {
+          if(d._id != AppService.id){
+            if(this.matches){
+              this.matches.push(d as {_id: number, username: string})
+            } else {
+              this.matches = [d as {_id: number, username: string}]
+            }
+          }
+        })
       },
       error: error => {
         console.log("API Error: ", error)
