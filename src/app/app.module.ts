@@ -19,6 +19,7 @@ import { SearchFriendComponent } from './pages/search-friend/search-friend.compo
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
 import { GameWaitingComponent } from './pages/game-waiting/game-waiting.component';
+import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GameWaitingComponent } from './pages/game-waiting/game-waiting.componen
     SearchFriendComponent,
     NotificationsComponent,
     CreateCategoriesComponent,
-    GameWaitingComponent
+    GameWaitingComponent,
+    RoundCategoriesComponent
   ],
   imports: [
     BrowserModule,
