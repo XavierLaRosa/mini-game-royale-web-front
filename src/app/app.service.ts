@@ -59,6 +59,12 @@ export class AppService {
     return this.http.post<any>(AppService.URL+`/games`, body, {headers})
   }
 
+  getGame(id: number): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/games/${id}`, {headers})
+  }
+
   sendGameRequest(gid: string, id: string) {
     return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}`, {})
   }
@@ -69,10 +75,15 @@ export class AppService {
 }
 
 export enum Notification {
-    TO_GAME = 'TO_GAME',
-    FROM_GAME = 'TO_GAME',
-    TO_FRIEND = 'TO_FRIEND',
-    FROM_FRIEND = 'FROM_FRIEND',
+  TO_GAME = 'TO_GAME',
+  FROM_GAME = 'TO_GAME',
+  TO_FRIEND = 'TO_FRIEND',
+  FROM_FRIEND = 'FROM_FRIEND',
+}
+
+export enum GameState {
+  WAITING_ACCEPTANCE = "WAITING_ACCEPTANCE",
+  WAITING_TURN = "WAITING_TURN"
 }
 
 export class User {

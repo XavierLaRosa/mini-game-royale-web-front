@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { AppService, Game, User } from 'src/app/app.service';
+import { AppService, Game, GameState, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-create-categories',
@@ -26,7 +27,7 @@ export class CreateCategoriesComponent implements OnInit {
     player_2_id: "",
     max_round: this.selectedRounds
   }
-  constructor(public appService: AppService) { }
+  constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
     this.appService.getUser(AppService.id).subscribe({
@@ -91,9 +92,11 @@ export class CreateCategoriesComponent implements OnInit {
     this.appService.postGame(this.gameSubmission).subscribe({
       next: data => {
         console.log("Game API Success: ", data)
-        this.appService.sendGameRequest(data._id, data.player_2_id).subscribe({
+        const gid = data._id
+        this.appService.sendGameRequest(gid, data.player_2_id).subscribe({
           next: data => {
             console.log("Game Request API Success: ", data)
+            this.router.navigate([`game-waiting/${gid}/state/${GameState.WAITING_ACCEPTANCE}`]);
           },
           error: error => {
             console.log("API Error: ", error)
