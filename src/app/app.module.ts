@@ -11,18 +11,34 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { GameListItemComponent } from './components/game-list-item/game-list-item.component';
+import { FriendListItemComponent } from './components/friend-list-item/friend-list-item.component';
+import { SearchFriendComponent } from './pages/search-friend/search-friend.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
+import { GameWaitingComponent } from './pages/game-waiting/game-waiting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    GameListItemComponent,
+    FriendListItemComponent,
+    SearchFriendComponent,
+    NotificationsComponent,
+    CreateCategoriesComponent,
+    GameWaitingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
