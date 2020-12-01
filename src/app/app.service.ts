@@ -46,6 +46,18 @@ export class AppService {
     headers = headers.append('auth-token', AppService.KEY)
     return this.http.get<any>(AppService.URL + `/categories`, {headers})
   }
+
+  postSession(body: Object): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.post<any>(AppService.URL+`/sessions`, body, {headers})
+  }
+
+  postGame(body: Object): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.post<any>(AppService.URL+`/games`, body, {headers})
+  }
 }
 
 export enum Notification {

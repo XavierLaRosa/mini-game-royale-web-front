@@ -95,6 +95,25 @@ export class CreateCategoriesComponent implements OnInit {
   create() {
     console.log("session: ", this.sessionSubmission)
     console.log("game: ", this.gameSubmission)
+
+    this.appService.postSession(this.sessionSubmission).subscribe({
+      next: data => {
+        console.log("Session API Success: ", data)
+        this.gameSubmission.session_id = data._id
+        this.appService.postGame(this.gameSubmission).subscribe({
+          next: data => {
+            console.log("Game API Success: ", data)
+            
+          },
+          error: error => {
+            console.log("API Error: ", error)
+          }
+        })
+      },
+      error: error => {
+        console.log("API Error: ", error)
+      }
+    })
   }
 }
  export class Category {
