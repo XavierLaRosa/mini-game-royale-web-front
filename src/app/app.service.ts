@@ -74,7 +74,11 @@ export class AppService {
   }
 
   confirmGameRequest(gid: string, id: string) {
-    return this.http.put<any>(AppService.URL+`/users/game-confirm/game/${gid}/sender/${AppService.id}/receiver/${id}`, {})
+    return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/confirm`, {})
+  }
+
+  declineGameRequest(gid: string, id: string) {
+    return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/decline`, {})
   }
 }
 
