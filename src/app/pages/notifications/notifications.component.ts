@@ -22,9 +22,9 @@ export class NotificationsComponent implements OnInit {
         console.log("User data: ", AppService.user)
           AppService.user.pending_games_sent.forEach( g => { // add games sent
             if(!this.notifications){
-              this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.TO_GAME}]
+              this.notifications = [{_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME}]
             } else{
-              this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.TO_GAME})
+              this.notifications.push({_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME})
             }
           })
           AppService.user.pending_games_received.forEach( g => { // add games received

@@ -22,12 +22,17 @@
                 <p *ngIf="notif.type == 'FROM_FRIEND'" class="p-3 text-black text-sm w-full text-center">
                     {{notif.username}} wants to be your friend!
                 </p>
-                <div class="flex flex-row justify-center items-center w-full mb-2">
+                <div *ngIf="notif.type == 'FROM_FRIEND' || notif.type == 'FROM_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
                     <button class="bg-clear text-green-400 text-sm mr-4">
                         Accept
                     </button>
-                    <button class="bg-clear text-green-400 text-sm mr-4">
+                    <button class="bg-clear text-red-400 text-sm mr-4">
                         Decline
+                    </button>
+                </div>
+                <div *ngIf="notif.type == 'TO_FRIEND'" class="flex flex-row justify-center items-center w-full mb-2">
+                    <button class="bg-clear text-red-400 text-sm mr-4">
+                        Unsend
                     </button>
                 </div>
             </section>

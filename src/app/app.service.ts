@@ -76,7 +76,7 @@ export class AppService {
 
 export enum Notification {
   TO_GAME = 'TO_GAME',
-  FROM_GAME = 'TO_GAME',
+  FROM_GAME = 'FROM_GAME',
   TO_FRIEND = 'TO_FRIEND',
   FROM_FRIEND = 'FROM_FRIEND',
 }
