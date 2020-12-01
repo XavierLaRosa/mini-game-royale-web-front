@@ -41,6 +41,10 @@ export class AppService {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
   }
 
+  declineFriendRequest(id: string) {
+    return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/decline`, {})
+  }
+
   getCategories(): Observable<any> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('auth-token', AppService.KEY)

@@ -94,7 +94,15 @@ export class NotificationsComponent implements OnInit {
     if(type == Notification.FROM_GAME){
 
     } else if(type == Notification.FROM_FRIEND){
-
+      this.appService.declineFriendRequest(id).subscribe({
+        next: data => {
+          console.log("Decline Friend API Success: ", data)
+          this.router.navigateByUrl('/home')
+        },
+        error: error => {
+          console.log("API Error: ", error)
+        }
+      })
     }
   }
 }
