@@ -37,7 +37,7 @@ export class AppService {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}`, {})
   }
 
-  confirmFriendRequestSent(id: string) {
+  confirmFriendRequest(id: string) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
   }
 

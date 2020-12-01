@@ -59,14 +59,6 @@ export class NotificationsComponent implements OnInit {
     this.appService.sendFriendRequest(_id).subscribe({
       next: data => {
         console.log("API Success: ", data)
-        this.appService.confirmFriendRequestSent(_id).subscribe({
-          next: data => {
-            console.log("API Success: ", data)
-          },
-          error: error => {
-            console.log("API Error: ", error)
-          }
-        })
       },
       error: error => {
         console.log("API Error: ", error)
@@ -86,7 +78,15 @@ export class NotificationsComponent implements OnInit {
         }
       })
     } else if(type == Notification.FROM_FRIEND){
-
+      this.appService.confirmFriendRequest(id).subscribe({
+        next: data => {
+          console.log("Confirm Friend API Success: ", data)
+          this.router.navigateByUrl('/home')
+        },
+        error: error => {
+          console.log("API Error: ", error)
+        }
+      })
     }
   }
 
