@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'search-friends', component: SearchFriendComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'create-categories', component: CreateCategoriesComponent },
-  { path: 'game-waiting/:gid/state/:state', component: GameWaitingComponent }
+  { path: 'game-waiting/:gid/:state', component: GameWaitingComponent }
 ];
 
 @NgModule({

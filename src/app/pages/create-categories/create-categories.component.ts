@@ -96,7 +96,7 @@ export class CreateCategoriesComponent implements OnInit {
         this.appService.sendGameRequest(gid, data.player_2_id).subscribe({
           next: data => {
             console.log("Game Request API Success: ", data)
-            this.router.navigate([`game-waiting/${gid}/state/${GameState.WAITING_ACCEPTANCE}`]);
+            this.router.navigate([`game-waiting/${gid}/${GameState.WAITING_ACCEPTANCE}`]);
           },
           error: error => {
             console.log("API Error: ", error)
