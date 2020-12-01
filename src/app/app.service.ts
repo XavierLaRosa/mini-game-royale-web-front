@@ -44,6 +44,9 @@ export class AppService {
   declineFriendRequest(id: string) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/decline`, {})
   }
+  removeFriend(id: string) {
+    return this.http.put<any>(AppService.URL+`/users/friends/sender/${AppService.id}/receiver/${id}/remove`, {})
+  }
 
   getCategories(): Observable<any> {
     let headers: HttpHeaders = new HttpHeaders();
