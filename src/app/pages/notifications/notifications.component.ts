@@ -35,11 +35,18 @@ export class NotificationsComponent implements OnInit {
             }
           })
           AppService.user.pending_friends_sent.forEach(f => { // add sent invites
-            this.notifications.push({_id: f._id, username: f.username, type: Notification.TO_FRIEND})
+            if(!this.notifications){
+              this.notifications = [{_id: f._id, username: f.username, type: Notification.TO_FRIEND}]
+            } else {
+              this.notifications.push({_id: f._id, username: f.username, type: Notification.TO_FRIEND})
+            }
           })
           AppService.user.pending_friends_received.forEach(f => { // add received invites
-            this.notifications.push({_id: f._id, username: f.username, type: Notification.FROM_FRIEND})
-          })
+            if(!this.notifications){
+              this.notifications = [{_id: f._id, username: f.username, type: Notification.FROM_FRIEND}]
+            } else {
+              this.notifications.push({_id: f._id, username: f.username, type: Notification.FROM_FRIEND})
+            }          })
       },
       error: error => {
         console.log("API Error: ", error)
