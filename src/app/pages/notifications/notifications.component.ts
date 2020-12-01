@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Notification, User } from 'src/app/app.service';
 
@@ -11,8 +12,8 @@ export class NotificationsComponent implements OnInit {
 
   keyword: string
   faChevronLeft = faChevronLeft
-  notifications: {_id: string, username: string, type: Notification}[]
-  constructor(public appService: AppService) { }
+  notifications: {_id: string, username: string, type: Notification, gid?: string}[]
+  constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
     this.appService.getUser(AppService.id).subscribe({
@@ -22,16 +23,16 @@ export class NotificationsComponent implements OnInit {
         console.log("User data: ", AppService.user)
           AppService.user.pending_games_sent.forEach( g => { // add games sent
             if(!this.notifications){
-              this.notifications = [{_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME}]
+              this.notifications = [{_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME, gid: g._id}]
             } else{
-              this.notifications.push({_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME})
+              this.notifications.push({_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME, gid: g._id})
             }
           })
           AppService.user.pending_games_received.forEach( g => { // add games received
             if(!this.notifications){
-              this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME}]
+              this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME, gid: g._id}]
             } else{
-              this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME})
+              this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME, gid: g._id})
             }
           })
           AppService.user.pending_friends_sent.forEach(f => { // add sent invites
@@ -73,4 +74,27 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
+  accept(type: string, gid: string, id: string) {
+    if(type == Notification.FROM_GAME){
+      this.appService.confirmGameRequest(gid, id).subscribe({
+        next: data => {
+          console.log("API Success: ", data)
+          this.router.navigateByUrl('/home')
+        },
+        error: error => {
+          console.log("API Error: ", error)
+        }
+      })
+    } else if(type == Notification.FROM_FRIEND){
+
+    }
+  }
+
+  decline(type: string, gid: string, id: string) {
+    if(type == Notification.FROM_GAME){
+
+    } else if(type == Notification.FROM_FRIEND){
+
+    }
+  }
 }
