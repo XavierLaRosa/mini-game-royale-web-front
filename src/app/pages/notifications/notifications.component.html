@@ -10,7 +10,10 @@
     <div class="w-full bg-gray-100 h-full overflow-y-scroll flex flex-col justify-start items-center">
         <div *ngIf="notifications" class="w-full">
             <section class="w-full border-b-2 border-gray-200 flex flex-col justify-center items-center" *ngFor="let notif of notifications">
-                <p *ngIf="notif.type == 'GAME'" class="p-3 text-black text-sm w-full text-center">
+                <p *ngIf="notif.type == 'TO_GAME'" class="p-3 text-black text-sm w-full text-center">
+                    Waiting on game reply from {{notif.username}}.
+                </p>
+                <p *ngIf="notif.type == 'FROM_GAME'" class="p-3 text-black text-sm w-full text-center">
                     {{notif.username}} wants to play a game with you!
                 </p>
                 <p *ngIf="notif.type == 'TO_FRIEND'" class="p-3 text-black text-sm w-full text-center">

@@ -61,7 +61,8 @@ export class AppService {
 }
 
 export enum Notification {
-    GAME = 'GAME',
+    TO_GAME = 'TO_GAME',
+    FROM_GAME = 'TO_GAME',
     TO_FRIEND = 'TO_FRIEND',
     FROM_FRIEND = 'FROM_FRIEND',
 }
@@ -70,35 +71,12 @@ export class User {
   constructor(
     public _id: number,
     public username: string,
-    public friends: {_id: number, username: string}[],
-    public pending_friends_sent: {_id: number, username: string}[],
-    public pending_friends_received: {_id: number, username: string}[],
-    public pending_game_invites: {
-      _id: number,
-      name: string,
-      session_id: number,
-      genre_id: number,
-      current_turn_id:  {_id: number, username: string},
-      player_1_id:  {_id: number, username: string},
-      player_2_id:  {_id: number, username: string},
-      player_1_points: number,
-      player_2_points: number,
-      round: number,
-      max_round: number
-    }[],
-    public games: {
-      _id: number,
-      name: string,
-      session_id: number,
-      genre_id: number,
-      current_turn_id:  {_id: number, username: string},
-      player_1_id:  {_id: number, username: string},
-      player_2_id:  {_id: number, username: string},
-      player_1_points: number,
-      player_2_points: number,
-      round: number,
-      max_round: number
-    }[]
+    public friends: Friend[],
+    public pending_friends_sent: Friend[],
+    public pending_friends_received: Friend[],
+    public pending_games_sent: Game[],
+    public pending_games_received: Game[],
+    public games: Game[]
   ){}
 }
 
@@ -118,12 +96,20 @@ export class Game {
     public name: string,
     public session_id: number,
     public genre_id: number,
-    public current_turn_id:  {_id: number, username: string},
-    public player_1_id:  {_id: number, username: string},
-    public player_2_id:  {_id: number, username: string},
+    public current_turn_id:  Friend,
+    public player_1_id:  Friend,
+    public player_2_id:  Friend,
     public player_1_points: number,
     public player_2_points: number,
     public round: number,
-    public max_round: number
+    public max_round: number,
+    public active: boolean
+  ){}
+}
+
+export class Friend {
+  constructor(
+    public _id: number,
+    public username: string
   ){}
 }

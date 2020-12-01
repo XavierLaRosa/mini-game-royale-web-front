@@ -20,11 +20,18 @@ export class NotificationsComponent implements OnInit {
         console.log("API Success: ", data)
         AppService.user = data as User
         console.log("User data: ", AppService.user)
-          AppService.user.pending_game_invites.forEach( g => { // add game invites
+          AppService.user.pending_games_sent.forEach( g => { // add games sent
             if(!this.notifications){
-              this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.GAME}]
+              this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.TO_GAME}]
             } else{
-              this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.GAME})
+              this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.TO_GAME})
+            }
+          })
+          AppService.user.pending_games_received.forEach( g => { // add games received
+            if(!this.notifications){
+              this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME}]
+            } else{
+              this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME})
             }
           })
           AppService.user.pending_friends_sent.forEach(f => { // add sent invites
