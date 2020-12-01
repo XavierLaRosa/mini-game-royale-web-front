@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { AppService, User } from 'src/app/app.service';
+import { AppService, Game, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-create-categories',
@@ -11,24 +11,19 @@ export class CreateCategoriesComponent implements OnInit {
   faChevronLeft = faChevronLeft
   faSearch = faSearch
   keyword: string
-  friends: {_id: number, username: string}[]
-  friend_id: number
+  friends: {_id: string, username: string}[]
+  friend_id: string
   categories: Category[]
   selectedCategory: string
   selectedRounds: number = 10
-  sessionSubmission = {
-    player_1_id: 0,
-    player_2_id: 0
-  }
   gameSubmission = {
     verified_answers: [
     ],
     name: "categories",
-    session_id: "",
     genre_id: "",
-    current_turn_id: 0,
-    player_1_id: 0,
-    player_2_id: 0,
+    current_turn_id: "",
+    player_1_id: "",
+    player_2_id: "",
     max_round: this.selectedRounds
   }
   constructor(public appService: AppService) { }
@@ -40,7 +35,6 @@ export class CreateCategoriesComponent implements OnInit {
         AppService.user = data as User
         console.log("User data: ", AppService.user)
         this.friends = JSON.parse(JSON.stringify(AppService.user.friends))
-        this.sessionSubmission.player_1_id = AppService.user._id
         this.gameSubmission.player_1_id = AppService.user._id
         this.gameSubmission.current_turn_id = AppService.user._id
       },
@@ -76,9 +70,8 @@ export class CreateCategoriesComponent implements OnInit {
     }
   }
 
-  friendSelected(_id: number){
+  friendSelected(_id: string){
     this.friend_id = _id
-    this.sessionSubmission.player_2_id = this.friend_id
     this.gameSubmission.player_2_id = this.friend_id
   }
 
@@ -93,17 +86,14 @@ export class CreateCategoriesComponent implements OnInit {
   }
 
   create() {
-    console.log("session: ", this.sessionSubmission)
     console.log("game: ", this.gameSubmission)
 
-    this.appService.postSession(this.sessionSubmission).subscribe({
+    this.appService.postGame(this.gameSubmission).subscribe({
       next: data => {
-        console.log("Session API Success: ", data)
-        this.gameSubmission.session_id = data._id
-        this.appService.postGame(this.gameSubmission).subscribe({
+        console.log("Game API Success: ", data)
+        this.appService.sendGameRequest(data._id, data.player_2_id).subscribe({
           next: data => {
-            console.log("Game API Success: ", data)
-            
+            console.log("Game Request API Success: ", data)
           },
           error: error => {
             console.log("API Error: ", error)

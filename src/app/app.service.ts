@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AppService {
   static URL = `http://localhost:3000`
   static KEY = ''
-  static id: number
+  static id: string
   static user: User
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class AppService {
     return this.http.post<any>(AppService.URL+`/users`, body)
   }
 
-  getUser(id: number): Observable<any> {
+  getUser(id: string): Observable<any> {
     return this.http.get<any>(AppService.URL+`/users/${id}`)
   }
 
@@ -33,11 +33,11 @@ export class AppService {
     return this.http.get<any>(AppService.URL+`/users/contains/${keyword}`)
   }
 
-  sendFriendRequest(id: number) {
+  sendFriendRequest(id: string) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}`, {})
   }
 
-  confirmFriendRequestSent(id: number) {
+  confirmFriendRequestSent(id: string) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
   }
 
@@ -58,6 +58,14 @@ export class AppService {
     headers = headers.append('auth-token', AppService.KEY)
     return this.http.post<any>(AppService.URL+`/games`, body, {headers})
   }
+
+  sendGameRequest(gid: string, id: string) {
+    return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}`, {})
+  }
+
+  confirmGameRequest(gid: string, id: string) {
+    return this.http.put<any>(AppService.URL+`/users/game-confirm/game/${gid}/sender/${AppService.id}/receiver/${id}`, {})
+  }
 }
 
 export enum Notification {
@@ -69,7 +77,7 @@ export enum Notification {
 
 export class User {
   constructor(
-    public _id: number,
+    public _id: string,
     public username: string,
     public friends: Friend[],
     public pending_friends_sent: Friend[],
@@ -80,22 +88,11 @@ export class User {
   ){}
 }
 
-export class Session {
-  constructor(
-    public _id: number,
-    public player_1_id: number,
-    public player_2_id: number,
-    public player_1_wins: number,
-    public player_2_wins: number
-  ){}
-}
-
 export class Game {
   constructor(
-    public _id: number,
+    public _id: string,
     public name: string,
-    public session_id: number,
-    public genre_id: number,
+    public genre_id: string,
     public current_turn_id:  Friend,
     public player_1_id:  Friend,
     public player_2_id:  Friend,
@@ -109,7 +106,7 @@ export class Game {
 
 export class Friend {
   constructor(
-    public _id: number,
+    public _id: string,
     public username: string
   ){}
 }

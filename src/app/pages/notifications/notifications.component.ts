@@ -11,7 +11,7 @@ export class NotificationsComponent implements OnInit {
 
   keyword: string
   faChevronLeft = faChevronLeft
-  notifications: {_id: number, username: string, type: Notification}[]
+  notifications: {_id: string, username: string, type: Notification}[]
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
-  addClicked(_id: number){
+  addClicked(_id: string){
     this.appService.sendFriendRequest(_id).subscribe({
       next: data => {
         console.log("API Success: ", data)

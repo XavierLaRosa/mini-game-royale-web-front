@@ -39,7 +39,7 @@ export class SearchFriendComponent implements OnInit {
     })
   }
 
-  addClicked(_id: number){
+  addClicked(_id: string){
     this.appService.sendFriendRequest(_id).subscribe({
       next: data => {
         console.log("API Success: ", data)
