@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppService, GameState } from 'src/app/app.service';
 
 @Component({
   selector: 'app-game-list-item',
@@ -8,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GameListItemComponent implements OnInit {
   @Input() isPendingGames: boolean
   @Input() games
-  constructor() { }
+  constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
   }

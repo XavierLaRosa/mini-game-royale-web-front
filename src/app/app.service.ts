@@ -66,7 +66,7 @@ export class AppService {
     return this.http.post<any>(AppService.URL+`/games`, body, {headers})
   }
 
-  getGame(id: number): Observable<any> {
+  getGame(id: string): Observable<any> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('auth-token', AppService.KEY)
     return this.http.get<any>(AppService.URL+`/games/${id}`, {headers})
@@ -82,6 +82,18 @@ export class AppService {
 
   declineGameRequest(gid: string, id: string) {
     return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/decline`, {})
+  }
+
+  checkCategoryAnswer(id: string, keyword: string, gid: string){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/categories/${id}/submit/${keyword}/game/${gid}`, {headers})
+  }
+
+  incrementCategoryGame(id: string, seconds: number){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/games/${id}/seconds-left/${seconds}`, {headers})
   }
 }
 
@@ -114,7 +126,7 @@ export class Game {
   constructor(
     public _id: string,
     public name: string,
-    public genre_id: string,
+    public genre_id: {_id: string, category: string},
     public current_turn_id:  Friend,
     public player_1_id:  Friend,
     public player_2_id:  Friend,
@@ -122,7 +134,9 @@ export class Game {
     public player_2_points: number,
     public round: number,
     public max_round: number,
-    public active: boolean
+    public is_done: boolean,
+    public is_tie: boolean,
+    public winner: Friend
   ){}
 }
 

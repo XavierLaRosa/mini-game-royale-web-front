@@ -1,45 +1,42 @@
 <div *ngIf="games">
-    <div *ngIf="!isPendingGames">
-        <div class="w-full flex flex-col" *ngFor="let game of games">
-            <div class="w-full p-4 flex flex-row justify-between items-center">
-                <div class="flex flex-col justify-start items-center self-start">
-                    <p class="w-full text-sm font-bold">
-                        {{ game.name }} <br> vs. {{ game.player_1_id.username }}
-                    </p>
-                    <p class="w-full text-xs">
-                        {{ game.round }}/{{ game.max_round }} rounds, {{ game.current_turn_id.username}}'s turn
-                    </p>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                    <button class="rounded-lg bg-green-400 p-2 m-1 text-sm w-full">
-                        continue
-                    </button>
-                </div>
+    <div class="w-full flex flex-col" *ngFor="let game of games.reverse()">
+        <div *ngIf="game.is_done == true" class="opacity-50 w-full p-4 flex flex-row justify-between items-center">
+            <div class="flex flex-col justify-start items-center self-start">
+                <p class="w-full text-sm font-bold">
+                    {{ game.name }} <br> vs. {{ game.player_1_id.username }}
+                </p>
+                <p class="w-full text-xs">
+                    {{ game.round }}/{{ game.max_round }} rounds, 
+                    <span *ngIf="game.is_tie">DRAW</span>
+                    <span *ngIf="!game.is_tie">{{game.winner.username}} won!</span>
+                </p>
             </div>
-            <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
+            <div class="flex flex-col justify-center items-center">
+                <button *ngIf="game.name == 'categories'" [routerLink]="['/results-categories', game._id]" class="rounded-lg bg-gray-400 p-2 m-1 text-sm w-full">
+                    VIEW
+                </button>
+            </div>
         </div>
+        <div *ngIf="game.is_done == false" class="w-full p-4 flex flex-row justify-between items-center">
+            <div class="flex flex-col justify-start items-center self-start">
+                <p class="w-full text-sm font-bold">
+                    {{ game.name }} <br> vs. {{ game.player_1_id.username }}
+                </p>
+                <p class="w-full text-xs">
+                    {{ game.round }}/{{ game.max_round }} rounds, {{ game.current_turn_id.username}}'s turn
+                </p>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <button *ngIf="appService.getUserData()._id == game.current_turn_id._id" class="rounded-lg bg-green-400 p-2 m-1 text-sm w-full">
+                    <a *ngIf="game.name=='categories'" [routerLink]="['/round-categories', game._id]">
+                        PLAY
+                    </a>
+                </button>
+                <button [routerLink]="['/game-waiting', game._id, 'WAITING_TURN']" *ngIf="appService.getUserData()._id != game.current_turn_id._id" class="rounded-lg bg-gray-400 p-2 m-1 text-sm w-full">
+                    WAITING
+                </button>
+            </div>
+        </div>
+        <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
     </div>
-    <div *ngIf="isPendingGames">
-        <div class="w-full flex flex-col" *ngFor="let game of games">
-            <div class="w-full p-4 flex flex-row justify-between items-center">
-                <div class="flex flex-col justify-start items-center self-start">
-                    <p class="w-full text-sm font-bold">
-                        {{ game.player_1_id.username }} invited you for {{ game.name }}
-                    </p>
-                    <p class="w-full text-xs">
-                        {{ game.max_round }} rounds
-                    </p>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                    <button class="rounded-lg bg-green-400 p-2 m-1 text-sm w-full">
-                        join
-                    </button>
-                    <button class="rounded-lg bg-red-400 p-2 m-1 text-sm w-full">
-                        decline
-                    </button>
-                </div>
-            </div>
-            <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
-        </div>
-    </div>    
 </div>

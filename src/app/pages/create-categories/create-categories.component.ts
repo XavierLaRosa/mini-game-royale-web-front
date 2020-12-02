@@ -30,28 +30,27 @@ export class CreateCategoriesComponent implements OnInit {
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
-    this.appService.getUser(AppService.id).subscribe({
+    this.appService.getUser(AppService.id).subscribe({ // get user data
       next: data => {
-        console.log("API Success: ", data)
+        console.log("User API Success: ", data)
         AppService.user = data as User
-        console.log("User data: ", AppService.user)
         this.friends = JSON.parse(JSON.stringify(AppService.user.friends))
         this.gameSubmission.player_1_id = AppService.user._id
         this.gameSubmission.current_turn_id = AppService.user._id
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("User API Error: ", error)
       }
     })
 
-    this.appService.getCategories().subscribe({
+    this.appService.getCategories().subscribe({ // get categories option data
       next: data => {
-        console.log("Cat API Success: ", data)
+        console.log("Categories API Success: ", data)
         this.categories = data as Category[]
         this.gameSubmission.genre_id = this.categories[0]._id.toString()
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("Categories API Error: ", error)
       }
     })
   }
@@ -77,42 +76,39 @@ export class CreateCategoriesComponent implements OnInit {
   }
 
   updateCategory() {
-    console.log("detected change", this.selectedCategory)
     this.gameSubmission.genre_id = this.selectedCategory
   }
 
   updateRounds() {
-    console.log("detected change", this.selectedRounds)
     this.gameSubmission.max_round = this.selectedRounds
   }
 
   create() {
-    console.log("game: ", this.gameSubmission)
-
-    this.appService.postGame(this.gameSubmission).subscribe({
+    this.appService.postGame(this.gameSubmission).subscribe({ // create game
       next: data => {
-        console.log("Game API Success: ", data)
+        console.log("Create game API Success: ", data)
         const gid = data._id
-        this.appService.sendGameRequest(gid, data.player_2_id).subscribe({
+        this.appService.sendGameRequest(gid, data.player_2_id).subscribe({ // send game request
           next: data => {
             console.log("Game Request API Success: ", data)
-            this.router.navigate([`game-waiting/${gid}/state/${GameState.WAITING_ACCEPTANCE}`]);
+            this.router.navigate([`game-waiting/${gid}/${GameState.WAITING_ACCEPTANCE}`]);
           },
           error: error => {
-            console.log("API Error: ", error)
+            console.log("Game request API Error: ", error)
           }
         })
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("Create game API Error: ", error)
       }
     })
   }
 }
- export class Category {
-   constructor(
-    public _id: number,
-    public category: string,
-    public answers: string[]
-   ){}
- }
+
+export class Category {
+  constructor(
+  public _id: number,
+  public category: string,
+  public answers: string[]
+  ){}
+}

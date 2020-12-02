@@ -1,6 +1,6 @@
 <div *ngIf="friends">
-    <div class="w-full" *ngIf="type=='friends'">
-        <div class="w-full flex flex-col" *ngFor="let friend of friends">
+    <div class="w-full">
+        <div class="w-full flex flex-col" *ngFor="let friend of friends.reverse()">
             <div class="w-full p-4 flex flex-row justify-between items-center">
                 <div class="flex flex-col justify-center items-center">
                     <p class="w-full text-sm font-bold">
@@ -10,45 +10,6 @@
                 <div class="flex flex-col justify-center items-center">
                     <button (click)="removeFriend(friend._id)" class="rounded-lg bg-red-400 p-2 m-1 text-sm w-full">
                         unfriend
-                    </button>
-                </div>
-            </div>
-            <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
-        </div>
-    </div>
-    
-    <div class="w-full" *ngIf="type=='sent'">
-        <div class="w-full flex flex-col" *ngFor="let friend of friends">
-            <div class="w-full p-4 flex flex-col justify-center items-center">
-                <div class="flex flex-col justify-center items-center mb-2">
-                    <p class="w-full text-sm font-bold text-center">
-                        {{friend.username}} wants to be your friend!
-                    </p>
-                </div>
-                <div class="flex flex-row justify-center items-center">
-                    <button class="rounded-lg bg-green-400 p-2 m-1 text-sm w-full">
-                        accept
-                    </button>
-                    <button class="rounded-lg bg-red-400 p-2 m-1 text-sm w-full">
-                        decline
-                    </button>
-                </div>
-            </div>
-            <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
-        </div>
-    </div>
-    
-    <div class="w-full" *ngIf="type=='received'">
-        <div class="w-full flex flex-col" *ngFor="let friend of friends">
-            <div class="w-full p-4 flex flex-col justify-center items-center">
-                <div class="flex flex-col justify-center items-center mb-2">
-                    <p class="w-full text-sm font-bold text-center">
-                        friend request sent to {{friend.username}}
-                    </p>
-                </div>
-                <div class="flex flex-row justify-center items-center">
-                    <button class="rounded-lg bg-red-400 p-2 m-1 text-sm w-full">
-                        unsend
                     </button>
                 </div>
             </div>
