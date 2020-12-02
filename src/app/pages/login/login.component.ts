@@ -17,16 +17,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     var body = {username: this.username, password: this.password}
-    console.log("body to send: ", body)
-    this.appService.loginUser(body).subscribe({
+    this.appService.loginUser(body).subscribe({ // login with user credentials
       next: data => {
-        console.log("API Success: ", data)
+        console.log("Login API Success: ", data)
         AppService.KEY = data.token
         AppService.id = data.user._id
         this.router.navigateByUrl('/home')
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("Login API Error: ", error)
       }
     })
   }

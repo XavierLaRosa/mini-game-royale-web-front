@@ -15,23 +15,22 @@ export class SearchFriendComponent implements OnInit {
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
-    this.appService.getUser(AppService.id).subscribe({
+    this.appService.getUser(AppService.id).subscribe({ // get user data
       next: data => {
-        console.log("API Success: ", data)
+        console.log("User API Success: ", data)
         AppService.user = data as User
-        console.log("User data: ", AppService.user)
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("User API Error: ", error)
       }
     })
   }
 
   searchClicked(){
     this.matches = []
-    this.appService.getUserMatching(this.keyword).subscribe({
+    this.appService.getUserMatching(this.keyword).subscribe({ // get matching users
       next: data => {
-        console.log("API Success: ", data)
+        console.log("User Match API Success: ", data)
         data.forEach(d => {
           if(d._id != AppService.id){
             if(this.matches){
@@ -43,18 +42,18 @@ export class SearchFriendComponent implements OnInit {
         })
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("User Match API Error: ", error)
       }
     })
   }
 
   addClicked(_id: string){
-    this.appService.sendFriendRequest(_id).subscribe({
+    this.appService.sendFriendRequest(_id).subscribe({ // send friend request
       next: data => {
-        console.log("API Success: ", data)
+        console.log("Send Friend API Success: ", data)
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("Send Friend API Error: ", error)
       }
     })
   }

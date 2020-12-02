@@ -17,14 +17,13 @@ export class RegisterComponent implements OnInit {
 
   register() {
     var body = {username: this.username, password: this.password}
-    console.log("body to send: ", body)
-    this.appService.regsiterUser(body).subscribe({
+    this.appService.regsiterUser(body).subscribe({ // register user with credentials
       next: data => {
-        console.log("API Success: ", data)
+        console.log("Register API Success: ", data)
         this.router.navigateByUrl('/')
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("Register API Error: ", error)
       }
     })
   }

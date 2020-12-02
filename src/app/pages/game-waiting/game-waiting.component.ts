@@ -17,26 +17,24 @@ export class GameWaitingComponent implements OnInit {
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => { // get router data
       let gid = params['gid'];
       this.state= params['state'];
-      console.log("GID", gid)
-      this.appService.getGame(gid).subscribe({
+      this.appService.getGame(gid).subscribe({ // get game data
         next: data => {
-          console.log("API Success: ", data)
+          console.log("Waiting response game api: ")
           this.game = data as Game
           if(this.game.player_1_id._id == AppService.id){
             this.opponent = this.game.player_2_id
           } else {
             this.opponent = this.game.player_1_id
           }
-          console.log("Game data: ", this.game)
 
           if(this.state == GameState.WAITING_TURN){
             this.intervalId = setInterval( e =>{
-              this.appService.getGame(gid).subscribe({
+              this.appService.getGame(gid).subscribe({ // get interval game data
                 next: data => {
-                  console.log("API Success: ", data)
+                  console.log("Waiting turn game api: ")
                   if(data.current_turn_id._id == AppService.id){
                     this.router.navigate([`round-categories/${gid}`]);
                   } else if(data.is_done == true){
@@ -44,7 +42,7 @@ export class GameWaitingComponent implements OnInit {
                   }
                 },
                 error: error => {
-                  console.log("API Error: ", error)
+                  console.log("Game API Error: ", error)
                 }
               })
             }, 2000);
@@ -52,7 +50,7 @@ export class GameWaitingComponent implements OnInit {
           
         },
         error: error => {
-          console.log("API Error: ", error)
+          console.log("Waiting Game API Error: ", error)
         }
       })
       });

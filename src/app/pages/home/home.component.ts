@@ -15,14 +15,13 @@ export class HomeComponent implements OnInit {
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
-    this.appService.getUser(AppService.id).subscribe({
+    this.appService.getUser(AppService.id).subscribe({ // get user data
       next: data => {
-        console.log("API Success: ", data)
+        console.log("User API Success: ", data)
         AppService.user = data as User
-        console.log("User data: ", AppService.user)
       },
       error: error => {
-        console.log("API Error: ", error)
+        console.log("User API Error: ", error)
       }
     })
   }

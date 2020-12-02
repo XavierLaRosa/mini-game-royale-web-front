@@ -15,25 +15,22 @@ export class ResultsCategoriesComponent implements OnInit {
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.activatedRoute.params.subscribe(params => {
-    let gid = params['gid'];
-    this.appService.getGame(gid).subscribe({
-      next: data => {
-        console.log("Game API Success: ", data)
-        this.game = data as Game
-        this.pointsDifference = this.game.player_1_points - this.game.player_2_points
-        if(this.pointsDifference < 0){
-          this.pointsDifference*=-1
+    this.activatedRoute.params.subscribe(params => { // get router data
+      let gid = params['gid'];
+      this.appService.getGame(gid).subscribe({ // get game data
+        next: data => {
+          console.log("Game API Success: ", data)
+          this.game = data as Game
+          this.pointsDifference = this.game.player_1_points - this.game.player_2_points
+          if(this.pointsDifference < 0){
+            this.pointsDifference*=-1
+          }
+        },
+        error: error => {
+          console.log("Game API Error: ", error)
         }
-      },
-      error: error => {
-        console.log("API Error: ", error)
-      }
+      })
     })
-    })
-
-    
   }
 
 }
