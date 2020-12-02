@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { AppService, Game } from 'src/app/app.service';
+import { AppService, Game, GameState } from 'src/app/app.service';
 
 @Component({
   selector: 'app-round-categories',
@@ -12,7 +12,7 @@ export class RoundCategoriesComponent implements OnInit {
   faChevronLeft = faChevronLeft
   answer: string
   game: Game
-  constructor(public appService: AppService, private activatedRoute: ActivatedRoute) { }
+  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -37,6 +37,8 @@ export class RoundCategoriesComponent implements OnInit {
           this.appService.incrementCategoryGame(this.game._id, 60).subscribe({
             next: data => {
               console.log("Increment API Success: ", data)
+              // display points
+              this.router.navigate([`game-waiting/${data._id}/${GameState.WAITING_TURN}`]);
             },
             error: error => {
               console.log("API Error: ", error)

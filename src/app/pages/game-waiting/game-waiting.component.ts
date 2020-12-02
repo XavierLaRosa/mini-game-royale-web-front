@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { AppService, Friend, Game, User } from 'src/app/app.service';
+import { AppService, Friend, Game, GameState, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-game-waiting',
@@ -13,7 +13,8 @@ export class GameWaitingComponent implements OnInit {
   state: string
   game: Game
   opponent: Friend
-  constructor(public appService: AppService, private activatedRoute: ActivatedRoute) { }
+  intervalId
+  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -30,6 +31,23 @@ export class GameWaitingComponent implements OnInit {
             this.opponent = this.game.player_1_id
           }
           console.log("Game data: ", this.game)
+
+          if(this.state == GameState.WAITING_TURN){
+            this.intervalId = setInterval( e =>{
+              this.appService.getGame(gid).subscribe({
+                next: data => {
+                  console.log("API Success: ", data)
+                  if(data.current_turn_id._id == AppService.id){
+                    this.router.navigate([`round-categories/${gid}`]);
+                  } 
+                },
+                error: error => {
+                  console.log("API Error: ", error)
+                }
+              })
+            }, 2000);
+          }
+          
         },
         error: error => {
           console.log("API Error: ", error)
@@ -38,4 +56,9 @@ export class GameWaitingComponent implements OnInit {
       });
   }
 
+
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+  }
 }
