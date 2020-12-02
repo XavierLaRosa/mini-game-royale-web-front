@@ -1,1 +1,59 @@
-<pre>{{game|json}}</pre>
+<div class="h-screen bg-purple-600 text-white flex flex-col justify-between items-center">
+    <nav class="bg-purple-500 p-3 w-full flex flex-row justify-start items-center">
+        <button routerLink="/home" class="bg-clear p-3">
+            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
+        </button>
+        <p class="text-lg font-bold">
+            Categories
+        </p>
+    </nav>
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+        <div class="w-full flex flex-col justify-center items-center my-6">
+            <p class="bg-purple-500 p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2 text-2xl text-center">
+                Round {{ game.round }}
+            </p>
+            <div class="bg-purple-500 p-2 flex flex-col justify-between items-center w-10/12 h-64 rounded-lg shadow my-2 ">
+                <div class="w-full flex flex-row justify-center items-center text-center">
+                    <p *ngIf="game.player_1_points > game.player_2_points">
+                        {{ game.player_1_id.username }} is in the lead!
+                    </p>
+                    <p *ngIf="game.player_2_points > game.player_1_points">
+                        {{ game.player_2_id.username }} is in the lead!
+                    </p>
+                    <p *ngIf="game.player_1_points == game.player_2_points">
+                        It's going to be a tight game!
+                    </p>
+                </div>
+                <div class="w-full flex flex-row justify-around items-center">
+                    <p class="text-lg text-center w-full"> image </p>
+                    <p class="text-lg text-center w-full"> image </p>
+                </div>
+                <div class="w-full flex flex-row justify-around items-center">
+                    <div class="flex flex-col justify-center items-center w-6/12">
+                        <p class="text-xl text-center w-full">{{ game.player_1_id.username }}</p>
+                        <p class="text-sm font-bold text-center w-full">{{ game.player_1_points }} points</p>
+                    </div> 
+                    <div class="flex flex-col justify-center items-center w-6/12">
+                        <p class="text-xl text-center w-full">{{ game.player_2_id.username }}</p>
+                        <p class="text-sm font-bold text-center w-full">{{ game.player_2_points }} points</p>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="bg-purple-500 pt-2 flex flex-col justify-between items-center w-10/12 h-64 overflow-y-scroll rounded-lg shadow my-2">
+                <div class="flex flex-row justify-center items-center">
+                    <p class="text-center text-lg normal-case">Category: {{game.genre_id.category}}</p>
+                </div>
+                <p class="text-3xl text-center w-full font-bold">1 min 0 sec</p>
+                <div>
+                    <input [(ngModel)]="answer" class="w-full shadow p-2 text-center text-black" type="text" name="answer" placeholder="guess a word">
+                    <button class="text-2xl w-full h-18 bg-green-400 rounded-b-lg">Check</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="bg-purple-500 p-3 w-full flex flex-row justify-between">
+        <p class="text-sm">Developed by Xavier La Rosa</p>
+    </footer>
+</div>

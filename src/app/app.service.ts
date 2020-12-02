@@ -114,7 +114,7 @@ export class Game {
   constructor(
     public _id: string,
     public name: string,
-    public genre_id: string,
+    public genre_id: {_id: string, category: string},
     public current_turn_id:  Friend,
     public player_1_id:  Friend,
     public player_2_id:  Friend,

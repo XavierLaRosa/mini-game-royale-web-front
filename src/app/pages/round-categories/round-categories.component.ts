@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Game } from 'src/app/app.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { AppService, Game } from 'src/app/app.service';
   styleUrls: ['./round-categories.component.css']
 })
 export class RoundCategoriesComponent implements OnInit {
+  faChevronLeft = faChevronLeft
+  answer: string
   game: Game
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute) { }
 
