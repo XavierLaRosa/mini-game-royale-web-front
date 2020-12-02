@@ -134,7 +134,8 @@ export class Game {
     public player_2_points: number,
     public round: number,
     public max_round: number,
-    public active: boolean
+    public is_done: boolean,
+    public winner: Friend
   ){}
 }
 

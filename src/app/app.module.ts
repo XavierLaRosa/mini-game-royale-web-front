@@ -20,6 +20,7 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
 import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
 import { GameWaitingComponent } from './pages/game-waiting/game-waiting.component';
 import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
+import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RoundCategoriesComponent } from './pages/round-categories/round-categor
     NotificationsComponent,
     CreateCategoriesComponent,
     GameWaitingComponent,
-    RoundCategoriesComponent
+    RoundCategoriesComponent,
+    ResultsCategoriesComponent
   ],
   imports: [
     BrowserModule,

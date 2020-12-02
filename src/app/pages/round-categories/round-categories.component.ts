@@ -38,7 +38,11 @@ export class RoundCategoriesComponent implements OnInit {
             next: data => {
               console.log("Increment API Success: ", data)
               // display points
-              this.router.navigate([`game-waiting/${data._id}/${GameState.WAITING_TURN}`]);
+              if(data.is_done == false){
+                this.router.navigate([`game-waiting/${data._id}/${GameState.WAITING_TURN}`]);
+              } else {
+                this.router.navigate([`results-categories/${data._id}`]);
+              }
             },
             error: error => {
               console.log("API Error: ", error)

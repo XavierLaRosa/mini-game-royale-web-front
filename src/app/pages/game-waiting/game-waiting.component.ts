@@ -39,7 +39,9 @@ export class GameWaitingComponent implements OnInit {
                   console.log("API Success: ", data)
                   if(data.current_turn_id._id == AppService.id){
                     this.router.navigate([`round-categories/${gid}`]);
-                  } 
+                  } else if(data.is_done == true){
+                    this.router.navigate([`results-categories/${gid}`]);
+                  }
                 },
                 error: error => {
                   console.log("API Error: ", error)
