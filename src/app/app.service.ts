@@ -135,6 +135,7 @@ export class Game {
     public round: number,
     public max_round: number,
     public is_done: boolean,
+    public is_tie: boolean,
     public winner: Friend
   ){}
 }
