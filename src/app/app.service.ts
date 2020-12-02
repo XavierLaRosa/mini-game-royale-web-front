@@ -83,6 +83,18 @@ export class AppService {
   declineGameRequest(gid: string, id: string) {
     return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/decline`, {})
   }
+
+  checkCategoryAnswer(id: string, keyword: string, gid: string){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/categories/${id}/submit/${keyword}/game/${gid}`, {headers})
+  }
+
+  incrementCategoryGame(id: string, seconds: number){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/games/${id}/seconds-left/${seconds}`, {headers})
+  }
 }
 
 export enum Notification {

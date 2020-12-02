@@ -29,4 +29,27 @@ export class RoundCategoriesComponent implements OnInit {
       });
   }
 
+  checkClicked() {
+    this.appService.checkCategoryAnswer(this.game.genre_id._id, this.answer, this.game._id).subscribe({
+      next: data => {
+        console.log("Check API Success: ", data)
+        if(data.is_valid == true){
+          this.appService.incrementCategoryGame(this.game._id, 60).subscribe({
+            next: data => {
+              console.log("Increment API Success: ", data)
+            },
+            error: error => {
+              console.log("API Error: ", error)
+            }
+          })
+        } else if(data.is_valid == false){
+
+        }
+      },
+      error: error => {
+        console.log("API Error: ", error)
+      }
+    })
+  }
+
 }
