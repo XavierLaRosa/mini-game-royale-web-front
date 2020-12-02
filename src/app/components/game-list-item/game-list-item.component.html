@@ -1,6 +1,23 @@
 <div *ngIf="games">
-    <div class="w-full flex flex-col" *ngFor="let game of games">
-        <div class="w-full p-4 flex flex-row justify-between items-center">
+    <div class="w-full flex flex-col" *ngFor="let game of games.reverse()">
+        <div *ngIf="game.is_done == true" class="opacity-50 w-full p-4 flex flex-row justify-between items-center">
+            <div class="flex flex-col justify-start items-center self-start">
+                <p class="w-full text-sm font-bold">
+                    {{ game.name }} <br> vs. {{ game.player_1_id.username }}
+                </p>
+                <p class="w-full text-xs">
+                    {{ game.round }}/{{ game.max_round }} rounds, 
+                    <span *ngIf="game.is_tie">DRAW</span>
+                    <span *ngIf="!game.is_tie">{{game.winner.username}} won!</span>
+                </p>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <button *ngIf="game.name == 'categories'" [routerLink]="['/results-categories', game._id]" class="rounded-lg bg-gray-400 p-2 m-1 text-sm w-full">
+                    VIEW
+                </button>
+            </div>
+        </div>
+        <div *ngIf="game.is_done == false" class="w-full p-4 flex flex-row justify-between items-center">
             <div class="flex flex-col justify-start items-center self-start">
                 <p class="w-full text-sm font-bold">
                     {{ game.name }} <br> vs. {{ game.player_1_id.username }}

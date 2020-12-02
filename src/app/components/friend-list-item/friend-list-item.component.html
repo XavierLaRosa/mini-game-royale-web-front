@@ -1,6 +1,6 @@
 <div *ngIf="friends">
     <div class="w-full">
-        <div class="w-full flex flex-col" *ngFor="let friend of friends">
+        <div class="w-full flex flex-col" *ngFor="let friend of friends.reverse()">
             <div class="w-full p-4 flex flex-row justify-between items-center">
                 <div class="flex flex-col justify-center items-center">
                     <p class="w-full text-sm font-bold">

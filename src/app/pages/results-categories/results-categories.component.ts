@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { AppService, Game } from 'src/app/app.service';
+import { AppService, Game, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-results-categories',
@@ -11,21 +11,29 @@ import { AppService, Game } from 'src/app/app.service';
 export class ResultsCategoriesComponent implements OnInit {
   game: Game
   faChevronLeft = faChevronLeft
+  pointsDifference: number
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
     this.activatedRoute.params.subscribe(params => {
-      let gid = params['gid'];
-      this.appService.getGame(gid).subscribe({
-        next: data => {
-          console.log("Game API Success: ", data)
-          this.game = data as Game
-        },
-        error: error => {
-          console.log("API Error: ", error)
+    let gid = params['gid'];
+    this.appService.getGame(gid).subscribe({
+      next: data => {
+        console.log("Game API Success: ", data)
+        this.game = data as Game
+        this.pointsDifference = this.game.player_1_points - this.game.player_2_points
+        if(this.pointsDifference < 0){
+          this.pointsDifference*=-1
         }
-      })
-      });
+      },
+      error: error => {
+        console.log("API Error: ", error)
+      }
+    })
+    })
+
+    
   }
 
 }
