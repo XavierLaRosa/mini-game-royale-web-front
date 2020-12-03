@@ -29,6 +29,10 @@ export class AppService {
     return AppService.user
   }
 
+  getKey(): string {
+    return AppService.KEY
+  }
+
   getUserMatching(keyword: string): Observable<any> {
     return this.http.get<any>(AppService.URL+`/users/contains/${keyword}`)
   }
