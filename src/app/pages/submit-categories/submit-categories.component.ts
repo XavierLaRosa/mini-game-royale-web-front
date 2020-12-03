@@ -11,6 +11,7 @@ export class SubmitCategoriesComponent implements OnInit {
   keyEntry: string
   keySubmitted: boolean = false
   selectedType: string
+  catEntry: string
   selectedGenre: string
   categories: Category[]
   entry: string
@@ -46,9 +47,26 @@ export class SubmitCategoriesComponent implements OnInit {
     this.appService.newCategoryEntry(this.selectedGenre, this.entry).subscribe({ // submit new entry to category
       next: data => {
         console.log("Categories New Entry API Success: ", data)
+        alert(data.message);
+        this.entry = ""
       },
       error: error => {
         console.log("Categories New Entry API Error: ", error)
+        alert(error.message);
+      }
+    })
+  }
+
+  addCategory() {
+    this.appService.postCategory(this.catEntry).subscribe({ // submit new entry to category
+      next: data => {
+        console.log("New Categories API Success: ", data)
+        alert(`${this.catEntry} successfully created!`);
+        this.catEntry = ""
+      },
+      error: error => {
+        console.log("New Categories API Error: ", error)
+        alert(`${this.catEntry} already exists!`);
       }
     })
   }

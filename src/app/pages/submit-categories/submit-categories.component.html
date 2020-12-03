@@ -34,9 +34,19 @@
                 </select>
             </div>
     
-            <div *ngIf="selectedType=='new'" class="w-full">
-                new
+            <div *ngIf="selectedType=='new'" class="w-full flex flex-col justify-center items-center">
+                <div class="bg-purple-400 w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
+                    <p class="text-lg font-bold w-full text-left px-2">
+                        Submit a Category
+                    </p>
+                    <input type="text" name="catEntry" [(ngModel)]="catEntry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="category entry">
+                </div>
+    
+                <button (click)="addCategory()" class="bg-purple-400 p-3 text-lg text-center rounded-lg">
+                    Submit
+                </button>
             </div>
+            
             <div *ngIf="selectedType=='add'" class="w-full flex flex-col justify-center items-center">
                 <div class="bg-purple-400 overflow-y-scroll w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
                     <p class="text-lg font-bold w-full text-left px-2">
