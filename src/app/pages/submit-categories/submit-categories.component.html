@@ -56,7 +56,7 @@
                     <input type="text" name="entry" [(ngModel)]="entry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="entry">
                 </div>
     
-                <button class="bg-purple-400 p-3 text-lg text-center rounded-lg">
+                <button (click)="addEntry()" class="bg-purple-400 p-3 text-lg text-center rounded-lg">
                     Submit
                 </button>
             </div>

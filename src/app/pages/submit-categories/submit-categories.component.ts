@@ -41,4 +41,15 @@ export class SubmitCategoriesComponent implements OnInit {
   updateGenre(){
 
   }
+
+  addEntry() {
+    this.appService.newCategoryEntry(this.selectedGenre, this.entry).subscribe({ // submit new entry to category
+      next: data => {
+        console.log("Categories New Entry API Success: ", data)
+      },
+      error: error => {
+        console.log("Categories New Entry API Error: ", error)
+      }
+    })
+  }
 }

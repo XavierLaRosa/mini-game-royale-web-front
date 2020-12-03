@@ -99,6 +99,13 @@ export class AppService {
     headers = headers.append('auth-token', AppService.KEY)
     return this.http.get<any>(AppService.URL+`/games/${id}/seconds-left/${seconds}`, {headers})
   }
+
+  
+  newCategoryEntry(cid: string, entry: string) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/categories/${cid}/new-entry/${entry}`, {headers})
+  }
 }
 
 export enum Notification {
