@@ -1,0 +1,22 @@
+<div *ngIf="friends">
+    <div class="w-full">
+        <div class="w-full flex flex-col" *ngFor="let friend of friends.reverse()">
+            <div class="w-full p-4 flex flex-row justify-between items-center">
+                <div class="flex flex-col justify-center items-center">
+                    <p class="w-full text-sm font-bold">
+                        {{friend.username}}
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                    <button (click)="removeFriend(friend._id)" class="rounded-lg bg-red-400 p-2 m-1 text-sm w-full">
+                        unfriend
+                    </button>
+                </div>
+            </div>
+            <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
+        </div>
+    </div>
+</div>
+
+
+
