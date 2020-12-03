@@ -9,6 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
 import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
 import { SearchFriendComponent } from './pages/search-friend/search-friend.component';
+import { SubmitCategoriesComponent } from './pages/submit-categories/submit-categories.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'create-categories', component: CreateCategoriesComponent },
   { path: 'game-waiting/:gid/:state', component: GameWaitingComponent },
   { path: 'round-categories/:gid', component: RoundCategoriesComponent },
-  { path: 'results-categories/:gid', component: ResultsCategoriesComponent }
+  { path: 'results-categories/:gid', component: ResultsCategoriesComponent },
+  { path: 'submit-categories', component: SubmitCategoriesComponent }
 ];
 
 @NgModule({

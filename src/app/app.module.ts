@@ -21,6 +21,7 @@ import { CreateCategoriesComponent } from './pages/create-categories/create-cate
 import { GameWaitingComponent } from './pages/game-waiting/game-waiting.component';
 import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
 import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
+import { SubmitCategoriesComponent } from './pages/submit-categories/submit-categories.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ResultsCategoriesComponent } from './pages/results-categories/results-c
     CreateCategoriesComponent,
     GameWaitingComponent,
     RoundCategoriesComponent,
-    ResultsCategoriesComponent
+    ResultsCategoriesComponent,
+    SubmitCategoriesComponent
   ],
   imports: [
     BrowserModule,
