@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { faBell, faComments, faMicrophoneAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { faBars, faBell, faComments, faMicrophoneAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   faComments = faComments
   faMicrophoneAlt = faMicrophoneAlt
   faUserPlus = faUserPlus
+  faBars = faBars
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
@@ -24,6 +25,12 @@ export class HomeComponent implements OnInit {
         console.log("User API Error: ", error)
       }
     })
+  }
+
+  _opened: boolean = false;
+ 
+  _toggleSidebar() {
+    this._opened = !this._opened;
   }
 
 }

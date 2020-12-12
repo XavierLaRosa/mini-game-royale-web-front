@@ -22,6 +22,7 @@ import { GameWaitingComponent } from './pages/game-waiting/game-waiting.componen
 import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
 import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
 import { SubmitCategoriesComponent } from './pages/submit-categories/submit-categories.component';
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SubmitCategoriesComponent } from './pages/submit-categories/submit-cate
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SidebarModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
