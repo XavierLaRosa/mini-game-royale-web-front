@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+.bg-red {
+    background-color: #eb745c;
+}
+
+.font-red {
+    color: #eb745c;
+}
+
+.bg-red-light {
+    background-color: #ED836E;
+}
+
+.font-red-light {
+    color: #ED836E;
+}
+
+.bg-red-lightest {
+    background-color: #FDEFED;
+}
+
+.font-red-lightest {
+    color: #FDEFED;
+}
