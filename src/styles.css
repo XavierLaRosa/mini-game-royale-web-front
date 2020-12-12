@@ -7,6 +7,10 @@
     color: #eb745c;
 }
 
+.border-red {
+    border-color: #eb745c;
+}
+
 .bg-red-light {
     background-color: #ED836E;
 }
@@ -15,10 +19,29 @@
     color: #ED836E;
 }
 
+.border-red-light {
+    border-color: #ED836E;
+}
+
 .bg-red-lightest {
     background-color: #FDEFED;
 }
 
 .font-red-lightest {
     color: #FDEFED;
+}
+
+.border-red-light {
+    border-color: #FDEFED;
+}
+
+p {
+    color: #FDEFED;
+}
+
+input {
+    background: transparent;
+    border: none;
+    color: #FDEFED;
+    border-bottom: 2px solid #FDEFED;
 }
