@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-  static URL = `https://shrouded-earth-55441.herokuapp.com`
+  static URL = `http://localhost:3000` //https://shrouded-earth-55441.herokuapp.com
   static KEY = ''
   static id: string
   static user: User
