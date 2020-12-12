@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <button *ngIf="game.name == 'categories'" [routerLink]="['/results-categories', game._id]" class="rounded-lg bg-gray-400 p-2 m-1 text-sm w-full">
+                <button *ngIf="game.name == 'categories'" [routerLink]="['/results-categories', game._id]" class="rounded-lg bg-red-light p-2 m-1 text-sm w-full">
                     VIEW
                 </button>
             </div>
@@ -32,11 +32,11 @@
                         PLAY
                     </a>
                 </button>
-                <button [routerLink]="['/game-waiting', game._id, 'WAITING_TURN']" *ngIf="appService.getUserData()._id != game.current_turn_id._id" class="rounded-lg bg-gray-400 p-2 m-1 text-sm w-full">
+                <button [routerLink]="['/game-waiting', game._id, 'WAITING_TURN']" *ngIf="appService.getUserData()._id != game.current_turn_id._id" class="rounded-lg bg-red-light p-2 m-1 text-sm w-full">
                     WAITING
                 </button>
             </div>
         </div>
-        <div class="w-11/12 border-b-2 border-purple-400 self-end"></div>
+        <div class="w-11/12 border-b-2 border-red-lightest self-end"></div>
     </div>
 </div>
