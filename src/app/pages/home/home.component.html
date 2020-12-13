@@ -17,7 +17,7 @@
                 <p routerLink="/search-friends" class="w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
             </div>
 
-            <p class="bg-red-lightest font-red shadow rounded-full px-3 py-1 w-10/12 text-center my-8">Logout</p>
+            <p (click)="logout()" class="bg-red-lightest font-red shadow rounded-full px-3 py-1 w-10/12 text-center my-8">Logout</p>
           </div>
       </nav>
     </ng-sidebar>

@@ -30,24 +30,22 @@ export class GameWaitingComponent implements OnInit {
             this.opponent = this.game.player_1_id
           }
 
-          if(this.state == GameState.WAITING_TURN){
-            this.intervalId = setInterval( e =>{
-              this.appService.getGame(gid).subscribe({ // get interval game data
-                next: data => {
-                  console.log("Waiting turn game api: ")
-                  if(data.current_turn_id._id == AppService.id){
-                    this.router.navigate([`round-categories/${gid}`]);
-                  } else if(data.is_done == true){
-                    this.router.navigate([`results-categories/${gid}`]);
-                  }
-                },
-                error: error => {
-                  console.log("Game API Error: ", error)
+          this.intervalId = setInterval( e =>{
+            this.appService.getGame(gid).subscribe({ // get interval game data
+              next: data => {
+                console.log("Waiting turn game api: ")
+                if(data.current_turn_id._id == AppService.id && this.state == GameState.WAITING_TURN){
+                  this.router.navigate([`round-categories/${gid}`]);
+                } else if(data.is_done == true){
+                  this.router.navigate([`results-categories/${gid}`]);
                 }
-              })
-            }, 2000);
-          }
-          
+              },
+              error: error => {
+                console.log("Game API Error: ", error)
+                this.router.navigate([`home`]);
+              }
+            })
+          }, 2000);          
         },
         error: error => {
           console.log("Waiting Game API Error: ", error)

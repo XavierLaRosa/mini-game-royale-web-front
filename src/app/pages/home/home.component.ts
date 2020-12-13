@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { faBars, faBell, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
 
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   faBars = faBars
   faCog = faCog
   faSignOutAlt = faSignOutAlt
-  constructor(public appService: AppService) { }
+  constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
     this.appService.getUser(AppService.id).subscribe({ // get user data
@@ -33,6 +34,13 @@ export class HomeComponent implements OnInit {
  
   _toggleSidebar() {
     this._opened = !this._opened;
+  }
+
+  logout() {
+    AppService.KEY = null
+    AppService.id = null
+    AppService.user = null
+    this.router.navigateByUrl("/")
   }
 
 }
