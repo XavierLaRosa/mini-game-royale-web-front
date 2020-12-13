@@ -46,10 +46,10 @@
                     </div>
                 </div>
                 <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                    <div class="h-24 w-24 bg-red-light opacity-25 font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
+                    <div class="h-24 w-24 bg-red opacity-50 font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
                         coming soon...
                     </div>
-                    <div class="h-24 w-24 bg-red-light opacity-25 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
+                    <div class="h-24 w-24 bg-red opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
                         coming soon...
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                     Games ({{this.appService.getUserData().games.length}})
                 </div>
-                <div class="h-64 overflow-y-scroll w-full bg-red-light">
+                <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
                     <app-game-list-item [isPendingGames]="false" [games]="this.appService.getUserData().games"></app-game-list-item>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         <fa-icon [icon]="faUserPlus"></fa-icon>
                     </button>
                 </div>
-                <div class="h-64 overflow-y-scroll w-full bg-red-light">
+                <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
                     <app-friend-list-item [type]="'friends'" [friends]="this.appService.getUserData().friends"></app-friend-list-item>
                 </div>
             </div>
