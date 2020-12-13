@@ -1,19 +1,21 @@
 <div *ngIf="game" class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
     <nav class="bg-red shadow p-3 w-full flex flex-row justify-start items-center">
-        <button routerLink="/home" class="bg-clear p-3">
-            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
-        </button>
         <p class="text-lg font-bold">
             Categories
         </p>
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-center items-center">
-        <p *ngIf="state == 'WAITING_ACCEPTANCE'" class="text-2xl text-center">
-            Waiting on {{ opponent.username }} <br> to accept the game...
-        </p>
-        <p *ngIf="state == 'WAITING_TURN'" class="text-2xl text-center">
-            Waiting on {{ opponent.username }} <br> to finish their turn...
-        </p>
+        <ngx-spinner bdColor="rgba(51,51,51,0.0)" type='ball-climbing-dot' size='medium' color='white' fullScreen="false">
+            <p *ngIf="state == 'WAITING_ACCEPTANCE'" class="text-base text-center">
+                Waiting on {{ opponent.username }} <br> to accept the game...
+            </p>
+            <p *ngIf="state == 'WAITING_TURN'" class="text-base text-center">
+                Waiting on {{ opponent.username }} <br> to finish their turn...
+            </p>
+            <p routerLink="/home" class="text-sm text-center mt-1">
+                Go to home page
+            </p>
+        </ngx-spinner>
     </div>
     <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>

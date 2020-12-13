@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { RoundCategoriesComponent } from './pages/round-categories/round-categor
 import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
 import { SubmitCategoriesComponent } from './pages/submit-categories/submit-categories.component';
 import { SidebarModule } from 'ng-sidebar';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -46,10 +47,12 @@ import { SidebarModule } from 'ng-sidebar';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
   constructor(private library: FaIconLibrary) {

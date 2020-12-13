@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Friend, Game, GameState, User } from 'src/app/app.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-game-waiting',
@@ -14,10 +15,12 @@ export class GameWaitingComponent implements OnInit {
   game: Game
   opponent: Friend
   intervalId
-  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.activatedRoute.params.subscribe(params => { // get router data
+      
       let gid = params['gid'];
       this.state= params['state'];
       this.appService.getGame(gid).subscribe({ // get game data
@@ -35,13 +38,16 @@ export class GameWaitingComponent implements OnInit {
               next: data => {
                 console.log("Waiting turn game api: ")
                 if(data.current_turn_id._id == AppService.id && this.state == GameState.WAITING_TURN){
+                  this.spinner.hide()
                   this.router.navigate([`round-categories/${gid}`]);
                 } else if(data.is_done == true){
+                  this.spinner.hide()
                   this.router.navigate([`results-categories/${gid}`]);
                 }
               },
               error: error => {
                 console.log("Game API Error: ", error)
+                this.spinner.hide()
                 this.router.navigate([`home`]);
               }
             })
