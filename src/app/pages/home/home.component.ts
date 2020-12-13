@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faBars, faBell, faCog, faComments, faMicrophoneAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBell, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   faUserPlus = faUserPlus
   faBars = faBars
   faCog = faCog
+  faSignOutAlt = faSignOutAlt
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {

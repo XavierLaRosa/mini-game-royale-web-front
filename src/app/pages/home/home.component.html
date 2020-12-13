@@ -5,13 +5,16 @@
       <nav class="h-screen w-56 bg-red-light shadow-xl">
           <div class="flex flex-col justify-between items-center h-full">
             <div class="w-full">
-                <div class="flex flex-row justify-start items-center w-full p-3 bg-red">
-                    <div class="h-8 w-8 rounded-full bg-red-lightest shadow-xl mr-2"></div>
-                    <p class="text-left text-xl font-red-lightest">{{this.appService.getUserData().username}}</p>
+                <div class="flex flex-row justify-between items-center w-full p-3 bg-red">
+                    <div class="w-10/12 flex flex-row justify-start items-center">
+                        <div class="h-8 w-8 rounded-full bg-red-lightest shadow-xl mr-2"></div>
+                        <p class="text-left text-xl font-red-lightest">{{this.appService.getUserData().username}}</p>
+                    </div>
+                    <fa-icon closeSidebar [icon]="faSignOutAlt" class="mx-2 font-red-lightest" size="lg" rotate="180"></fa-icon>
                 </div>
                 <p class="w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
-                <p class="w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications</p>
-                <p class="w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
+                <p routerLink="/notifications" class="w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications</p>
+                <p routerLink="/search-friends" class="w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
             </div>
 
             <p class="bg-red-lightest font-red shadow rounded-full px-3 py-1 w-10/12 text-center my-8">Logout</p>

@@ -12,7 +12,7 @@
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
             <div class="bg-red-light h-64 w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
-                <p class="text-lg font-bold w-full text-left px-4">
+                <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Friend
                 </p>
                 <input [(ngModel)]="keyword" (ngModelChange)="filterFriends()" name="keyword" type="text" class="w-10/12 rounded-t-md py-1 px-4 text-xs h-8" placeholder="filter through friends">    
@@ -29,18 +29,18 @@
             </div>
 
             <div class="bg-red-light w-10/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
-                <p class="text-lg font-bold w-full text-left px-4">
+                <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Category
                 </p>
-                <select class="bg-red-light p-3 w-full" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()">
-                    <option *ngFor="let category of categories" [ngValue]="category._id">
+                <select class="bg-red-light w-full h-8" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()" style="-webkit-appearance: none;">
+                    <option class="p-3" *ngFor="let category of categories" [ngValue]="category._id">
                       {{ category.category }}
                     </option>
                 </select>
             </div>
 
             <div class="bg-red-light w-10/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
-                <p class="text-lg font-bold w-full text-left px-4">
+                <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Max Rounds
                 </p>
                 <input type="number" class="bg-red-light p-3 w-full" max="10" min="1" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
