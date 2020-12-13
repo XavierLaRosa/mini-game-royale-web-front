@@ -1,49 +1,54 @@
-<div class="h-screen bg-purple-600 text-white flex flex-col justify-between items-center">
-    <nav class="bg-purple-500 p-3 w-full flex flex-row justify-start items-center">
-        <button routerLink="/home" class="bg-clear p-3">
+<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow h-64 p-3 w-full flex flex-row justify-start items-start">
+        <button routerLink="/home" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
-        <p class="text-lg font-bold">
-            Categories
-        </p>
+        <div class="w-8/12 flex flex-col justify-center items-center self-center">
+            <fa-icon [icon]="faGamepad" class="m-2" size="3x"></fa-icon>
+            <p class="text-xl w-full text-center">
+                Categories
+            </p>
+        </div>
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
-            <div class="bg-purple-500 h-64 overflow-y-scroll w-10/12 rounded-t-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
-                <div class="flex flex-row justify-center items-center w-full">
-                    <input [(ngModel)]="keyword" (ngModelChange)="filterFriends()" name="keyword" type="text" class="w-full rounded-t-md py-1 px-4 text-black text-xs h-8" placeholder="invite a friend">    
-                </div>
+            <div class="bg-red-light h-64 w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
+                <p class="text-lg font-bold w-full text-left px-4">
+                    Choose Friend
+                </p>
+                <input [(ngModel)]="keyword" (ngModelChange)="filterFriends()" name="keyword" type="text" class="w-10/12 rounded-t-md py-1 px-4 text-xs h-8" placeholder="filter through friends">    
+
                 <div class="w-full flex flex-row justify-between items-center px-6 py-3" *ngFor="let friend of friends">
                     <p>{{friend.username}}</p>
-                    <button *ngIf="friend_id == friend._id" class="rounded-lg bg-gray-400 px-2 text-sm">
+                    <button *ngIf="friend_id == friend._id" class="rounded-lg px-2 text-sm">
                         selected
                     </button>
-                    <button (click)="friendSelected(friend._id)" *ngIf="friend_id != friend._id" class="rounded-lg bg-green-400 px-2 text-sm">
+                    <button (click)="friendSelected(friend._id)" *ngIf="friend_id != friend._id" class="rounded-lg px-2 text-sm">
                         select
                     </button>
                 </div>
             </div>
 
-            <div class="bg-purple-500 overflow-y-scroll w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
-                <p class="text-lg font-bold w-full text-left px-2">
+            <div class="bg-red-light w-10/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
+                <p class="text-lg font-bold w-full text-left px-4">
                     Choose Category
                 </p>
-                <select class="text-black p-3 w-full" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()">
+                <select class="bg-red-light p-3 w-full" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()">
                     <option *ngFor="let category of categories" [ngValue]="category._id">
                       {{ category.category }}
                     </option>
                 </select>
             </div>
 
-            <div class="bg-purple-500 overflow-y-scroll w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
-                <p class="text-lg font-bold w-full text-left px-2">
+            <div class="bg-red-light w-10/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
+                <p class="text-lg font-bold w-full text-left px-4">
                     Choose Max Rounds
                 </p>
-                <input type="number" class="text-black p-3 w-full" max="10" min="1" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
+                <input type="number" class="bg-red-light p-3 w-full" max="10" min="1" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
             </div>
 
             <button (click)="create()" class="text-2xl">Create</button>
     </div>
-    <footer class="bg-purple-500 p-3 w-full flex flex-row justify-between">
+    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>
     </footer>
 </div>
