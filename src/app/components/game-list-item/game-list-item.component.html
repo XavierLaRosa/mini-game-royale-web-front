@@ -8,7 +8,7 @@
                 <p class="w-full text-xs">
                     {{ game.round }}/{{ game.max_round }} rounds, 
                     <span *ngIf="game.is_tie">DRAW</span>
-                    <span *ngIf="!game.is_tie">{{game.winner.username}} won!</span>
+                    <span *ngIf="!game.is_tie && game.winner">{{game.winner.username}} won!</span>
                 </p>
             </div>
             <div class="flex flex-col justify-center items-center">

@@ -1,4 +1,4 @@
-<ng-sidebar-container  style="height: 100vh;">
+<ng-sidebar-container *ngIf="this.appService.getUserData()"  style="height: 100vh;">
  
     <!-- A sidebar -->
     <ng-sidebar [(opened)]="_opened">
@@ -23,7 +23,7 @@
     </ng-sidebar>
 
     <!-- Page content -->
-    <div ng-sidebar-content *ngIf="this.appService.getUserData()" class="bg-red font-red-lightest flex flex-col justify-between items-center">
+    <div ng-sidebar-content class="bg-red font-red-lightest flex flex-col justify-between items-center">
         <nav class="bg-red p-3 w-full flex flex-row justify-between shadow sticky top-0">
             <p class="text-lg">MGR</p>
             <div class="flex flex-row justify-end items-center w-6/12">
