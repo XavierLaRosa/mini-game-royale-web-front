@@ -1,44 +1,63 @@
-<div class="h-screen bg-purple-600 text-white flex flex-col justify-between items-center">
-    <nav class="bg-purple-500 p-3 w-full flex flex-row justify-start items-center">
-        <button routerLink="/home" class="bg-clear p-3">
+<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow h-64 p-3 w-full flex flex-row justify-around items-start">
+        <button routerLink="/home" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
-        <p class="text-lg font-bold">
-            Notifications
-        </p>
+        <div class="w-8/12 flex flex-col justify-center items-center self-center">
+            <fa-icon [icon]="faBell" class="m-2" size="3x"></fa-icon>
+            <p class="text-xl w-full text-center">
+                {{notifications.length}} Notifications
+            </p>
+        </div>
+        <div class="flex flex-col justify-center items-center w-2/12 mt-3">
+            <p class="text-xs rounded-full bg-red-light opacity-50 px-1 mb-2">
+                {{totalGames}} <span><fa-icon [icon]="faGamepad" class="mx-2" size="xs"></fa-icon></span>
+            </p>
+            <p class="text-xs rounded-full bg-red-light opacity-50 px-1">
+                {{totalFriends}} <span><fa-icon [icon]="faUserFriends" class="mx-2" size="xs"></fa-icon></span>
+            </p>
+        </div>
     </nav>
-    <div class="w-full bg-gray-100 h-full overflow-y-scroll flex flex-col justify-start items-center">
-        <div *ngIf="notifications" class="w-full">
-            <section class="w-full border-b-2 border-gray-200 flex flex-col justify-center items-center" *ngFor="let notif of notifications">
-                <p *ngIf="notif.type == 'TO_GAME'" class="p-3 text-black text-sm w-full text-center">
-                    Waiting on game reply from {{notif.username}}.
-                </p>
-                <p *ngIf="notif.type == 'FROM_GAME'" class="p-3 text-black text-sm w-full text-center">
-                    {{notif.username}} wants to play a game with you!
-                </p>
-                <p *ngIf="notif.type == 'TO_FRIEND'" class="p-3 text-black text-sm w-full text-center">
-                    Waiting on friend request from {{notif.username}}.
-                </p>
-                <p *ngIf="notif.type == 'FROM_FRIEND'" class="p-3 text-black text-sm w-full text-center">
-                    {{notif.username}} wants to be your friend!
-                </p>
-                <div *ngIf="notif.type == 'FROM_FRIEND' || notif.type == 'FROM_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
-                    <button (click)="accept(notif.type, notif.gid, notif._id)" class="bg-clear text-green-400 text-sm mr-4">
-                        Accept
-                    </button>
-                    <button (click)="decline(notif.type, notif.gid, notif._id)" class="bg-clear text-red-400 text-sm mr-4">
-                        Decline
-                    </button>
+
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center p-2">
+        <div *ngIf="notifications" class="w-full flex flex-col justify-start items-center">
+            
+            <section class="w-11/12 h-20 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let notif of notifications">
+                <div class="w-8/12 flex flex-row justify-start items-center p-3">
+                    <div class="h-8 w-8 bg-red-lightest shadow rounded-full">
+
+                    </div>
+                    <div class="w-10/12 flex flex-col justify-start items-start ml-3">
+                        <p class="font-red-lightest text-lg font-bold">
+                            {{notif.username}}
+                        </p>
+                        <p class="font-red-lightest text-sm">
+                            {{notif.message}}
+                        </p>
+                    </div>
+
                 </div>
-                <div *ngIf="notif.type == 'TO_FRIEND'" class="flex flex-row justify-center items-center w-full mb-2">
-                    <button class="bg-clear text-red-400 text-sm mr-4">
-                        Unsend
-                    </button>
+                <div class="w-4/12 flex flex-row justify-center items-center p-3">
+                    <div *ngIf="notif.type == 'FROM_FRIEND' || notif.type == 'FROM_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
+                        <button (click)="accept(notif.type, notif.gid, notif._id)" class="mr-2">
+                            <fa-icon [icon]="faCheckCircle" class="mx-2" size="2x"></fa-icon>
+                        </button>
+                        <button (click)="decline(notif.type, notif.gid, notif._id)" >
+                            <fa-icon [icon]="faTimesCircle" class="mx-2" size="2x"></fa-icon>
+                        </button>
+                    </div>
+                    <div *ngIf="notif.type == 'TO_FRIEND' || notif.type == 'TO_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
+                        <button class="font-bold text-lg">
+                            unsend
+                        </button>
+                    </div>
                 </div>
             </section>
+
         </div>
     </div>
-    <footer class="bg-purple-500 p-3 w-full flex flex-row justify-between">
+
+    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>
     </footer>
 </div>
