@@ -112,6 +112,13 @@ export class AppService {
     const body = {category: category}
     return this.http.post<any>(AppService.URL+`/categories`, body, {headers})
   }
+
+ 
+  forfeitGame(id: string, pid: string): Observable<any>{
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/games/${id}/forfeit/${pid}`, {headers})
+  }
 }
 
 export enum Notification {

@@ -43,27 +43,50 @@ export class RoundCategoriesComponent implements OnInit {
   }
 
   checkClicked() {
-    this.appService.checkCategoryAnswer(this.game.genre_id._id, this.answer, this.game._id).subscribe({
-      next: data => {
-        console.log("Check API Success: ", data)
-        if(data.is_valid == true){
-          this.appService.incrementCategoryGame(this.game._id, this.totalTime).subscribe({
-            next: data => {
-              console.log("Increment API Success: ", data)
-              // display points
-              if(data.is_done == false){
-                this.router.navigate([`game-waiting/${data._id}/${GameState.WAITING_TURN}`]);
-              } else {
-                this.router.navigate([`results-categories/${data._id}`]);
+    if(this.answer) {
+      this.appService.checkCategoryAnswer(this.game.genre_id._id, this.answer, this.game._id).subscribe({
+        next: data => {
+          console.log("Check API Success: ", data)
+          if(data.is_valid == true){
+            this.appService.incrementCategoryGame(this.game._id, this.totalTime).subscribe({
+              next: data => {
+                console.log("Increment API Success: ", data)
+                // display points
+                if(data.is_done == false){
+                  this.router.navigate([`game-waiting/${data._id}/${GameState.WAITING_TURN}`]);
+                } else {
+                  this.router.navigate([`results-categories/${data._id}`]);
+                }
+              },
+              error: error => {
+                console.log("API Error: ", error)
               }
-            },
-            error: error => {
-              console.log("API Error: ", error)
-            }
-          })
-        } else if(data.is_valid == false){
-
+            })
+          } else if(data.is_valid == false){
+            this.answer = ""
+            // TODO: shake input field
+            // TODO: toaster pop up notification at top of page and fades away
+          }
+        },
+        error: error => {
+          console.log("API Error: ", error)
         }
+      })
+    } else {
+        // TODO: toaster pop up notification at top of page and fades away
+    }
+  }
+
+  giveupClicked() {
+    // TODO: modal pop up confirmation
+    console.log("data to send: ", this.game)
+
+    console.log("data to send: ", this.game._id, AppService.id)
+    this.appService.forfeitGame(this.game._id, AppService.id).subscribe({
+      next: data => {
+        console.log("Forfeit Game API Success: ", data)
+        this.game = data as Game
+        this.router.navigate([`results-categories/${this.game._id}`]);
       },
       error: error => {
         console.log("API Error: ", error)

@@ -7,7 +7,7 @@
             Categories
         </p>
     </nav>
-    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+    <div class="w-full h-full flex flex-col justify-start items-center">
         <div class="w-full flex flex-col justify-center items-center my-6">
             <p class="bg-red-light p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2 text-2xl text-center">
                 Round {{ game.round }}
@@ -53,11 +53,15 @@
                     <p class="text-center text-lg uppercase font-bold">{{game.genre_id.category}}</p>
                 </div>
                 <p class="text-3xl text-center w-full font-bold">{{minutes}} min {{seconds}} seconds</p>
-                <div class="w-full flex flex-col justify-center items-center">
-                    <input [(ngModel)]="answer" class="w-8/12 p-2 text-center mb-2" type="text" name="answer" placeholder="guess a word">
-                    <button (click)="checkClicked()" class="text-2xl w-full h-18 bg-blue-700 rounded-b-lg">Check</button>
-                </div>
+                <form class="w-full flex flex-col justify-center items-center">
+                    <input autofocus [(ngModel)]="answer" class="w-8/12 p-2 text-center mb-2" type="text" name="answer" placeholder="guess a word">
+                    <div class="w-full flex flex-row justify-center items-center">
+                        <button type="submit" (click)="checkClicked()" class="text-2xl w-6/12 h-18 bg-blue-700 rounded-bl-lg hover:bg-blue-600">Check</button>
+                        <button (click)="giveupClicked()" class="text-2xl w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
+                    </div>
+                </form>
             </div>
+
         </div>
 
     </div>
