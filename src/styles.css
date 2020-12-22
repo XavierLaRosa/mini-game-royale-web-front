@@ -1,26 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 .bg-red {
-    background-color: #eb745c;
+    background-color: #333745;
 }
 
 .font-red {
-    color: #eb745c;
+    color: #333745;
 }
 
 .border-red {
-    border-color: #eb745c;
+    border-color: #333745;
 }
 
 .bg-red-light {
-    background-color: #ED836E;
+    background-color: #3D4152
 }
 
 .font-red-light {
-    color: #ED836E;
+    color: #3D4152;
 }
 
 .border-red-light {
-    border-color: #ED836E;
+    border-color: #3D4152;
 }
 
 .bg-red-lightest {
