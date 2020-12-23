@@ -5,13 +5,26 @@ import { AppService, Game, GameState } from 'src/app/app.service';
 import { timer } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 import { GameListItemComponent } from 'src/app/components/game-list-item/game-list-item.component';
+import { state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { shake } from 'ngx-animate';
 
 @Component({
   selector: 'app-round-categories',
   templateUrl: './round-categories.component.html',
-  styleUrls: ['./round-categories.component.css']
+  styleUrls: ['./round-categories.component.css'],
+  animations: [
+    trigger('shake', [
+      state('true', style({ })),
+      state('false', style({ })),
+      transition('false => true', useAnimation(shake)),
+      transition('true => false', useAnimation(shake)),
+      transition('false => false', useAnimation(shake)),
+      transition('true => true', useAnimation(shake))
+    ]),
+  ]
 })
 export class RoundCategoriesComponent implements OnInit {
+  isShake: boolean = false
   faChevronLeft = faChevronLeft
   answer: string
   game: Game
@@ -45,6 +58,8 @@ export class RoundCategoriesComponent implements OnInit {
   }
 
   checkClicked() {
+    this.isShake = false
+    console.log("bool begin: ", this.isShake)
     if(this.answer) {
       this.appService.checkCategoryAnswer(this.game.genre_id._id, this.answer, this.game._id).subscribe({
         next: data => {
@@ -68,6 +83,7 @@ export class RoundCategoriesComponent implements OnInit {
             this.answer = ""
             // TODO: shake input field
             // TODO: toaster pop up notification at top of page and fades away
+            this.isShake = true
             this.showInfo(data.message)
           }
         },
@@ -77,8 +93,10 @@ export class RoundCategoriesComponent implements OnInit {
       })
     } else {
         // TODO: toaster pop up notification at top of page and fades away
+        this.isShake = true
         this.showInfo("input field is empty!")
     }
+    console.log("bool end: ", this.isShake)
   }
 
   giveupClicked() {

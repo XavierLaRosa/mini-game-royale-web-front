@@ -54,7 +54,7 @@
                 </div>
                 <p class="text-3xl text-center w-full font-bold">{{minutes}} min {{seconds}} seconds</p>
                 <form class="w-full flex flex-col justify-center items-center">
-                    <input autofocus [(ngModel)]="answer" class="w-8/12 p-2 text-center mb-2" type="text" name="answer" placeholder="guess a word">
+                    <input [@shake]="isShake ? true : false" autofocus [(ngModel)]="answer" class="block w-8/12 p-2 text-center mb-2" type="text" name="answer" placeholder="guess a word">
                     <div class="w-full flex flex-row justify-center items-center">
                         <button type="submit" (click)="checkClicked()" class="text-2xl w-6/12 h-18 bg-blue-700 rounded-bl-lg hover:bg-blue-600">Check</button>
                         <button (click)="giveupClicked()" class="text-2xl w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
