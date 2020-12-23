@@ -68,7 +68,7 @@ export class RoundCategoriesComponent implements OnInit {
             this.answer = ""
             // TODO: shake input field
             // TODO: toaster pop up notification at top of page and fades away
-            this.showSuccess()
+            this.showInfo(data.message)
           }
         },
         error: error => {
@@ -77,6 +77,7 @@ export class RoundCategoriesComponent implements OnInit {
       })
     } else {
         // TODO: toaster pop up notification at top of page and fades away
+        this.showInfo("input field is empty!")
     }
   }
 
@@ -97,11 +98,12 @@ export class RoundCategoriesComponent implements OnInit {
     })
   }
 
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!', {
+  showInfo(message: string) {
+    this.toastr.info(message, 'Toastr fun!', {
       closeButton: true,
-      timeOut: 1500,
-      positionClass: "toast-top-center"
+      timeOut: 2500,
+      positionClass: "toast-top-center",
+      tapToDismiss: true
     });
   }
 

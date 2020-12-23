@@ -26,6 +26,7 @@ import { SubmitCategoriesComponent } from './pages/submit-categories/submit-cate
 import { SidebarModule } from 'ng-sidebar';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
+import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     GameWaitingComponent,
     RoundCategoriesComponent,
     ResultsCategoriesComponent,
-    SubmitCategoriesComponent
+    SubmitCategoriesComponent,
+    CustomToastComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +53,12 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     SidebarModule.forRoot(),
     NgxSpinnerModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      toastComponent: CustomToastComponent
+    }),
     BrowserAnimationsModule
   ],
+  entryComponents: [CustomToastComponent],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
