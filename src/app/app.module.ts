@@ -27,6 +27,7 @@ import { SidebarModule } from 'ng-sidebar';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CustomToastComponent } from './components/custom-toast/custom-toast.com
     ToastrModule.forRoot({
       toastComponent: CustomToastComponent
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   entryComponents: [CustomToastComponent],
   providers: [],

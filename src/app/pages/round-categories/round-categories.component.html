@@ -57,7 +57,7 @@
                     <input [@shake]="isShake ? true : false" autofocus [(ngModel)]="answer" class="block w-8/12 p-2 text-center mb-2" type="text" name="answer" placeholder="guess a word">
                     <div class="w-full flex flex-row justify-center items-center">
                         <button type="submit" (click)="checkClicked()" class="text-2xl w-6/12 h-18 bg-blue-700 rounded-bl-lg hover:bg-blue-600">Check</button>
-                        <button (click)="giveupClicked()" class="text-2xl w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
+                        <button (click)="openModal(template)" class="text-2xl w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
                     </div>
                 </form>
             </div>
@@ -69,3 +69,13 @@
         <p class="text-sm">Developed by Xavier La Rosa</p>
     </footer>
 </div>
+
+<ng-template #template>
+    <div class="modal-header bg-red font-red-lightest border-none">
+        <h4 class="modal-title pull-left">Are you sure you want to forfeit the match?</h4>
+      </div>
+    <div class="font-red-lightest w-full flex flex-row justify-center items-center">
+        <button (click)="modalRef.hide()" type="submit" class="p-1 text-base w-6/12 h-18 bg-gray-700 rounded-bl-lg hover:bg-gray-600">Cancel</button>
+        <button (click)="giveupClicked()" class="p-1 text-base w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
+    </div>
+  </ng-template>

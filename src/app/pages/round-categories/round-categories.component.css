@@ -10,3 +10,7 @@
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: #FDEFED;
 }
+
+/deep/ .modal-content {
+    border-radius: 40px;
+}

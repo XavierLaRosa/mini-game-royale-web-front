@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Game, GameState } from 'src/app/app.service';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GameListItemComponent } from 'src/app/components/game-list-item/game-list-item.component';
 import { state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { shake } from 'ngx-animate';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-round-categories',
@@ -31,7 +32,13 @@ export class RoundCategoriesComponent implements OnInit {
   totalTime: number = 0
   seconds: number = 0
   minutes: number = 0
-  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
+  modalRef: BsModalRef
+
+  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router, private toastr: ToastrService, private modalService: BsModalService) { }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit(): void {
     timer(0, 1000).subscribe(ellapsedCycles => {
@@ -106,6 +113,7 @@ export class RoundCategoriesComponent implements OnInit {
     console.log("data to send: ", this.game._id, AppService.id)
     this.appService.forfeitGame(this.game._id, AppService.id).subscribe({
       next: data => {
+        this.modalRef.hide()
         console.log("Forfeit Game API Success: ", data)
         this.game = data as Game
         this.router.navigate([`results-categories/${this.game._id}`]);
