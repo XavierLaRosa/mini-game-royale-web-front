@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
   static URL = `http://localhost:3000` //https://shrouded-earth-55441.herokuapp.com
-  static KEY = ''
-  static id: string
+  static KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI1ZmM4MTQ2NTA3YzBjNjgxMDE3NjQ0YzciLCJpYXQiOjE2MDg2MDYxMzl9.8siKPygP9trtsUjVv-fRxK8CWZGg2_nOhoskx8TOd4c'
+  static id: string = '5fc8146507c0c681017644c7'
   static user: User
   constructor(private http: HttpClient) { }
 

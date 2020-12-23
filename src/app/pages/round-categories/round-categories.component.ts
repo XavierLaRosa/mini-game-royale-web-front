@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Game, GameState } from 'src/app/app.service';
 import { timer } from "rxjs";
+import { ToastrService } from 'ngx-toastr';
+import { GameListItemComponent } from 'src/app/components/game-list-item/game-list-item.component';
 
 @Component({
   selector: 'app-round-categories',
@@ -16,7 +18,7 @@ export class RoundCategoriesComponent implements OnInit {
   totalTime: number = 0
   seconds: number = 0
   minutes: number = 0
-  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     timer(0, 1000).subscribe(ellapsedCycles => {
@@ -66,6 +68,7 @@ export class RoundCategoriesComponent implements OnInit {
             this.answer = ""
             // TODO: shake input field
             // TODO: toaster pop up notification at top of page and fades away
+            this.showSuccess()
           }
         },
         error: error => {
@@ -92,6 +95,14 @@ export class RoundCategoriesComponent implements OnInit {
         console.log("API Error: ", error)
       }
     })
+  }
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!', {
+      closeButton: true,
+      timeOut: 1500,
+      positionClass: "toast-top-center"
+    });
   }
 
 }

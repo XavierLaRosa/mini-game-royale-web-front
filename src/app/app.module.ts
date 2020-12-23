@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { ResultsCategoriesComponent } from './pages/results-categories/results-c
 import { SubmitCategoriesComponent } from './pages/submit-categories/submit-categories.component';
 import { SidebarModule } from 'ng-sidebar';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     HttpClientModule,
     FormsModule,
     SidebarModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
