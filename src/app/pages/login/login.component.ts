@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
       var body = {username: this.username, password: this.password}
       this.appService.loginUser(body).subscribe({ // login with user credentials
         next: data => {
-          this.animateError = false;
           console.log("Login API Success: ", data)
+          this.animateError = false;
           AppService.KEY = data.token
           AppService.id = data.user._id
           this.router.navigateByUrl('/home')
