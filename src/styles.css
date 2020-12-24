@@ -4,9 +4,10 @@
     src: url(assets/fonts/Righteous/Righteous-Regular.ttf) format("opentype");
   }
 
-  body {
-      font-family: 'righteous';
-  }
+body {
+    font-family: 'righteous';
+}
+
 .bg-red {
     background-color: #333745;
 }
@@ -39,8 +40,35 @@
     color: #FDEFED;
 }
 
-.border-red-light {
-    border-color: #FDEFED;
+.border-red-placeholder {
+    border-color: #454A5E;
+}
+
+.bg-red-placeholder {
+    background-color: #454A5E;
+}
+
+.font-red-placeholder {
+    color: #454A5E;
+}
+
+.border-red-placeholder {
+    border-color: #454A5E;
+}
+
+.button-red-lightest {
+    background: #FDEFED;
+    background: linear-gradient(to left, #FDEFED 50%, #333745 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+    transition:all 0.2s ease;
+    border: 2px solid #333745;
+}
+
+.button-red-lightest:hover {
+    background-position:left bottom;
+    color: #FDEFED;
+    border: 2px solid #FDEFED;
 }
 
 p {
