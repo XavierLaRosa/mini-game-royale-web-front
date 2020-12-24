@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: righteous;
+    src: url(assets/fonts/Righteous/Righteous-Regular.ttf) format("opentype");
+  }
+
+  body {
+      font-family: 'righteous';
+  }
 .bg-red {
     background-color: #333745;
 }
