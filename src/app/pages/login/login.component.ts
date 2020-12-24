@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
           this.username = ""
           this.password = ""
           this.animateError = true;
-          // after animation is done, restore the initial state
           setTimeout(() => {
             this.animateError = false;
           }, 500);
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit {
       this.username = ""
       this.password = ""
       this.animateError = true;
-      // after animation is done, restore the initial state
       setTimeout(() => {
         this.animateError = false;
       }, 500);

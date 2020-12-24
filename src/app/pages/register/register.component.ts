@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
           this.password = ""
           this.password2 = ""
           this.animateError = true;
-          // after animation is done, restore the initial state
           setTimeout(() => {
             this.animateError = false;
           }, 500);
