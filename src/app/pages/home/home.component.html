@@ -17,7 +17,7 @@
                 <p routerLink="/search-friends" class="w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
             </div>
 
-            <p (click)="logout()" class="bg-red-lightest font-red shadow rounded-full px-3 py-1 w-10/12 text-center my-8">Logout</p>
+            <button (click)="logout()" class="button-red-lightest bg-red-lightest font-red w-32 p-2 rounded-full my-8">Logout</button>
           </div>
       </nav>
     </ng-sidebar>
@@ -33,26 +33,35 @@
         </nav>
         <div class="w-full flex flex-col justify-center items-center">
             
-            <div class="w-full flex flex-col justify-center items-center my-6 h-screen">
-                <img class="w-10/12" src="../../../assets/logo(x2).png" alt="">
-                <p class="bg-red-light p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow-lg my-2 text-2xl text-center">
-                    Choose your Game
-                </p>
-                <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                    <div routerLink="/create-categories" class="h-24 w-24 bg-red-light font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
-                        <fa-icon [icon]="faComments" size="2x"></fa-icon>
+            <div class="w-full flex flex-col justify-start items-center h-screen py-8">
+                <img class="w-64 h-64" src="../../../assets/logo(x2).png" alt="">
+                <div class="flex flex-col justify-center items-center w-full">
+                    <p class="bg-red-light p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow-lg my-2 text-2xl text-center">
+                        Choose your Game
+                    </p>
+                    <div class="flex flex-row justify-center items-center w-10/12 my-2">
+                        <div routerLink="/create-categories" class="h-24 w-24 bg-red-light font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
+                            <fa-icon [icon]="faComments" size="2x"></fa-icon>
+                        </div>
+                        <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
+                            coming soon...
+                        </div>
                     </div>
-                    <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
-                        coming soon...
+                    <div class="flex flex-row justify-center items-center w-10/12 my-2">
+                        <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
+                            coming soon...
+                        </div>
+                        <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
+                            coming soon...
+                        </div>
                     </div>
                 </div>
-                <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                    <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
-                        coming soon...
-                    </div>
-                    <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
-                        coming soon...
-                    </div>
+
+                <div class="flex flex-col justify-center items-center w-full my-20">
+                    <p class="text-sm text-center">
+                        scroll down...
+                    </p>
+                    <fa-icon [@bounce]="bounce" [icon]="faAngleDoubleDown" size="2x"></fa-icon>
                 </div>
             </div>
     

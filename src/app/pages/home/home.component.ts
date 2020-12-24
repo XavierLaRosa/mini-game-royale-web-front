@@ -1,14 +1,20 @@
+import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faBars, faBell, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleDown, faBars, faBell, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { bounce } from 'ngx-animate';
 import { AppService, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('bounce', [transition('* => *', useAnimation(bounce))])
+  ]
 })
 export class HomeComponent implements OnInit {
+  bounce: any
   faBell = faBell
   faComments = faComments
   faMicrophoneAlt = faMicrophoneAlt
@@ -16,6 +22,7 @@ export class HomeComponent implements OnInit {
   faBars = faBars
   faCog = faCog
   faSignOutAlt = faSignOutAlt
+  faAngleDoubleDown = faAngleDoubleDown
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
