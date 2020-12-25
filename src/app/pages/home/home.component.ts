@@ -10,7 +10,8 @@ import { AppService, User } from 'src/app/app.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [
-    trigger('bounce', [transition('* => *', useAnimation(bounce))]),
+    trigger('bounce', [transition('* => *', useAnimation(bounce, {
+      params: { timing: 1.5, delay: 1 }}))]),
     trigger('fadeOut', [
       state('0', style({})),
       state('1', style({})),
