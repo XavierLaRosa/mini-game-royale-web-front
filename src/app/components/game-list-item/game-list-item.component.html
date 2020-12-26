@@ -18,7 +18,10 @@
         </div>
         <div *ngIf="game.is_done == false" class="w-full p-4 flex flex-row justify-between items-center">
             <div class="normal-text flex flex-col justify-start items-center self-start">
-                <p class="w-full text-sm font-bold">
+                <p class="w-full text-sm font-bold" *ngIf="appService.getUserData()._id == game.player_1_id._id">
+                    {{ game.name }} with {{ game.player_2_id.username }}
+                </p>
+                <p class="w-full text-sm font-bold" *ngIf="appService.getUserData()._id != game.player_1_id._id">
                     {{ game.name }} with {{ game.player_1_id.username }}
                 </p>
                 <p class="w-full text-xs">

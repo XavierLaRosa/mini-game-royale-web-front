@@ -40,24 +40,27 @@ export class HomeComponent implements OnInit {
   animateScrolled = false;
   _opened: boolean = false;
   notificationSize: number = 0
+  intervalId
 
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
-    this.appService.getUser(AppService.id).subscribe({ // get user data
-      next: data => {
-        console.log("User API Success: ", data)
-        AppService.user = data as User
-        this.notificationSize = 
-          AppService.user.pending_friends_received.length +
-          AppService.user.pending_friends_sent.length + 
-          AppService.user.pending_games_received.length +
-          AppService.user.pending_games_sent.length
-      },
-      error: error => {
-        console.log("User API Error: ", error)
-      }
-    })
+    this.intervalId = setInterval( e =>{
+      this.appService.getUser(AppService.id).subscribe({ // get user data
+        next: data => {
+          console.log("User API Success: ", data)
+          AppService.user = data as User
+          this.notificationSize = 
+            AppService.user.pending_friends_received.length +
+            AppService.user.pending_friends_sent.length + 
+            AppService.user.pending_games_received.length +
+            AppService.user.pending_games_sent.length
+        },
+        error: error => {
+          console.log("User API Error: ", error)
+        }
+      })
+    }, 2000); 
   }
 
   @HostListener('window:scroll', ['$event']) 
@@ -82,6 +85,10 @@ export class HomeComponent implements OnInit {
     AppService.id = null
     AppService.user = null
     this.router.navigateByUrl("/")
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 
 }
