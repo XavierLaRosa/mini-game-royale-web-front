@@ -14,7 +14,7 @@
                 </div>
                 <p routerLink="/home" class="normal-text w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
                 <p routerLink="/notifications" class="normal-text w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications ({{this.notificationSize}})</p>
-                <p routerLink="/search-friends" class="normal-text w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
+                <p routerLink="/friends" class="normal-text w-full p-3"><span><fa-icon [icon]="faUsers" class="mx-2"></fa-icon></span> Friends</p>
             </div>
 
             <button (click)="logout()" class="button-red-lightest bg-red-lightest font-red w-32 p-2 rounded-full my-8">Logout</button>
@@ -77,26 +77,12 @@
             </div>
     
     
-            <div class="bg-red w-10/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
                 <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                     Games ({{this.appService.getUserData().games.length}})
                 </div>
                 <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
                     <app-game-list-item [isPendingGames]="false" [games]="this.appService.getUserData().games"></app-game-list-item>
-                </div>
-            </div>
-    
-            <div class="bg-red flex flex-col justify-around items-center w-10/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
-                <div class="bg-red font-red-lightest shadow-sm flex flex-row justify-between items-center py-2 px-3 rounded-tr-lg text-left w-full">
-                    <p>
-                        Friends ({{this.appService.getUserData().friends.length}})
-                    </p>
-                    <button routerLink="/search-friends">
-                        <fa-icon [icon]="faUserPlus"></fa-icon>
-                    </button>
-                </div>
-                <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
-                    <app-friend-list-item [type]="'friends'" [friends]="this.appService.getUserData().friends"></app-friend-list-item>
                 </div>
             </div>
         </div>

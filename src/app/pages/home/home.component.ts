@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { bounce, fadeOut, fadeOutUp } from 'ngx-animate';
 import { AppService, User } from 'src/app/app.service';
 
@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   faBell = faBell
   faComments = faComments
   faMicrophoneAlt = faMicrophoneAlt
+  faUsers = faUsers
   faUserPlus = faUserPlus
   faBars = faBars
   faCog = faCog

@@ -28,6 +28,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FriendsComponent } from './pages/friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     RoundCategoriesComponent,
     ResultsCategoriesComponent,
     SubmitCategoriesComponent,
-    CustomToastComponent
+    CustomToastComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
