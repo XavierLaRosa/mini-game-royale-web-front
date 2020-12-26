@@ -29,10 +29,10 @@ export class CreateCategoriesComponent implements OnInit {
     max_round: this.selectedRounds
   }
   images = [
-    {name: "mochi", path: "mochi.gif", selected: false},
+    {name: "mochi", path: "mochi.gif", selected: true},
     {name: "waffle", path: "waffle.gif", selected: false}
   ]
-  selectedPlayer: {name: string, path: string, selected: boolean}
+  selectedPlayer = this.images[0]
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
