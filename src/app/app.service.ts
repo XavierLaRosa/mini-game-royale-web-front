@@ -13,7 +13,6 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   loginUser(body: Object): Observable<any> {
-
     return this.http.post<any>(AppService.URL+`/users/login`, body)
   }
 

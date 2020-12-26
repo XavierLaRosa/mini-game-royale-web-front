@@ -59,6 +59,22 @@ body {
     border-color: #454A5E;
 }
 
+.button-red-light {
+    background: #3D4152;
+    background: linear-gradient(to left, #3D4152 50%, #FDEFED 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+    transition:all 0.2s ease;
+    border: 2px solid #3D4152;
+    color: #FDEFED;
+}
+
+.button-red-light:hover {
+    background-position:left bottom;
+    color: #3D4152;
+    border: 2px solid #3D4152;
+}
+
 .button-red-lightest {
     background: #FDEFED;
     background: linear-gradient(to left, #FDEFED 50%, #333745 50%);
