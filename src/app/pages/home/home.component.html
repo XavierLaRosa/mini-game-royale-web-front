@@ -27,7 +27,7 @@
         <nav class="bg-red p-3 w-full flex flex-row justify-between shadow sticky top-0">
             <p class="text-lg mx-1">MGR</p>
             <div class="flex flex-row justify-end items-center w-6/12">
-                <p routerLink="/notifications" class="">
+                <p [@notificationBounce]="bounce" routerLink="/notifications" class="">
                     <fa-layers size="2x">
                         <fa-icon [icon]="faBell" size="xs"></fa-icon>
                         <fa-layers-counter [classes]="['fa-custom-counter']" [content]="notificationSize"></fa-layers-counter>

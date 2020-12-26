@@ -11,7 +11,7 @@ import { AppService, User } from 'src/app/app.service';
   styleUrls: ['./home.component.css'],
   animations: [
     trigger('bounce', [transition('* => *', useAnimation(bounce, {
-      params: { timing: 1.5, delay: 1 }}))]),
+      params: { timing: 1.25, delay: 2.5}}))]),
     trigger('fadeOut', [
       state('0', style({})),
       state('1', style({})),
@@ -21,7 +21,9 @@ import { AppService, User } from 'src/app/app.service';
       ]),
       transition('0 => 1', [
         animate(1000, style({opacity: 0}))
-      ])])
+      ])]),
+    trigger('notificationBounce', [transition('* => *', useAnimation(bounce, {
+      params: { timing: 1.25, delay: 1 }}))])
   ]
 })
 export class HomeComponent implements OnInit {

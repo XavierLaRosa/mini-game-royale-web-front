@@ -66,6 +66,7 @@ body {
     background-position:right bottom;
     transition:all 0.2s ease;
     border: 2px solid #333745;
+    color: #333745;
 }
 
 .button-red-lightest:hover {
