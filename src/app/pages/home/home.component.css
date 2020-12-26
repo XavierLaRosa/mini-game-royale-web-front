@@ -1,0 +1,3 @@
+:host ::ng-deep .fa-custom-counter {
+    transform: scale(0.35) translateX(20%) translateY(-20%);
+  }

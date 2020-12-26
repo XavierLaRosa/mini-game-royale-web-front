@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCheckCircle, faChevronLeft, faGamepad, faTimesCircle, faUndo, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Notification, User } from 'src/app/app.service';
 
 @Component({
@@ -12,7 +12,15 @@ export class NotificationsComponent implements OnInit {
 
   keyword: string
   faChevronLeft = faChevronLeft
-  notifications: {_id: string, username: string, type: Notification, gid?: string}[]
+  faBell = faBell
+  faGamepad = faGamepad
+  faUserFriends = faUserFriends
+  faCheckCircle = faCheckCircle
+  faTimesCircle = faTimesCircle
+  faUndo = faUndo
+  totalGames: number = 0
+  totalFriends: number = 0
+  notifications: {_id: string, username: string, type: Notification, gid?: string, message: string}[]
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,32 +29,66 @@ export class NotificationsComponent implements OnInit {
         console.log("User API Success: ", data)
         AppService.user = data as User
         AppService.user.pending_games_sent.forEach( g => { // add games sent
-          if(!this.notifications){
-            this.notifications = [{_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME, gid: g._id}]
-          } else{
-            this.notifications.push({_id: g.player_2_id._id, username: g.player_2_id.username, type: Notification.TO_GAME, gid: g._id})
+          const notif = {
+            _id: g.player_2_id._id, 
+            username: g.player_2_id.username, 
+            type: Notification.TO_GAME,
+            gid: g._id, 
+            message: `Waiting on ${g.player_2_id.username} to respond to game request.`
           }
+
+          if(!this.notifications){
+            this.notifications = [notif]
+          } else{
+            this.notifications.push(notif)
+          }
+          this.totalGames++
         })
         AppService.user.pending_games_received.forEach( g => { // add games received
-          if(!this.notifications){
-            this.notifications = [{_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME, gid: g._id}]
-          } else{
-            this.notifications.push({_id: g.player_1_id._id, username: g.player_1_id.username, type: Notification.FROM_GAME, gid: g._id})
+          const notif = {
+            _id: g.player_1_id._id, 
+            username: g.player_1_id.username, 
+            type: Notification.FROM_GAME, 
+            gid: g._id, 
+            message: `${g.player_1_id.username} sent you a game request.`
           }
+
+          if(!this.notifications){
+            this.notifications = [notif]
+          } else{
+            this.notifications.push(notif)
+          }
+          this.totalGames++
         })
         AppService.user.pending_friends_sent.forEach(f => { // add friends sent
-          if(!this.notifications){
-            this.notifications = [{_id: f._id, username: f.username, type: Notification.TO_FRIEND}]
-          } else {
-            this.notifications.push({_id: f._id, username: f.username, type: Notification.TO_FRIEND})
+          const notif = {
+            _id: f._id, 
+            username: f.username, 
+            type: Notification.TO_FRIEND, 
+            message: `Waiting on ${f.username} to respond to friend request.`
           }
+
+          if(!this.notifications){
+            this.notifications = [notif]
+          } else {
+            this.notifications.push(notif)
+          }
+          this.totalFriends++
         })
         AppService.user.pending_friends_received.forEach(f => { // add friends received
+          const notif = {
+            _id: f._id, 
+            username: f.username, 
+            type: Notification.FROM_FRIEND, 
+            message: `${f.username} sent you a friend request.`
+          }
+
           if(!this.notifications){
-            this.notifications = [{_id: f._id, username: f.username, type: Notification.FROM_FRIEND}]
+            this.notifications = [notif]
           } else {
-            this.notifications.push({_id: f._id, username: f.username, type: Notification.FROM_FRIEND})
-          }          
+            this.notifications.push(notif)
+          }     
+          this.totalFriends++     
         })
       },
       error: error => {

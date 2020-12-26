@@ -15,4 +15,23 @@ export class GameListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  defaultOrder(games) {
+    var sortedArr = []
+    for(var i = 0; i<games.length; i++){
+      if(games[i].is_done == false && games[i].current_turn_id._id == AppService.id){
+        sortedArr.push(games[i])
+      }
+    }
+    for(var i = 0; i<games.length; i++){
+      if(games[i].is_done == false && games[i].current_turn_id._id != AppService.id){
+        sortedArr.push(games[i])
+      }
+    }
+    for(var i = 0; i<games.length; i++){
+      if(games[i].is_done == true){
+        sortedArr.push(games[i])
+      }
+    }
+    return sortedArr
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faGamepad } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Game, User } from 'src/app/app.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { AppService, Game, User } from 'src/app/app.service';
 export class ResultsCategoriesComponent implements OnInit {
   game: Game
   faChevronLeft = faChevronLeft
+  faGamepad = faGamepad
   pointsDifference: number
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute) { }
 

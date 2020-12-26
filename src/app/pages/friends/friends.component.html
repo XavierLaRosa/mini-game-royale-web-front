@@ -1,0 +1,49 @@
+<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow h-64 p-3 w-full flex flex-row justify-around items-start">
+        <button routerLink="/home" class="bg-clear p-3 w-2/12">
+            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
+        </button>
+        <div class="w-8/12 flex flex-col justify-center items-center self-center">
+            <fa-icon [icon]="faUsers" class="m-2" size="3x"></fa-icon>
+            <p class="text-xl w-full text-center">
+                {{friends.length}} Friends
+            </p>
+        </div>
+        <div class="flex flex-col justify-center items-center w-2/12 mt-3">
+            <button routerLink="/search-friends">
+                <fa-icon [icon]="faUserPlus"></fa-icon>
+            </button>
+        </div>
+    </nav>
+
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center p-2">
+        <div *ngIf="friends" class="w-full flex flex-col justify-start items-center">
+            
+            <section class="w-11/12 h-20 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let friend of friends">
+                <div class="w-8/12 flex flex-row justify-start items-center p-3">
+                    <div class="h-8 w-8 bg-red-lightest shadow rounded-full">
+
+                    </div>
+                    <div class="w-10/12 flex flex-col justify-start items-start ml-3">
+                        <p class="normal-text font-red-lightest text-lg font-bold">
+                            {{friend.username}}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="w-4/12 flex flex-row justify-center items-center p-3">
+                    <div class="flex flex-row justify-center items-center w-full mb-2">
+                        <button (click)="removeFriend(friend._id)" class="font-bold text-lg">
+                            unfriend
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
+        <p class="text-sm">Developed by Xavier La Rosa</p>
+    </footer>
+</div>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,12 @@ import { GameWaitingComponent } from './pages/game-waiting/game-waiting.componen
 import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
 import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
 import { SubmitCategoriesComponent } from './pages/submit-categories/submit-categories.component';
+import { SidebarModule } from 'ng-sidebar';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
+import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FriendsComponent } from './pages/friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -37,17 +44,28 @@ import { SubmitCategoriesComponent } from './pages/submit-categories/submit-cate
     GameWaitingComponent,
     RoundCategoriesComponent,
     ResultsCategoriesComponent,
-    SubmitCategoriesComponent
+    SubmitCategoriesComponent,
+    CustomToastComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SidebarModule.forRoot(),
+    NgxSpinnerModule,
+    ToastrModule.forRoot({
+      toastComponent: CustomToastComponent
+    }),
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
+  entryComponents: [CustomToastComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
   constructor(private library: FaIconLibrary) {

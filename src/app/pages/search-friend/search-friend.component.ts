@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Friend, User } from 'src/app/app.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class SearchFriendComponent implements OnInit {
   keyword: string
   faChevronLeft = faChevronLeft
   faSearch = faSearch
-  matches: {_id: number, username: string}[]
+  faPlusCircle = faPlusCircle
+  matches: {_id: number, username: string}[] = []
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
@@ -33,10 +34,19 @@ export class SearchFriendComponent implements OnInit {
         console.log("User Match API Success: ", data)
         data.forEach(d => {
           if(d._id != AppService.id){
-            if(this.matches){
-              this.matches.push(d as {_id: number, username: string})
-            } else {
-              this.matches = [d as {_id: number, username: string}]
+            var friendExists = false
+            for(var i = 0; i < AppService.user.friends.length; i++){
+              if(AppService.user.friends[i]._id == d._id) {
+                friendExists = true
+                break
+              }
+            }
+            if(!friendExists){
+              if(this.matches){
+                this.matches.push(d as {_id: number, username: string})
+              } else {
+                this.matches = [d as {_id: number, username: string}]
+              }
             }
           }
         })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faChevronLeft, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faGamepad, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { AppService, Game, GameState, User } from 'src/app/app.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { AppService, Game, GameState, User } from 'src/app/app.service';
 })
 export class CreateCategoriesComponent implements OnInit {
   faChevronLeft = faChevronLeft
+  faGamepad = faGamepad
   faSearch = faSearch
   keyword: string
   friends: {_id: string, username: string}[]
