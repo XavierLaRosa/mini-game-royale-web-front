@@ -5,14 +5,14 @@
         </p>
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-center items-center">
-        <ngx-spinner bdColor="rgba(51,51,51,0.0)" type='ball-climbing-dot' size='medium' color='white' fullScreen="false">
-            <p *ngIf="state == 'WAITING_ACCEPTANCE'" class="text-base text-center">
-                Waiting on {{ opponent.username }} <br> to accept the game...
+        <ngx-spinner bdColor="rgba(51,51,51,0.0)" template="<img src='../.../../../../assets/mochi.gif' />" size='medium' color='white' fullScreen="false">
+            <p *ngIf="state == 'WAITING_ACCEPTANCE'" class="text-sm text-center">
+                <br> Waiting on {{ opponent.username }} <br> to accept the game...
             </p>
-            <p *ngIf="state == 'WAITING_TURN'" class="text-base text-center">
-                Waiting on {{ opponent.username }} <br> to finish their turn...
+            <p *ngIf="state == 'WAITING_TURN'" class="text-sm text-center">
+                <br> Waiting on {{ opponent.username }} <br> to finish their turn...
             </p>
-            <p routerLink="/home" class="text-sm text-center mt-1">
+            <p routerLink="/home" class="text-xs text-center mt-1">
                 Go to home page
             </p>
         </ngx-spinner>

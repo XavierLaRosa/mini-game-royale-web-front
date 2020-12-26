@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { Router } from '@angular/router';
 import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { bounce, fadeOut, fadeOutUp } from 'ngx-animate';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService, User } from 'src/app/app.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AppService, User } from 'src/app/app.service';
   styleUrls: ['./home.component.css'],
   animations: [
     trigger('bounce', [transition('* => *', useAnimation(bounce, {
-      params: { timing: 1.25, delay: 2.5}}))]),
+      params: { timing: 1.25, delay: 3.5}}))]),
     trigger('fadeOut', [
       state('0', style({})),
       state('1', style({})),
@@ -23,7 +24,7 @@ import { AppService, User } from 'src/app/app.service';
         animate(1000, style({opacity: 0}))
       ])]),
     trigger('notificationBounce', [transition('* => *', useAnimation(bounce, {
-      params: { timing: 1.25, delay: 1 }}))])
+      params: { timing: 1.25, delay: 2 }}))])
   ]
 })
 export class HomeComponent implements OnInit {
@@ -43,9 +44,17 @@ export class HomeComponent implements OnInit {
   notificationSize: number = 0
   intervalId
 
-  constructor(public appService: AppService, private router: Router) { }
+  constructor(public appService: AppService, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+     /** spinner starts on init */
+     this.spinner.show();
+ 
+     setTimeout(() => {
+       /** spinner ends after 5 seconds */
+       this.spinner.hide();
+     }, 4000);
+
     this.intervalId = setInterval( e =>{
       this.appService.getUser(AppService.id).subscribe({ // get user data
         next: data => {
