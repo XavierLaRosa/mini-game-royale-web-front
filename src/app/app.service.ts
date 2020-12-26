@@ -6,14 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-  static URL = `https://shrouded-earth-55441.herokuapp.com`
+  static URL = `http://localhost:3000` //https://shrouded-earth-55441.herokuapp.com
   static KEY = ''
   static id: string
   static user: User
   constructor(private http: HttpClient) { }
 
   loginUser(body: Object): Observable<any> {
-
     return this.http.post<any>(AppService.URL+`/users/login`, body)
   }
 
@@ -111,6 +110,13 @@ export class AppService {
     headers = headers.append('auth-token', AppService.KEY)
     const body = {category: category}
     return this.http.post<any>(AppService.URL+`/categories`, body, {headers})
+  }
+
+ 
+  forfeitGame(id: string, pid: string): Observable<any>{
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/games/${id}/forfeit/${pid}`, {headers})
   }
 }
 

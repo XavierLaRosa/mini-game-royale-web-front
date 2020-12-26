@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
+import { FriendsComponent } from './pages/friends/friends.component';
 import { GameWaitingComponent } from './pages/game-waiting/game-waiting.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'friends', component: FriendsComponent },
   { path: 'search-friends', component: SearchFriendComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'create-categories', component: CreateCategoriesComponent },

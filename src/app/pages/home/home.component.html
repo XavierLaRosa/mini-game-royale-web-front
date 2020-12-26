@@ -1,60 +1,102 @@
-<div *ngIf="this.appService.getUserData()" class="bg-purple-600 text-white flex flex-col justify-between items-center">
-    <nav class="bg-purple-500 p-3 w-full flex flex-row justify-between">
-        <p class="text-lg">MGR</p>
-        <p routerLink="/notifications" class="text-lg">
-            <fa-icon [icon]="faBell" size="lg"></fa-icon>
-        </p>
-    </nav>
-    <div class="w-full flex flex-col justify-center items-center">
-        
-        <div class="w-full flex flex-col justify-center items-center my-6">
-            <p class="bg-purple-500 p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2 text-2xl text-center">
-                Choose your Game
-            </p>
-            <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                <div routerLink="/create-categories" class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow mr-2 flex flex-col justify-center items-center">
-                    <fa-icon [icon]="faComments" size="2x"></fa-icon>
+<ng-sidebar-container *ngIf="this.appService.getUserData()"  style="height: 100vh;">
+ 
+    <!-- A sidebar -->
+    <ng-sidebar [(opened)]="_opened">
+      <nav class="h-screen w-56 bg-red-light shadow-xl">
+          <div class="flex flex-col justify-between items-center h-full">
+            <div class="w-full">
+                <div class="flex flex-row justify-between items-center w-full p-3 bg-red">
+                    <div class="w-10/12 flex flex-row justify-start items-center">
+                        <div class="h-8 w-8 rounded-full bg-red-lightest shadow-xl mr-2"></div>
+                        <p class="text-left text-xl font-red-lightest">{{this.appService.getUserData().username}}</p>
+                    </div>
+                    <fa-icon closeSidebar [icon]="faSignOutAlt" class="mx-2 font-red-lightest" size="lg" rotate="180"></fa-icon>
                 </div>
-                <div class="h-24 w-24 bg-purple-500 text-white text-center rounded-lg shadow ml-2 flex flex-col justify-center items-center">
-                    <fa-icon [icon]="faMicrophoneAlt" size="2x"></fa-icon>
-                </div>
+                <p routerLink="/home" class="normal-text w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
+                <p routerLink="/notifications" class="normal-text w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications ({{this.notificationSize}})</p>
+                <p routerLink="/friends" class="normal-text w-full p-3"><span><fa-icon [icon]="faUsers" class="mx-2"></fa-icon></span> Friends</p>
             </div>
-            <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                <div class="h-24 w-24 bg-purple-400 opacity-25 text-white text-center rounded-lg shadow mr-2 flex flex-col justify-center items-center">
-                    coming soon...
-                </div>
-                <div class="h-24 w-24 bg-purple-400 opacity-25 text-white text-center rounded-lg shadow ml-2 flex flex-col justify-center items-center">
-                    coming soon...
-                </div>
-            </div>
-        </div>
 
+            <button (click)="logout()" class="button-red-lightest bg-red-lightest font-red w-32 p-2 rounded-full my-8">Logout</button>
+          </div>
+      </nav>
+    </ng-sidebar>
 
-        <div class="bg-purple-500 w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
-            <div class="bg-white py-2 px-3 rounded-tr-lg text-left w-full text-black">
-                Games ({{this.appService.getUserData().games.length}})
-            </div>
-            <div class="h-64 overflow-y-scroll w-full">
-                <app-game-list-item [isPendingGames]="false" [games]="this.appService.getUserData().games"></app-game-list-item>
-            </div>
-        </div>
-
-        <div class="bg-purple-500 flex flex-col justify-around items-center w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2">
-            <div class="bg-white flex flex-row justify-between items-center py-2 px-3 rounded-tr-lg text-left w-full">
-                <p class="text-black">
-                    Friends ({{this.appService.getUserData().friends.length}})
+    <!-- Page content -->
+    <div ng-sidebar-content class="bg-red font-red-lightest flex flex-col justify-between items-center">
+        <nav class="bg-red p-3 w-full flex flex-row justify-between shadow sticky top-0">
+            <p class="text-lg mx-1">MGR</p>
+            <div class="flex flex-row justify-end items-center w-6/12">
+                <p [@notificationBounce]="bounce" routerLink="/notifications" class="">
+                    <fa-layers size="2x">
+                        <fa-icon [icon]="faBell" size="xs"></fa-icon>
+                        <fa-layers-counter [classes]="['fa-custom-counter']" [content]="notificationSize"></fa-layers-counter>
+                    </fa-layers>
                 </p>
-                <button routerLink="/search-friends">
-                    <fa-icon [icon]="faUserPlus" class="text-green-400"></fa-icon>
-                </button>
+                <p (click)="_toggleSidebar()" class="mx-1">
+                    <fa-layers size="2x">
+                        <fa-icon [icon]="faBars" size="xs"></fa-icon>
+                    </fa-layers>
+                </p>
             </div>
-            <div class="h-64 overflow-y-scroll w-full">
-                <app-friend-list-item [type]="'friends'" [friends]="this.appService.getUserData().friends"></app-friend-list-item>
-            </div>
+        </nav>
+        <div class="w-full flex flex-col justify-center items-center">
+            
+            <div class="w-full flex flex-col justify-start items-center py-8 min-h-screen">
+                <img class="w-64 h-auto" src="../../../assets/logo(x2).png" alt="">
+                <div class="flex flex-col justify-center items-center w-full">
+                    <p class="bg-red-light p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow-lg my-2 text-2xl text-center">
+                        Choose your Game
+                    </p>
+                    <div class="flex flex-row justify-center items-center w-10/12 my-2">
+                        <div routerLink="/create-categories" class="button-red-light h-24 w-24 bg-red-light font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
+                            <fa-icon [icon]="faComments" size="2x"></fa-icon>
+                        </div>
+                        <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
+                            coming soon...
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center items-center w-10/12 my-2">
+                        <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
+                            coming soon...
+                        </div>
+                        <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
+                            coming soon...
+                        </div>
+                    </div>
+                </div>
 
+                <div [@bounce]="bounce" class="flex flex-col justify-center items-center" style="position: fixed;
+                bottom: 0;
+                width: 100%;" [@fadeOut]="animateScrolled">
+                    <p class="text-sm text-center">
+                        scroll down...
+                    </p>
+                    <fa-icon [icon]="faAngleDoubleDown" size="2x"></fa-icon>
+                </div>
+            </div>
+    
+    
+            <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+                <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                    Games ({{this.appService.getUserData().games.length}})
+                </div>
+                <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                    <app-game-list-item [isPendingGames]="false" [games]="this.appService.getUserData().games"></app-game-list-item>
+                </div>
+            </div>
         </div>
+        <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
+            <p class="text-sm">Developed by <span class="font-bold">Xavier La Rosa</span></p>
+        </footer>
     </div>
-    <footer class="bg-purple-500 p-3 w-full flex flex-row justify-between">
-        <p class="text-sm">Developed by <span class="font-bold">Xavier La Rosa</span></p>
-    </footer>
-</div>
+
+
+
+</ng-sidebar-container>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.9)" template="<img src='../../../assets/couple.gif' />" size='medium' color='black' fullScreen="false">
+    <p class="text-sm text-center">
+        <br> Let's play some games :)
+    </p>
+</ngx-spinner>
