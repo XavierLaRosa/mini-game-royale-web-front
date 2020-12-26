@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faAngleDoubleDown, faBars, faBell, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { bounce, fadeOut, fadeOutUp } from 'ngx-animate';
 import { AppService, User } from 'src/app/app.service';
 
@@ -26,6 +26,7 @@ import { AppService, User } from 'src/app/app.service';
 })
 export class HomeComponent implements OnInit {
   bounce: any
+  faCircle = faCircle
   faBell = faBell
   faComments = faComments
   faMicrophoneAlt = faMicrophoneAlt
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit {
   faAngleDoubleDown = faAngleDoubleDown
   animateScrolled = false;
   _opened: boolean = false;
+  notificationSize: number = 0
 
   constructor(public appService: AppService, private router: Router) { }
 
@@ -44,6 +46,11 @@ export class HomeComponent implements OnInit {
       next: data => {
         console.log("User API Success: ", data)
         AppService.user = data as User
+        this.notificationSize = 
+          AppService.user.pending_friends_received.length +
+          AppService.user.pending_friends_sent.length + 
+          AppService.user.pending_games_received.length +
+          AppService.user.pending_games_sent.length
       },
       error: error => {
         console.log("User API Error: ", error)

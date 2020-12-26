@@ -12,9 +12,9 @@
                     </div>
                     <fa-icon closeSidebar [icon]="faSignOutAlt" class="mx-2 font-red-lightest" size="lg" rotate="180"></fa-icon>
                 </div>
-                <p class="w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
-                <p routerLink="/notifications" class="w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications</p>
-                <p routerLink="/search-friends" class="w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
+                <p routerLink="/home" class="normal-text w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
+                <p routerLink="/notifications" class="normal-text w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications ({{this.notificationSize}})</p>
+                <p routerLink="/search-friends" class="normal-text w-full p-3"><span><fa-icon [icon]="faUserPlus" class="mx-2"></fa-icon></span> Add friend</p>
             </div>
 
             <button (click)="logout()" class="button-red-lightest bg-red-lightest font-red w-32 p-2 rounded-full my-8">Logout</button>
@@ -25,10 +25,19 @@
     <!-- Page content -->
     <div ng-sidebar-content class="bg-red font-red-lightest flex flex-col justify-between items-center">
         <nav class="bg-red p-3 w-full flex flex-row justify-between shadow sticky top-0">
-            <p class="text-lg">MGR</p>
+            <p class="text-lg mx-1">MGR</p>
             <div class="flex flex-row justify-end items-center w-6/12">
-                <p routerLink="/notifications" class="text-lg mx-2"><fa-icon [icon]="faBell" size="lg"></fa-icon></p>
-                <p (click)="_toggleSidebar()" class="mx-2"><fa-icon [icon]="faBars" size="lg"></fa-icon></p>
+                <p routerLink="/notifications" class="">
+                    <fa-layers size="2x">
+                        <fa-icon [icon]="faBell" size="xs"></fa-icon>
+                        <fa-layers-counter [classes]="['fa-custom-counter']" [content]="notificationSize"></fa-layers-counter>
+                    </fa-layers>
+                </p>
+                <p (click)="_toggleSidebar()" class="mx-1">
+                    <fa-layers size="2x">
+                        <fa-icon [icon]="faBars" size="xs"></fa-icon>
+                    </fa-layers>
+                </p>
             </div>
         </nav>
         <div class="w-full flex flex-col justify-center items-center">
