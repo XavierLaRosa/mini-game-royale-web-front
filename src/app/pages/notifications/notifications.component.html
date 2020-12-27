@@ -10,10 +10,10 @@
             </p>
         </div>
         <div class="flex flex-col justify-center items-center w-2/12 mt-3">
-            <p class="text-xs rounded-full bg-red-light opacity-50 px-1 mb-2">
+            <p class="text-xs rounded-full bg-red-light opacity-50 px-2 mb-2">
                 {{totalGames}} <span><fa-icon [icon]="faGamepad" class="mx-2" size="xs"></fa-icon></span>
             </p>
-            <p class="text-xs rounded-full bg-red-light opacity-50 px-1">
+            <p class="text-xs rounded-full bg-red-light opacity-50 px-2">
                 {{totalFriends}} <span><fa-icon [icon]="faUserFriends" class="mx-2" size="xs"></fa-icon></span>
             </p>
         </div>
@@ -22,16 +22,16 @@
     <div class="self-start w-full h-full overflow-y-scroll flex flex-col justify-start items-center p-2">
         <div *ngIf="notifications" class="w-full flex flex-col justify-start items-center">
             
-            <section class="w-11/12 h-20 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let notif of notifications">
+            <section class="w-11/12 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let notif of notifications">
                 <div class="w-8/12 flex flex-row justify-start items-center p-3">
                     <div class="h-8 w-8 bg-red-lightest shadow rounded-full">
 
                     </div>
                     <div class="w-10/12 flex flex-col justify-start items-start ml-3">
-                        <p class="font-red-lightest text-lg font-bold">
+                        <p class="normal-text font-red-lightest text-base font-bold">
                             {{notif.username}}
                         </p>
-                        <p class="font-red-lightest text-sm">
+                        <p class="normal-text font-red-lightest text-xs">
                             {{notif.message}}
                         </p>
                     </div>
@@ -47,7 +47,7 @@
                         </button>
                     </div>
                     <div *ngIf="notif.type == 'TO_FRIEND' || notif.type == 'TO_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
-                        <button class="font-bold text-lg">
+                        <button class="font-bold text-base">
                             unsend
                         </button>
                     </div>
