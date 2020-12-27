@@ -14,6 +14,21 @@
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
         <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
             <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                Icon
+            </div>
+            <carousel cellWidth="100%" dots="'true'">
+                <div class="carousel-cell w-full h-full" *ngFor="let image of images; let index = index" (click)="playerSelected(index)">
+                    <img *ngIf="!image.selected" src='../../../assets/{{image.path}}'>
+                    <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../assets/{{image.path}}'>
+                </div>
+            </carousel>
+            <p class="bg-red text-lg font-bold w-full text-center px-4">
+                Selected: <span *ngIf="selectedPlayer">{{selectedPlayer.name}}</span> 
+            </p>
+        </div>
+
+        <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                 Account
             </div>
             <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
@@ -43,9 +58,6 @@
                         placeholder="confirm new password">
                     </div>
                 </form>
-                <!-- choose different icon -->
-                <!-- change username -->
-                <!-- change password -->
             </div>
         </div>
 
@@ -56,7 +68,7 @@
             <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
                 <div class="flex flex-row justify-center items-center w-full">
                     <p class="text-base normal-text mr-1">volume</p>
-                    <mat-slider class="w-6/12 mr-1" min="0" max="100" step="10" value="30"></mat-slider>
+                    <mat-slider class="w-6/12 mr-1" min="0.00" max="1.00" step="0.10" value="0.30"></mat-slider>
                     <mat-slide-toggle class="w-3/12 text-sm" [(ngModel)]="isMuted">mute</mat-slide-toggle>
                 </div>
             </div>

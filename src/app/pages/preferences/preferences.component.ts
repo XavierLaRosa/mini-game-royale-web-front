@@ -14,6 +14,11 @@ export class PreferencesComponent implements OnInit {
   password: string
   password2: string
   isMuted: boolean = false
+  images = [
+    {name: "mochi", path: "mochi_blush/mochi_blush(x3).png", selected: true},
+    {name: "waffle", path: "waffle/waffle(x3).png", selected: false}
+  ]
+  selectedPlayer = this.images[0]
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
@@ -28,4 +33,12 @@ export class PreferencesComponent implements OnInit {
     })
   }
 
+  playerSelected(index: number) {
+    console.log("image selected: ", this.images[index])
+    this.images.forEach(i => {
+      i.selected = false
+    })
+    this.images[index].selected = true
+    this.selectedPlayer = this.images[index]
+  }
 }
