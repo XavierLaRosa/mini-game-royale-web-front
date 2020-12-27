@@ -10,11 +10,11 @@
                         <div class="h-8 w-8 rounded-full bg-red-lightest shadow-xl mr-2"></div>
                         <p class="text-left text-xl font-red-lightest">{{this.appService.getUserData().username}}</p>
                     </div>
-                    <fa-icon closeSidebar [icon]="faSignOutAlt" class="mx-2 font-red-lightest" size="lg" rotate="180"></fa-icon>
+                    <fa-icon closeSidebar [icon]="faSignOutAlt" class="cursor-pointer mx-2 font-red-lightest" size="lg" rotate="180"></fa-icon>
                 </div>
-                <p routerLink="/home" class="normal-text w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
-                <p routerLink="/notifications" class="normal-text w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications ({{this.notificationSize}})</p>
-                <p routerLink="/friends" class="normal-text w-full p-3"><span><fa-icon [icon]="faUsers" class="mx-2"></fa-icon></span> Friends</p>
+                <p routerLink="/home" class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faCog" class="mx-2"></fa-icon></span> Preferences</p>
+                <p routerLink="/notifications" class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications ({{this.notificationSize}})</p>
+                <p routerLink="/friends" class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faUsers" class="mx-2"></fa-icon></span> Friends</p>
             </div>
 
             <button (click)="logout()" class="button-red-lightest bg-red-lightest font-red w-32 p-2 rounded-full my-8">Logout</button>
@@ -27,13 +27,13 @@
         <nav class="bg-red p-3 w-full flex flex-row justify-between shadow sticky top-0">
             <p class="text-lg mx-1">MGR</p>
             <div class="flex flex-row justify-end items-center w-6/12">
-                <p [@notificationBounce]="bounce" routerLink="/notifications" class="">
+                <p [@notificationBounce]="bounce" routerLink="/notifications" class="cursor-pointer">
                     <fa-layers size="2x">
                         <fa-icon [icon]="faBell" size="xs"></fa-icon>
                         <fa-layers-counter [classes]="['fa-custom-counter']" [content]="notificationSize"></fa-layers-counter>
                     </fa-layers>
                 </p>
-                <p (click)="_toggleSidebar()" class="mx-1">
+                <p (click)="_toggleSidebar()" class="cursor-pointer mx-1">
                     <fa-layers size="2x">
                         <fa-icon [icon]="faBars" size="xs"></fa-icon>
                     </fa-layers>
@@ -49,7 +49,7 @@
                         Choose your Game
                     </p>
                     <div class="flex flex-row justify-center items-center w-10/12 my-2">
-                        <div routerLink="/create-categories" class="button-red-light h-24 w-24 bg-red-light font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
+                        <div routerLink="/create-categories" class="cursor-pointer button-red-light h-24 w-24 bg-red-light font-red-lightest text-center rounded-lg shadow-lg mr-2 flex flex-col justify-center items-center">
                             <fa-icon [icon]="faComments" size="2x"></fa-icon>
                         </div>
                         <div class="h-24 w-24 bg-red-light opacity-50 font-red-lightest text-center rounded-lg shadow-lg ml-2 flex flex-col justify-center items-center">
@@ -97,6 +97,6 @@
 
 <ngx-spinner bdColor="rgba(51,51,51,0.9)" template="<img src='../../../assets/couple.gif' />" size='medium' color='black' fullScreen="false">
     <p class="text-sm text-center">
-        <br> Let's play some games :)
+        <br> <br> Let's play some games :)
     </p>
 </ngx-spinner>
