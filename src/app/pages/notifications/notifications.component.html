@@ -39,11 +39,11 @@
                 </div>
                 <div class="w-4/12 flex flex-row justify-center items-center p-3">
                     <div *ngIf="notif.type == 'FROM_FRIEND' || notif.type == 'FROM_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
-                        <button (click)="accept(notif.type, notif.gid, notif._id)" class="mr-2">
-                            <fa-icon [icon]="faCheckCircle" class="mx-2" size="2x"></fa-icon>
+                        <button (click)="accept(notif.type, notif.gid, notif._id)">
+                            <fa-icon [icon]="faCheckCircle" class="mx-2" size="lg"></fa-icon>
                         </button>
-                        <button (click)="decline(notif.type, notif.gid, notif._id)" >
-                            <fa-icon [icon]="faTimesCircle" class="mx-2" size="2x"></fa-icon>
+                        <button (click)="decline(notif.type, notif.gid, notif._id)">
+                            <fa-icon [icon]="faTimesCircle" class="mx-2" size="lg"></fa-icon>
                         </button>
                     </div>
                     <div *ngIf="notif.type == 'TO_FRIEND' || notif.type == 'TO_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
