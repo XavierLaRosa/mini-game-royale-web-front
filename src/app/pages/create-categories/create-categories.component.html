@@ -1,5 +1,5 @@
 <div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red shadow h-64 p-3 w-full flex flex-row justify-start items-start">
+    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
         <button routerLink="/home" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
@@ -11,6 +11,24 @@
         </div>
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+
+        <div class="bg-red-light w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-center items-center">
+            <p class="bg-red text-lg font-bold w-full text-left px-4">
+                Choose Character
+            </p>
+
+            <carousel cellWidth="100%" dots="'true'">
+                <div class="carousel-cell w-full h-full" *ngFor="let image of images; let index = index" (click)="playerSelected(index)">
+                    <img *ngIf="!image.selected" src='../../../assets/{{image.path}}'>
+                    <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../assets/{{image.path}}'>
+                </div>
+            </carousel>
+            <p class="bg-red text-lg font-bold w-full text-center px-4">
+                Selected: <span *ngIf="selectedPlayer">{{selectedPlayer.name}}</span> 
+            </p>
+        </div>
+
+
             <div class="bg-red-light h-64 w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
                 <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Friend
@@ -46,7 +64,7 @@
                 <input type="number" class="bg-red-light p-3 w-full" max="10" min="1" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
             </div>
 
-            <button (click)="create()" class="text-2xl">Create</button>
+            <button (click)="create()" class="text-2xl mb-6">Create</button>
     </div>
     <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>

@@ -29,6 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FriendsComponent } from './pages/friends/friends.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { FriendsComponent } from './pages/friends/friends.component';
     ResultsCategoriesComponent,
     SubmitCategoriesComponent,
     CustomToastComponent,
-    FriendsComponent
+    FriendsComponent,
+    ChooseCharacterComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { FriendsComponent } from './pages/friends/friends.component';
       toastComponent: CustomToastComponent
     }),
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    IvyCarouselModule
   ],
   entryComponents: [CustomToastComponent],
   providers: [],

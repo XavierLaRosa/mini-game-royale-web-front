@@ -110,15 +110,7 @@ export class NotificationsComponent implements OnInit {
 
   accept(type: string, gid: string, id: string) {
     if(type == Notification.FROM_GAME){
-      this.appService.confirmGameRequest(gid, id).subscribe({ // confirm game request
-        next: data => {
-          console.log("API Success: ", data)
-          this.router.navigateByUrl('/home')
-        },
-        error: error => {
-          console.log("Confirm Game API Error: ", error)
-        }
-      })
+      this.router.navigate([`choose-character/${gid}/${id}`])
     } else if(type == Notification.FROM_FRIEND){
       this.appService.confirmFriendRequest(id).subscribe({ // confirm friend request
         next: data => {

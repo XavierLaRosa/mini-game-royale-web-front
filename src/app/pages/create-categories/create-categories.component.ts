@@ -28,6 +28,11 @@ export class CreateCategoriesComponent implements OnInit {
     player_2_id: "",
     max_round: this.selectedRounds
   }
+  images = [
+    {name: "mochi", path: "mochi.gif", selected: true},
+    {name: "waffle", path: "waffle.gif", selected: false}
+  ]
+  selectedPlayer = this.images[0]
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
@@ -54,6 +59,15 @@ export class CreateCategoriesComponent implements OnInit {
         console.log("Categories API Error: ", error)
       }
     })
+  }
+
+  playerSelected(index: number) {
+    console.log("image selected: ", this.images[index])
+    this.images.forEach(i => {
+      i.selected = false
+    })
+    this.images[index].selected = true
+    this.selectedPlayer = this.images[index]
   }
 
   filterFriends() {

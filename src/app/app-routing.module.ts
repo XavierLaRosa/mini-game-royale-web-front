@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
 import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
 import { FriendsComponent } from './pages/friends/friends.component';
 import { GameWaitingComponent } from './pages/game-waiting/game-waiting.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'friends', component: FriendsComponent },
   { path: 'search-friends', component: SearchFriendComponent },
   { path: 'notifications', component: NotificationsComponent },
+  { path: 'choose-character/:gid/:id', component: ChooseCharacterComponent },
   { path: 'create-categories', component: CreateCategoriesComponent },
   { path: 'game-waiting/:gid/:state', component: GameWaitingComponent },
   { path: 'round-categories/:gid', component: RoundCategoriesComponent },
