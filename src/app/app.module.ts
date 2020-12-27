@@ -30,6 +30,7 @@ import { CustomToastComponent } from './components/custom-toast/custom-toast.com
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FriendsComponent } from './pages/friends/friends.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     ResultsCategoriesComponent,
     SubmitCategoriesComponent,
     CustomToastComponent,
-    FriendsComponent
+    FriendsComponent,
+    ChooseCharacterComponent
   ],
   imports: [
     BrowserModule,
