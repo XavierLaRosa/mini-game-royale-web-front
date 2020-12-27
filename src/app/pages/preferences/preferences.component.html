@@ -1,4 +1,4 @@
-<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+<div class="min-h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
     <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
         <button routerLink="/friends" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
@@ -27,8 +27,12 @@
             <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                 Audio
             </div>
-            <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
-                <!-- adjust volume / mute -->
+            <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                <div class="flex flex-row justify-center items-center w-full">
+                    <p class="text-base normal-text mr-1">volume</p>
+                    <mat-slider class="w-6/12 mr-1" min="0" max="100" step="10" value="30"></mat-slider>
+                    <mat-slide-toggle class="w-3/12 text-sm" [(ngModel)]="isMuted">mute</mat-slide-toggle>
+                </div>
             </div>
         </div>
 

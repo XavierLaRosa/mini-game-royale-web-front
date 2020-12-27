@@ -32,6 +32,8 @@ import { FriendsComponent } from './pages/friends/friends.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { PreferencesComponent } from './pages/preferences/preferences.component'
     }),
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    IvyCarouselModule
+    IvyCarouselModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   entryComponents: [CustomToastComponent],
   providers: [],

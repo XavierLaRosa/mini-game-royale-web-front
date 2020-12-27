@@ -9,6 +9,7 @@ import { faChevronLeft, faCog } from '@fortawesome/free-solid-svg-icons';
 export class PreferencesComponent implements OnInit {
   faCog = faCog
   faChevronLeft = faChevronLeft
+  isMuted: boolean = false
   constructor() { }
 
   ngOnInit(): void {
