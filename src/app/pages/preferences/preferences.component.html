@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+<div *ngIf="this.appService.getUserData()" class="min-h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
     <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
         <button routerLink="/friends" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
@@ -16,7 +16,33 @@
             <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                 Account
             </div>
-            <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+            <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                <form action="" class="w-full flex flex-col justify-center items-center normal-text py-1 px-3">
+                    <div class="flex flex-row justify-between items-center w-full my-2">
+                        <p class="mr-1 text-base">
+                            username
+                        </p>
+                        <input autofocus [(ngModel)]="username" name="username" type="text" 
+                        class="w-6/12 p-1 text-xs h-8" 
+                        placeholder="{{this.appService.getUserData().username}}">
+                    </div>
+                    <div class="flex flex-row justify-between items-center w-full my-2">
+                        <p class="mr-1 text-base">
+                            new password
+                        </p>
+                        <input [(ngModel)]="password" name="password" type="text" 
+                        class="w-6/12 p-1 text-xs h-8" 
+                        placeholder="new password">
+                    </div>
+                    <div class="flex flex-row justify-between items-center w-full my-2">
+                        <p class="mr-1 text-base">
+                            confirm password
+                        </p>
+                        <input [(ngModel)]="password2" name="password2" type="text" 
+                        class="w-6/12 p-1 text-xs h-8" 
+                        placeholder="confirm new password">
+                    </div>
+                </form>
                 <!-- choose different icon -->
                 <!-- change username -->
                 <!-- change password -->
@@ -37,8 +63,8 @@
         </div>
 
         <button class="text-2xl">Confirm</button>
-        <p>or</p>
-        <button class="normal-text text-sm mb-6">Permanently Delete User</button>
+        <p class="mb-3">or</p>
+        <button class="normal-text text-sm mb-6 bg-red-700 rounded-full px-3 py-2 hover:bg-red-600">Permanently Delete User</button>
     </div>
 
     <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
