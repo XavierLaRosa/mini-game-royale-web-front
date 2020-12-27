@@ -1,0 +1,43 @@
+<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
+        <button routerLink="/friends" class="bg-clear p-3 w-2/12">
+            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
+        </button>
+        <div class="w-8/12 flex flex-col justify-center items-center self-center">
+            <fa-icon [icon]="faCog" class="m-2" size="3x"></fa-icon>
+            <p class="text-xl w-full text-center">
+                Preferences
+            </p>
+        </div>
+    </nav>
+
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+        <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                Account
+            </div>
+            <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                <!-- choose different icon -->
+                <!-- change username -->
+                <!-- change password -->
+            </div>
+        </div>
+
+        <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                Audio
+            </div>
+            <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                <!-- adjust volume / mute -->
+            </div>
+        </div>
+
+        <button class="text-2xl">Confirm</button>
+        <p>or</p>
+        <button class="normal-text text-sm mb-6">Permanently Delete User</button>
+    </div>
+
+    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
+        <p class="text-sm">Developed by Xavier La Rosa</p>
+    </footer>
+</div>

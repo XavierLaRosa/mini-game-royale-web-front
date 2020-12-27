@@ -31,6 +31,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FriendsComponent } from './pages/friends/friends.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
+import { PreferencesComponent } from './pages/preferences/preferences.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ChooseCharacterComponent } from './pages/choose-character/choose-charac
     SubmitCategoriesComponent,
     CustomToastComponent,
     FriendsComponent,
-    ChooseCharacterComponent
+    ChooseCharacterComponent,
+    PreferencesComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { GameWaitingComponent } from './pages/game-waiting/game-waiting.componen
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { PreferencesComponent } from './pages/preferences/preferences.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ResultsCategoriesComponent } from './pages/results-categories/results-categories.component';
 import { RoundCategoriesComponent } from './pages/round-categories/round-categories.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'game-waiting/:gid/:state', component: GameWaitingComponent },
   { path: 'round-categories/:gid', component: RoundCategoriesComponent },
   { path: 'results-categories/:gid', component: ResultsCategoriesComponent },
-  { path: 'submit-categories', component: SubmitCategoriesComponent }
+  { path: 'submit-categories', component: SubmitCategoriesComponent },
+  { path: 'preferences', component: PreferencesComponent }
 ];
 
 @NgModule({
