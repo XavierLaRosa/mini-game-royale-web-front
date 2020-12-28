@@ -8,8 +8,22 @@ import { Observable } from 'rxjs';
 export class AppService {
   static URL = `http://localhost:3000` //https://shrouded-earth-55441.herokuapp.com
   static KEY = ''
-  static id: string
+  static id: string = ''
   static user: User
+  static playerPathTail = ".gif"
+  static playerPathTailx2 = " (1).gif"
+  static playerPathTailx3 = " (2).gif"
+  static playerPathTailx4 = " (3).gif"
+  static playerPathIcon = "icon/"
+  static playerPathHappy = "happy/"
+  static playerPathSad = "sad/"
+  static playerPaths = [
+    "assets/players/mochi/",
+    "assets/players/mochi-detective/",
+    "assets/players/pinto-prince/",
+    "assets/players/strawberry-queen/",
+    "assets/players/waffle/",
+  ]
   constructor(private http: HttpClient) { }
 
   loginUser(body: Object): Observable<any> {

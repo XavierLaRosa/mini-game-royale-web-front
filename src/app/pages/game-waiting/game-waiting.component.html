@@ -5,7 +5,7 @@
         </p>
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-center items-center">
-        <ngx-spinner bdColor="rgba(51,51,51,0.0)" template="<img src='../.../../../../assets/mochi.gif' />" size='medium' color='white' fullScreen="false">
+        <ngx-spinner bdColor="rgba(51,51,51,0.0)" template="<img src='{{randomPath}}' />" size='medium' color='white' fullScreen="false">
             <p *ngIf="state == 'WAITING_ACCEPTANCE'" class="text-sm text-center">
                 <br> Waiting on {{ opponent.username }} <br> to accept the game...
             </p>

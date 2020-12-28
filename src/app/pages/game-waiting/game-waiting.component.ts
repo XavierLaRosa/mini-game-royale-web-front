@@ -15,9 +15,13 @@ export class GameWaitingComponent implements OnInit {
   game: Game
   opponent: Friend
   intervalId
+  randomPath = "../../../"
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    var randomElement = AppService.playerPaths[Math.floor(Math.random() * AppService.playerPaths.length)]
+    var player = randomElement.match(new RegExp("players/" + "(.*)" + "/"))[1]
+    this.randomPath = this.randomPath + randomElement + "happy/"+player+AppService.playerPathTailx2
     this.spinner.show();
     this.activatedRoute.params.subscribe(params => { // get router data
       
