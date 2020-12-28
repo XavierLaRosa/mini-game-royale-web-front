@@ -20,14 +20,20 @@ export class PreferencesComponent implements OnInit {
   password: string
   password2: string
   isMuted: boolean = false
-  images = [
-    {name: "mochi", path: "mochi_blush/mochi_blush(x3).png", selected: true},
-    {name: "waffle", path: "waffle/waffle(x3).png", selected: false}
-  ]
-  selectedPlayer = this.images[0]
+  images = []
+  selectedPlayer: {name: string, path: string, selected: boolean}
   constructor(public appService: AppService, protected musicService: MusicService) { }
 
   ngOnInit(): void {
+    AppService.playerPaths.forEach( p => {
+      const player = this.appService.getPlayerFromPath(p)
+      this.images.push({
+        name: player,
+        path: `${p}happy/${player}${AppService.playerPathTailx2}`,
+        selected: false
+      })
+      this.selectedPlayer = this.images[0]
+    })
     this.appService.getUser(AppService.id).subscribe({ // get user data
       next: data => {
         console.log("User API Success: ", data)

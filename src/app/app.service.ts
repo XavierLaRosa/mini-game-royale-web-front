@@ -132,6 +132,16 @@ export class AppService {
     headers = headers.append('auth-token', AppService.KEY)
     return this.http.get<any>(AppService.URL+`/games/${id}/forfeit/${pid}`, {headers})
   }
+
+  getRandomPlayerPath(): string {
+    var randomElement = AppService.playerPaths[Math.floor(Math.random() * AppService.playerPaths.length)]
+    var player = randomElement.match(new RegExp("players/" + "(.*)" + "/"))[1]
+    return randomElement + "happy/"+player+AppService.playerPathTailx2
+  }
+
+  getPlayerFromPath(path: string): string {
+    return path.match(new RegExp("players/" + "(.*)" + "/"))[1]
+  }
 }
 
 export enum Notification {

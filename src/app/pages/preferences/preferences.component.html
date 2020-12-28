@@ -18,12 +18,12 @@
             </div>
             <carousel cellWidth="100%" dots="'true'">
                 <div class="carousel-cell w-full h-full" *ngFor="let image of images; let index = index" (click)="playerSelected(index)">
-                    <img *ngIf="!image.selected" src='../../../assets/{{image.path}}'>
-                    <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../assets/{{image.path}}'>
+                    <img *ngIf="!image.selected" src='../../../{{image.path}}'>
+                    <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../{{image.path}}'>
                 </div>
             </carousel>
             <p class="bg-red text-lg font-bold w-full text-center px-4">
-                Selected: <span *ngIf="selectedPlayer">{{selectedPlayer.name}}</span> 
+                Selected: <span *ngIf="selectedPlayer" class="normal-text">{{selectedPlayer.name}}</span> 
             </p>
         </div>
 
