@@ -10,7 +10,7 @@ export class MusicService {
       '../../assets/mp3/What-if-a-Day-harp/What-if-a-Day.mp3'
     ]
   })
-  volume: number = 0.20
+  volume: number = 0.10
   isPaused: boolean = false
   isMuted: boolean = false
 
