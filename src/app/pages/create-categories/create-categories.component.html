@@ -12,23 +12,6 @@
     </nav>
     <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
 
-        <div class="bg-red-light w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-center items-center">
-            <p class="bg-red text-lg font-bold w-full text-left px-4">
-                Choose Character
-            </p>
-
-            <carousel cellWidth="100%" dots="'true'">
-                <div class="carousel-cell w-full h-full" *ngFor="let image of images; let index = index" (click)="playerSelected(index)">
-                    <img *ngIf="!image.selected" src='../../../assets/{{image.path}}'>
-                    <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../assets/{{image.path}}'>
-                </div>
-            </carousel>
-            <p class="bg-red text-lg font-bold w-full text-center px-4">
-                Selected: <span *ngIf="selectedPlayer">{{selectedPlayer.name}}</span> 
-            </p>
-        </div>
-
-
             <div class="bg-red-light h-64 w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
                 <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Friend
