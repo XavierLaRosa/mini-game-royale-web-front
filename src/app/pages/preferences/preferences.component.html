@@ -69,7 +69,24 @@
                 <div class="flex flex-row justify-center items-center w-full">
                     <p class="text-base normal-text mr-1">volume</p>
                     <mat-slider class="w-6/12 mr-1" min="0.00" max="1.00" step="0.10" [(ngModel)]="this.musicService.volume" (input)="onInputChange($event)"></mat-slider>
-                    <mat-slide-toggle class="w-3/12 text-sm" [(ngModel)]="isMuted">mute</mat-slide-toggle>
+                    <mat-slide-toggle class="w-3/12 text-sm" ([ngModel])="this.musicService.isMuted"  (change)="this.musicService.toggleMute()">mute</mat-slide-toggle>
+                </div>
+                <div class="flex flex-row justify-center items-center w-full mb-3 mt-2">
+                    <button class="mx-1">
+                        <span><fa-icon [icon]="faBackward" size="2x"></fa-icon></span>
+                    </button>
+                    <button (click)="this.musicService.pauseAudio()" class="mx-1" *ngIf="!this.musicService.isPaused">
+                        <span><fa-icon [icon]="faPauseCircle" size="2x"></fa-icon></span>
+                    </button>
+                    <button (click)="this.musicService.playAudio()" class="mx-1" *ngIf="this.musicService.isPaused">
+                        <span><fa-icon [icon]="faPlayCircle" size="2x"></fa-icon></span>
+                    </button>
+                    <button (click)="this.musicService.stopAudio()" class="mx-1">
+                        <span><fa-icon [icon]="faStopCircle" size="2x"></fa-icon></span>
+                    </button>
+                    <button class="mx-1">
+                        <span><fa-icon [icon]="faForward" size="2x"></fa-icon></span>
+                    </button>
                 </div>
             </div>
         </div>

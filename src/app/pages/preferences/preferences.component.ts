@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronLeft, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faChevronLeft, faCog, faForward, faPauseCircle, faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
 import { MusicService } from 'src/app/services/music.service';
 import { MatSliderChange } from '@angular/material/slider'
@@ -11,6 +11,11 @@ import { MatSliderChange } from '@angular/material/slider'
 export class PreferencesComponent implements OnInit {
   faCog = faCog
   faChevronLeft = faChevronLeft
+  faPlayCircle = faPlayCircle
+  faPauseCircle = faPauseCircle
+  faStopCircle = faStopCircle
+  faForward = faForward
+  faBackward = faBackward
   username: string
   password: string
   password2: string

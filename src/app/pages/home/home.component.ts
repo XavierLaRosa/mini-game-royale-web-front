@@ -5,6 +5,7 @@ import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicro
 import { bounce, fadeOut, fadeOutUp } from 'ngx-animate';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService, User } from 'src/app/app.service';
+import { MusicService } from 'src/app/services/music.service';
 
 @Component({
   selector: 'app-home',
@@ -44,9 +45,10 @@ export class HomeComponent implements OnInit {
   notificationSize: number = 0
   intervalId
 
-  constructor(public appService: AppService, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(public appService: AppService, private router: Router, private spinner: NgxSpinnerService, public musicService: MusicService) { }
 
   ngOnInit(): void {
+    this.musicService.start()
      /** spinner starts on init */
      this.spinner.show();
  
