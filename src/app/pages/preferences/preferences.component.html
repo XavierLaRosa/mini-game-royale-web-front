@@ -68,7 +68,7 @@
             <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
                 <div class="flex flex-row justify-center items-center w-full">
                     <p class="text-base normal-text mr-1">volume</p>
-                    <mat-slider class="w-6/12 mr-1" min="0.00" max="1.00" step="0.10" value="0.30"></mat-slider>
+                    <mat-slider class="w-6/12 mr-1" min="0.00" max="1.00" step="0.10" [(ngModel)]="this.musicService.volume" (input)="onInputChange($event)"></mat-slider>
                     <mat-slide-toggle class="w-3/12 text-sm" [(ngModel)]="isMuted">mute</mat-slide-toggle>
                 </div>
             </div>

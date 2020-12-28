@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faCog } from '@fortawesome/free-solid-svg-icons';
 import { AppService, User } from 'src/app/app.service';
-
+import { MusicService } from 'src/app/services/music.service';
+import { MatSliderChange } from '@angular/material/slider'
 @Component({
   selector: 'app-preferences',
   templateUrl: './preferences.component.html',
@@ -19,7 +20,7 @@ export class PreferencesComponent implements OnInit {
     {name: "waffle", path: "waffle/waffle(x3).png", selected: false}
   ]
   selectedPlayer = this.images[0]
-  constructor(public appService: AppService) { }
+  constructor(public appService: AppService, public musicService: MusicService) { }
 
   ngOnInit(): void {
     this.appService.getUser(AppService.id).subscribe({ // get user data
@@ -40,5 +41,10 @@ export class PreferencesComponent implements OnInit {
     })
     this.images[index].selected = true
     this.selectedPlayer = this.images[index]
+  }
+
+  onInputChange(event: MatSliderChange) {
+    console.log(event.value)
+    this.musicService.setVolume(event.value)
   }
 }
