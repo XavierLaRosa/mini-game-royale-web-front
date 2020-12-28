@@ -34,6 +34,7 @@ import { ChooseCharacterComponent } from './pages/choose-character/choose-charac
 import { PreferencesComponent } from './pages/preferences/preferences.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MusicService } from './services/music.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSlideToggleModule
   ],
   entryComponents: [CustomToastComponent],
-  providers: [],
+  providers: [MusicService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

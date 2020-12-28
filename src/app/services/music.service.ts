@@ -6,7 +6,9 @@ import {Howl, Howler} from 'howler';
 })
 export class MusicService {
   sound = new Howl({
-    src: ['../../assets/mp3/What-if-a-Day-harp/What-if-a-Day.mp3']
+    src: [
+      '../../assets/mp3/What-if-a-Day-harp/What-if-a-Day.mp3'
+    ]
   })
   volume: number = 0.20
   isPaused: boolean = false

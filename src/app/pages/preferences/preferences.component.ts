@@ -25,7 +25,7 @@ export class PreferencesComponent implements OnInit {
     {name: "waffle", path: "waffle/waffle(x3).png", selected: false}
   ]
   selectedPlayer = this.images[0]
-  constructor(public appService: AppService, public musicService: MusicService) { }
+  constructor(public appService: AppService, protected musicService: MusicService) { }
 
   ngOnInit(): void {
     this.appService.getUser(AppService.id).subscribe({ // get user data
@@ -51,5 +51,9 @@ export class PreferencesComponent implements OnInit {
   onInputChange(event: MatSliderChange) {
     console.log(event.value)
     this.musicService.setVolume(event.value)
+  }
+
+  getMusicService() {
+    return this.musicService
   }
 }
