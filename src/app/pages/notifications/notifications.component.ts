@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBell, faCheckCircle, faChevronLeft, faGamepad, faTimesCircle, faUndo, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { AppService, Notification, User } from 'src/app/app.service';
+import { AppService, GameState, Notification, User } from 'src/app/app.service';
 
 @Component({
   selector: 'app-notifications',
@@ -110,7 +110,15 @@ export class NotificationsComponent implements OnInit {
 
   accept(type: string, gid: string, id: string) {
     if(type == Notification.FROM_GAME){
-      this.router.navigate([`choose-character/${gid}/${id}`])
+      this.appService.confirmGameRequest(gid, id).subscribe({ // confirm game request
+        next: data => {
+          console.log("API Success: ", data)
+          this.router.navigate([`game-waiting/${gid}/${GameState.WAITING_TURN}`])
+        },
+        error: error => {
+          console.log("Confirm Game API Error: ", error)
+        }
+      })
     } else if(type == Notification.FROM_FRIEND){
       this.appService.confirmFriendRequest(id).subscribe({ // confirm friend request
         next: data => {
