@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   _opened: boolean = false;
   notificationSize: number = 0
   intervalId
+  iconPath: string
 
   constructor(public appService: AppService, private router: Router, private spinner: NgxSpinnerService, protected musicService: MusicService) { }
 
@@ -72,6 +73,9 @@ export class HomeComponent implements OnInit {
             AppService.user.pending_friends_sent.length + 
             AppService.user.pending_games_received.length +
             AppService.user.pending_games_sent.length
+          if(AppService.user.icon){
+            this.iconPath = `assets/players/${AppService.user.icon}/icon/${AppService.user.icon}-icon${AppService.playerPathTail}`
+          }
         },
         error: error => {
           console.log("User API Error: ", error)

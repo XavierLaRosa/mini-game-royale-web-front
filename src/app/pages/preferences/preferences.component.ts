@@ -32,12 +32,16 @@ export class PreferencesComponent implements OnInit {
         path: `${p}happy/${player}${AppService.playerPathTailx2}`,
         selected: false
       })
-      this.selectedPlayer = this.images[0]
     })
     this.appService.getUser(AppService.id).subscribe({ // get user data
       next: data => {
         console.log("User API Success: ", data)
         AppService.user = data as User
+        this.images.forEach( i => {
+          if(i.name == AppService.user.icon) {
+            this.selectedPlayer = i
+          }
+        })
       },
       error: error => {
         console.log("User API Error: ", error)
@@ -61,5 +65,27 @@ export class PreferencesComponent implements OnInit {
 
   getMusicService() {
     return this.musicService
+  }
+
+  confirm() {
+    if(this.password == this.password2){
+      const body = {
+        username: this.username,
+        password: this.password,
+        icon: this.selectedPlayer.name
+      }
+
+      this.appService.updateUser(body).subscribe({ // get user data
+        next: data => {
+          console.log("User PUT API Success: ", data)
+          AppService.user = data as User
+        },
+        error: error => {
+          console.log("User API Error: ", error)
+        }
+      })
+    }
+
+
   }
 }

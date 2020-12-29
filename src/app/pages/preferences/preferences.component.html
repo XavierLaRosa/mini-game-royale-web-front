@@ -16,7 +16,7 @@
             <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                 Icon
             </div>
-            <carousel cellWidth="100%" dots="'true'">
+            <carousel *ngIf="selectedPlayer" cellWidth="100%" dots="'true'">
                 <div class="carousel-cell w-full h-full" *ngFor="let image of images; let index = index" (click)="playerSelected(index)">
                     <img *ngIf="!image.selected" src='../../../{{image.path}}'>
                     <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../{{image.path}}'>
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <button class="text-2xl">Confirm</button>
+        <button (click)="confirm()" class="text-2xl">Confirm</button>
         <p class="mb-3">or</p>
         <button class="normal-text text-sm mb-6 bg-red-700 rounded-full px-3 py-2 hover:bg-red-600">Permanently Delete User</button>
     </div>

@@ -38,6 +38,12 @@ export class AppService {
     return this.http.get<any>(AppService.URL+`/users/${id}`)
   }
 
+  updateUser(body: object): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.put<any>(AppService.URL+`/users/${AppService.id}`, body, {headers})
+  }
+
   getUserData(): User{
     return AppService.user
   }
@@ -160,6 +166,7 @@ export class User {
   constructor(
     public _id: string,
     public username: string,
+    public icon: string,
     public friends: Friend[],
     public pending_friends_sent: Friend[],
     public pending_friends_received: Friend[],
