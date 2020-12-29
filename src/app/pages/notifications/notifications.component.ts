@@ -20,7 +20,7 @@ export class NotificationsComponent implements OnInit {
   faUndo = faUndo
   totalGames: number = 0
   totalFriends: number = 0
-  notifications: {_id: string, username: string, type: Notification, gid?: string, message: string}[]
+  notifications: {_id: string, username: string, icon: string, type: Notification, gid?: string, message: string}[] = []
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
@@ -32,62 +32,46 @@ export class NotificationsComponent implements OnInit {
           const notif = {
             _id: g.player_2_id._id, 
             username: g.player_2_id.username, 
+            icon: g.player_2_id.icon,
             type: Notification.TO_GAME,
             gid: g._id, 
             message: `Waiting on ${g.player_2_id.username} to respond to game request.`
           }
-
-          if(!this.notifications){
-            this.notifications = [notif]
-          } else{
-            this.notifications.push(notif)
-          }
+          this.notifications.push(notif)
           this.totalGames++
         })
         AppService.user.pending_games_received.forEach( g => { // add games received
           const notif = {
             _id: g.player_1_id._id, 
-            username: g.player_1_id.username, 
+            username: g.player_1_id.username,
+            icon: g.player_1_id.icon, 
             type: Notification.FROM_GAME, 
             gid: g._id, 
             message: `${g.player_1_id.username} sent you a game request.`
           }
-
-          if(!this.notifications){
-            this.notifications = [notif]
-          } else{
-            this.notifications.push(notif)
-          }
+          this.notifications.push(notif)
           this.totalGames++
         })
         AppService.user.pending_friends_sent.forEach(f => { // add friends sent
           const notif = {
             _id: f._id, 
-            username: f.username, 
+            username: f.username,
+            icon: f.icon, 
             type: Notification.TO_FRIEND, 
             message: `Waiting on ${f.username} to respond to friend request.`
           }
-
-          if(!this.notifications){
-            this.notifications = [notif]
-          } else {
-            this.notifications.push(notif)
-          }
+          this.notifications.push(notif)
           this.totalFriends++
         })
         AppService.user.pending_friends_received.forEach(f => { // add friends received
           const notif = {
             _id: f._id, 
             username: f.username, 
+            icon: f.icon, 
             type: Notification.FROM_FRIEND, 
             message: `${f.username} sent you a friend request.`
           }
-
-          if(!this.notifications){
-            this.notifications = [notif]
-          } else {
-            this.notifications.push(notif)
-          }     
+          this.notifications.push(notif)  
           this.totalFriends++     
         })
       },
