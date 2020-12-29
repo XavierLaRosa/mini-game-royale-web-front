@@ -64,6 +64,10 @@ export class AppService {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
   }
 
+  unsendFriendRequest(id: string) {
+    return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/unsend`, {})
+  }
+
   declineFriendRequest(id: string) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/decline`, {})
   }

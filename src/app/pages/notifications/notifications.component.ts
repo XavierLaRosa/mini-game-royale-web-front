@@ -139,4 +139,21 @@ export class NotificationsComponent implements OnInit {
       })
     }
   }
+
+  unsend(type: string, id: string) {
+    if(type == Notification.TO_GAME){
+
+    } else if(type == Notification.TO_FRIEND){
+      this.appService.unsendFriendRequest(id).subscribe({ // decline friend request
+        next: data => {
+          console.log("Unsend Friend API Success: ", data)
+          this.notifications = []
+          this.ngOnInit()
+        },
+        error: error => {
+          console.log("Unsend Friend API Error: ", error)
+        }
+      })
+    }
+  }
 }
