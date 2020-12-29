@@ -46,7 +46,7 @@
                         </button>
                     </div>
                     <div *ngIf="notif.type == 'TO_FRIEND' || notif.type == 'TO_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
-                        <button (click)="unsend(notif.type, notif._id)" class="font-bold text-base">
+                        <button (click)="unsend(notif.type, notif.gid, notif._id)" class="font-bold text-base">
                             unsend
                         </button>
                     </div>

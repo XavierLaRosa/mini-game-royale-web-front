@@ -111,6 +111,10 @@ export class AppService {
     return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/decline`, {})
   }
 
+  unsendGameRequest(gid: string, id: string) {
+    return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/unsend`, {})
+  }
+
   checkCategoryAnswer(id: string, keyword: string, gid: string){
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('auth-token', AppService.KEY)
