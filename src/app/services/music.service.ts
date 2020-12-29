@@ -5,14 +5,22 @@ import {Howl, Howler} from 'howler';
   providedIn: 'root'
 })
 export class MusicService {
-  sound = new Howl({
-    src: [
-      '../../assets/mp3/What-if-a-Day-harp/What-if-a-Day.mp3'
-    ]
-  })
-  volume: number = 0.00
+
+  volume: number = 0.05
   isPaused: boolean = false
   isMuted: boolean = false
+  songs: string[] = [
+    '../../assets/mp3/stayin-alive.mp3',
+    '../../assets/mp3/santa-tell-me.mp3',
+    '../../assets/mp3/plastic-love.mp3',
+    '../../assets/mp3/new-light.mp3',
+    '../../assets/mp3/last-christmas.mp3',
+    '../../assets/mp3/get-lucky.mp3',
+    '../../assets/mp3/all-i-want-for-christmas-is-you.mp3',
+  ]
+  sound = new Howl({
+    src: this.shuffle(this.songs)
+  })
 
   constructor() { }
 
@@ -20,7 +28,6 @@ export class MusicService {
     console.log("playing")
     // Play the sound.
     this.sound.play()
-    this.sound.loop(true)
 
     // Change global volume.
     Howler.volume(this.volume);
@@ -58,5 +65,24 @@ export class MusicService {
 
   seekAudio() {
     this.sound.seek()
+  }
+
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
   }
 }

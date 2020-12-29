@@ -6,7 +6,6 @@ import { bounce, fadeOut, fadeOutUp } from 'ngx-animate';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService, User } from 'src/app/app.service';
 import { MusicService } from 'src/app/services/music.service';
-import { Howler } from 'howler';
 
 @Component({
   selector: 'app-home',

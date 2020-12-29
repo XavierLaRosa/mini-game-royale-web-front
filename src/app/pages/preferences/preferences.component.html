@@ -71,6 +71,9 @@
                     <mat-slider class="w-6/12 mr-1" min="0.00" max="1.00" step="0.05" [(ngModel)]="this.getMusicService().volume" (input)="onInputChange($event)"></mat-slider>
                     <mat-slide-toggle class="w-3/12 text-sm" ([ngModel])="this.getMusicService().isMuted"  (change)="this.getMusicService().toggleMute()">mute</mat-slide-toggle>
                 </div>
+                <p class="w-full text-right text-xs normal-text px-2 pb-1">all music is credited to 
+                    <span><a href="https://www.youtube.com/c/8BitUniverse/about" target="_blank" class="font-bold">8bit Universe</a></span> 
+                </p>
                 <!-- <div class="flex flex-row justify-center items-center w-full mb-3 mt-2">
                     <button class="mx-1">
                         <span><fa-icon [icon]="faBackward" size="2x"></fa-icon></span>
