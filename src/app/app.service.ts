@@ -197,6 +197,7 @@ export class Game {
 export class Friend {
   constructor(
     public _id: string,
-    public username: string
+    public username: string,
+    public icon: string
   ){}
 }

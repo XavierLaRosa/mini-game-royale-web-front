@@ -20,9 +20,7 @@
         <div *ngIf="matches" class="w-full flex flex-col justify-start items-center">
             <section class="w-11/12 h-20 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let match of matches">
                 <div class="w-8/12 flex flex-row justify-start items-center p-3">
-                    <div class="h-8 w-8 bg-red-lightest shadow rounded-full">
-
-                    </div>
+                    <img src="../../../assets/players/{{match.icon}}/icon/{{match.icon}}-icon.gif" class="h-12 w-12 bg-red-lightest shadow rounded-full" alt="">
                     <div class="w-10/12 flex flex-col justify-start items-start ml-3">
                         <p class="font-red-lightest text-base font-bold">
                             {{match.username}}

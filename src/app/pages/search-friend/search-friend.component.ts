@@ -14,7 +14,7 @@ export class SearchFriendComponent implements OnInit {
   faUsers = faUsers
   faSearch = faSearch
   faPlusCircle = faPlusCircle
-  matches: {_id: number, username: string}[]
+  matches: {_id: number, username: string, icon: string}[]
   constructor(public appService: AppService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -45,9 +45,9 @@ export class SearchFriendComponent implements OnInit {
             }
             if(!friendExists){
               if(this.matches){
-                this.matches.push(d as {_id: number, username: string})
+                this.matches.push(d as {_id: number, username: string, icon: string})
               } else {
-                this.matches = [d as {_id: number, username: string}]
+                this.matches = [d as {_id: number, username: string, icon: string}]
               }
             }
           }
