@@ -84,6 +84,7 @@ export class PreferencesComponent implements OnInit {
         next: data => {
           console.log("User PUT API Success: ", data)
           AppService.user = data as User
+          this.showInfo(`successfully update user account.`)
         },
         error: error => {
           console.log("User PUT API Error: ", error)
