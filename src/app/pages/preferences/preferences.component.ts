@@ -3,6 +3,9 @@ import { faBackward, faChevronLeft, faCog, faForward, faPauseCircle, faPlayCircl
 import { AppService, User } from 'src/app/app.service';
 import { MusicService } from 'src/app/services/music.service';
 import { MatSliderChange } from '@angular/material/slider'
+import { ToastrService } from 'ngx-toastr';
+import { Howler } from 'howler';
+
 @Component({
   selector: 'app-preferences',
   templateUrl: './preferences.component.html',
@@ -22,9 +25,10 @@ export class PreferencesComponent implements OnInit {
   isMuted: boolean = false
   images = []
   selectedPlayer: {name: string, path: string, selected: boolean}
-  constructor(public appService: AppService, protected musicService: MusicService) { }
+  constructor(public appService: AppService, protected musicService: MusicService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    Howler.volume(this.musicService.volume);
     AppService.playerPaths.forEach( p => {
       const player = this.appService.getPlayerFromPath(p)
       this.images.push({
@@ -45,6 +49,7 @@ export class PreferencesComponent implements OnInit {
       },
       error: error => {
         console.log("User API Error: ", error)
+        this.showInfo(`${error.error.message}`)
       }
     })
   }
@@ -81,11 +86,23 @@ export class PreferencesComponent implements OnInit {
           AppService.user = data as User
         },
         error: error => {
-          console.log("User API Error: ", error)
+          console.log("User PUT API Error: ", error)
+          this.showInfo(`${error.error.message}`)
         }
       })
+    } else {
+      this.showInfo(`if you are trying to set a new password, make sure they match.`)
     }
 
 
+  }
+
+  showInfo(message: string) {
+    this.toastr.info(message, 'Toastr fun!', {
+      closeButton: true,
+      timeOut: 2500,
+      positionClass: "toast-top-center",
+      tapToDismiss: true
+    });
   }
 }

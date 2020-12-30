@@ -28,11 +28,12 @@ export class MusicService {
 
   start() {
     console.log("playing")
+    // Change global volume.
+    Howler.volume(this.volume);
     // Play the sound.
     this.sound.play()
 
-    // Change global volume.
-    Howler.volume(this.volume);
+
   }
  
   getVolume(): number {
