@@ -10,16 +10,18 @@ export class MusicService {
   isPaused: boolean = false
   isMuted: boolean = false
   songs: string[] = [
+    '../../assets/mp3/new-light.mp3',
     '../../assets/mp3/stayin-alive.mp3',
     '../../assets/mp3/santa-tell-me.mp3',
     '../../assets/mp3/plastic-love.mp3',
-    '../../assets/mp3/new-light.mp3',
     '../../assets/mp3/last-christmas.mp3',
     '../../assets/mp3/get-lucky.mp3',
     '../../assets/mp3/all-i-want-for-christmas-is-you.mp3',
   ]
   sound = new Howl({
-    src: this.shuffle(this.songs)
+    src: this.songs,
+    loop: true,
+    autoplay: true
   })
 
   constructor() { }

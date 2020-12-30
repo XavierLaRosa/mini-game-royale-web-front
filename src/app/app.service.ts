@@ -19,7 +19,7 @@ export class AppService {
   static playerPathSad = "sad/"
   static playerPaths = [
     "assets/players/mochi/",
-    "assets/players/mochi-detective/",
+    "assets/players/detective-mochi/",
     "assets/players/pinto-prince/",
     "assets/players/strawberry-queen/",
     "assets/players/waffle/",
