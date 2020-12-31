@@ -199,7 +199,8 @@ export class Game {
     public max_round: number,
     public is_done: boolean,
     public is_tie: boolean,
-    public winner: Friend
+    public winner: Friend,
+    public earnings: number
   ){}
 }
 

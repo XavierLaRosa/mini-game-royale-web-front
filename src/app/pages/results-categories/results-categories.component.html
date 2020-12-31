@@ -1,5 +1,5 @@
-<div *ngIf="game" class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red shadow h-64 p-3 w-full flex flex-row justify-start items-start">
+<div *ngIf="game" class="min-h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
         <button routerLink="/home" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
@@ -17,12 +17,17 @@
         </div>
     </nav>
 
-    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-between items-center">
         <div class="w-full flex flex-col justify-center items-center my-6">
             <div class="bg-red-light p-2 flex flex-col justify-between items-center w-10/12 my-2 ">
                 <p *ngIf="!game.is_tie" class="text-xl text-center w-full mb-2">{{game.winner.username}} won by {{pointsDifference}} points !</p>
                 <img *ngIf="game.is_tie" class="w-full" src="../../../assets/results/draw(x2).png" alt="">
-                <img *ngIf="!game.is_tie" class="w-full" src="../../../assets/results/mochi_wins(x2).png" alt="">
+                <img *ngIf="!game.is_tie" class="6/12" src="../../../assets/players/{{game.winner.icon}}/happy/{{game.winner.icon}}.gif" alt="">
+
+                <div class="flex flex-row justify-center items-center w-full">
+                    <img src="../../../assets/gold-coin/gold-coin.gif" alt="">
+                    <p class="text-5xl text-start self-end ml-2">{{game.earnings}}</p>
+                </div>
 
             </div>
             <button routerLink="/home" class="text-2xl">Done</button>
