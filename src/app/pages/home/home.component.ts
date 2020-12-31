@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicrophoneAlt, faSignOutAlt, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleDown, faBars, faBell, faCircle, faCog, faComments, faMicrophoneAlt, faQuestion, faSignOutAlt, faStoreAlt, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { bounce, fadeOut, fadeOutUp } from 'ngx-animate';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService, User } from 'src/app/app.service';
@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
   bounce: any
   faCircle = faCircle
   faBell = faBell
+  faQuestion = faQuestion
+  faStoreAlt = faStoreAlt
   faComments = faComments
   faMicrophoneAlt = faMicrophoneAlt
   faUsers = faUsers
@@ -60,7 +62,7 @@ export class HomeComponent implements OnInit {
      setTimeout(() => {
        /** spinner ends after 5 seconds */
        this.spinner.hide();
-     }, 4000);
+     }, 2000);
 
     this.intervalId = setInterval( e =>{
       this.appService.getUser(AppService.id).subscribe({ // get user data
