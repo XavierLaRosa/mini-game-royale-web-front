@@ -16,7 +16,7 @@
                 <p routerLink="/notifications" class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faBell" class="mx-2"></fa-icon></span> Notifications ({{this.notificationSize}})</p>
                 <p routerLink="/friends" class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faUsers" class="ml-1 mr-2"></fa-icon></span> Friends</p>
                 <p class="cursor-pointer normal-text w-full p-3 text-gray-600"><span><fa-icon [icon]="faStoreAlt" class="ml-1 mr-2 text-gray-600"></fa-icon></span> Store</p>
-                <p class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faQuestion" class="mx-2"></fa-icon></span> About</p>
+                <p routerLink="/about" class="cursor-pointer normal-text w-full p-3"><span><fa-icon [icon]="faQuestion" class="mx-2"></fa-icon></span> About</p>
             </div>
 
             <button (click)="logout()" class="button-red-lightest bg-red-lightest font-red w-32 p-2 rounded-full my-8">Logout</button>

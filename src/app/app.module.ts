@@ -35,6 +35,7 @@ import { PreferencesComponent } from './pages/preferences/preferences.component'
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MusicService } from './services/music.service';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MusicService } from './services/music.service';
     CustomToastComponent,
     FriendsComponent,
     ChooseCharacterComponent,
-    PreferencesComponent
+    PreferencesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
