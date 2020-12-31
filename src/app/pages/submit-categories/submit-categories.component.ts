@@ -49,6 +49,7 @@ export class SubmitCategoriesComponent implements OnInit {
         console.log("Categories New Entry API Success: ", data)
         alert(data.message);
         this.entry = ""
+        this.submitKey()
       },
       error: error => {
         console.log("Categories New Entry API Error: ", error)
@@ -63,6 +64,7 @@ export class SubmitCategoriesComponent implements OnInit {
         console.log("New Categories API Success: ", data)
         alert(`${this.catEntry} successfully created!`);
         this.catEntry = ""
+        this.submitKey()
       },
       error: error => {
         console.log("New Categories API Error: ", error)
