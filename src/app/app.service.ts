@@ -175,6 +175,7 @@ export class User {
     public _id: string,
     public username: string,
     public icon: string,
+    public gold: number,
     public friends: Friend[],
     public pending_friends_sent: Friend[],
     public pending_friends_received: Friend[],
