@@ -7,6 +7,6 @@ import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  faUserFriends = faUserFriends;
-  title = 'mini-game-royale-web-front';
+  faUserFriends = faUserFriends
+  title = 'mini-game-royale-web-front'
 }
