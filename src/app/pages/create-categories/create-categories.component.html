@@ -44,7 +44,7 @@
                 <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Max Rounds
                 </p>
-                <input type="number" class="bg-red-light p-3 w-full" max="10" min="1" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
+                <input type="number" class="bg-red-light p-3 w-full" max="10" min="2" [(ngModel)]="selectedRounds" (ngModelChange)="updateRounds()">
             </div>
 
             <button (click)="create()" class="text-2xl mb-6">Create</button>
