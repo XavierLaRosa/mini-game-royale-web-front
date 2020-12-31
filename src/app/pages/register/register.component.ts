@@ -34,8 +34,10 @@ export class RegisterComponent implements OnInit {
       this.appService.regsiterUser(body).subscribe({ // register user with credentials
         next: data => {
           console.log("Register API Success: ", data)
-          this.animateError = false;
-          this.router.navigateByUrl('/')
+          this.showInfo("user has been created, please login")
+          this.username = ""
+          this.password = ""
+          this.password2 = ""
         },
         error: error => {
           console.log("Register API Error: ", error)
