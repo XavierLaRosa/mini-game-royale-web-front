@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronLeft, faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faPlusCircle, faSearch, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 import { AppService, Friend, User } from 'src/app/app.service';
 
 @Component({
@@ -10,10 +11,11 @@ import { AppService, Friend, User } from 'src/app/app.service';
 export class SearchFriendComponent implements OnInit {
   keyword: string
   faChevronLeft = faChevronLeft
+  faUsers = faUsers
   faSearch = faSearch
   faPlusCircle = faPlusCircle
-  matches: {_id: number, username: string}[] = []
-  constructor(public appService: AppService) { }
+  matches: {_id: number, username: string, icon: string}[]
+  constructor(public appService: AppService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.appService.getUser(AppService.id).subscribe({ // get user data
@@ -43,16 +45,20 @@ export class SearchFriendComponent implements OnInit {
             }
             if(!friendExists){
               if(this.matches){
-                this.matches.push(d as {_id: number, username: string})
+                this.matches.push(d as {_id: number, username: string, icon: string})
               } else {
-                this.matches = [d as {_id: number, username: string}]
+                this.matches = [d as {_id: number, username: string, icon: string}]
               }
             }
           }
         })
+        this.showInfo(`${this.matches.length} players found that contain ${this.keyword}`)
+        this.keyword = ""
       },
       error: error => {
         console.log("User Match API Error: ", error)
+        this.showInfo(`error: request did not succeed.`)
+        this.keyword = ""
       }
     })
   }
@@ -66,6 +72,15 @@ export class SearchFriendComponent implements OnInit {
         console.log("Send Friend API Error: ", error)
       }
     })
+  }
+
+  showInfo(message: string) {
+    this.toastr.info(message, 'Toastr fun!', {
+      closeButton: true,
+      timeOut: 2500,
+      positionClass: "toast-top-center",
+      tapToDismiss: true
+    });
   }
 
 }

@@ -29,6 +29,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FriendsComponent } from './pages/friends/friends.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
+import { PreferencesComponent } from './pages/preferences/preferences.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MusicService } from './services/music.service';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +53,10 @@ import { FriendsComponent } from './pages/friends/friends.component';
     ResultsCategoriesComponent,
     SubmitCategoriesComponent,
     CustomToastComponent,
-    FriendsComponent
+    FriendsComponent,
+    ChooseCharacterComponent,
+    PreferencesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -60,10 +70,13 @@ import { FriendsComponent } from './pages/friends/friends.component';
       toastComponent: CustomToastComponent
     }),
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    IvyCarouselModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   entryComponents: [CustomToastComponent],
-  providers: [],
+  providers: [MusicService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

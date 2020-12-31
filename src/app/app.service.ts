@@ -8,8 +8,22 @@ import { Observable } from 'rxjs';
 export class AppService {
   static URL = `https://shrouded-earth-55441.herokuapp.com` //http://localhost:3000
   static KEY = ''
-  static id: string
+  static id: string = ''
   static user: User
+  static playerPathTail = ".gif"
+  static playerPathTailx2 = " (1).gif"
+  static playerPathTailx3 = " (2).gif"
+  static playerPathTailx4 = " (3).gif"
+  static playerPathIcon = "icon/"
+  static playerPathHappy = "happy/"
+  static playerPathSad = "sad/"
+  static playerPaths = [
+    "assets/players/mochi/",
+    "assets/players/detective-mochi/",
+    "assets/players/pinto-prince/",
+    "assets/players/strawberry-queen/",
+    "assets/players/waffle/",
+  ]
   constructor(private http: HttpClient) { }
 
   loginUser(body: Object): Observable<any> {
@@ -22,6 +36,12 @@ export class AppService {
 
   getUser(id: string): Observable<any> {
     return this.http.get<any>(AppService.URL+`/users/${id}`)
+  }
+
+  updateUser(body: object): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.put<any>(AppService.URL+`/users/${AppService.id}`, body, {headers})
   }
 
   getUserData(): User{
@@ -42,6 +62,10 @@ export class AppService {
 
   confirmFriendRequest(id: string) {
     return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/confirm`, {})
+  }
+
+  unsendFriendRequest(id: string) {
+    return this.http.put<any>(AppService.URL+`/users/friend-request/sender/${AppService.id}/receiver/${id}/unsend`, {})
   }
 
   declineFriendRequest(id: string) {
@@ -87,6 +111,10 @@ export class AppService {
     return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/decline`, {})
   }
 
+  unsendGameRequest(gid: string, id: string) {
+    return this.http.put<any>(AppService.URL+`/users/game-request/game/${gid}/sender/${AppService.id}/receiver/${id}/unsend`, {})
+  }
+
   checkCategoryAnswer(id: string, keyword: string, gid: string){
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('auth-token', AppService.KEY)
@@ -118,6 +146,16 @@ export class AppService {
     headers = headers.append('auth-token', AppService.KEY)
     return this.http.get<any>(AppService.URL+`/games/${id}/forfeit/${pid}`, {headers})
   }
+
+  getRandomPlayerPath(): string {
+    var randomElement = AppService.playerPaths[Math.floor(Math.random() * AppService.playerPaths.length)]
+    var player = randomElement.match(new RegExp("players/" + "(.*)" + "/"))[1]
+    return randomElement + "happy/"+player+AppService.playerPathTailx2
+  }
+
+  getPlayerFromPath(path: string): string {
+    return path.match(new RegExp("players/" + "(.*)" + "/"))[1]
+  }
 }
 
 export enum Notification {
@@ -136,6 +174,8 @@ export class User {
   constructor(
     public _id: string,
     public username: string,
+    public icon: string,
+    public gold: number,
     public friends: Friend[],
     public pending_friends_sent: Friend[],
     public pending_friends_received: Friend[],
@@ -159,13 +199,15 @@ export class Game {
     public max_round: number,
     public is_done: boolean,
     public is_tie: boolean,
-    public winner: Friend
+    public winner: Friend,
+    public earnings: number
   ){}
 }
 
 export class Friend {
   constructor(
     public _id: string,
-    public username: string
+    public username: string,
+    public icon: string
   ){}
 }

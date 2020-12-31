@@ -1,0 +1,45 @@
+<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow p-3 w-full flex flex-row justify-start items-center">
+        <button routerLink="/home" class="bg-clear p-3 w-2/12">
+            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
+        </button>
+
+        <p class="text-2xl text-center">About</p>
+    </nav>
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+
+            <div class="bg-red-light w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
+                <p class="bg-red text-lg font-bold w-full text-left px-4">
+                    Mini Game Royale
+                </p>
+                <p class="text-sm normal-text w-full p-3">
+                    Mini Game Royale is a platform to play simple and short games with friends.
+                    This game is a Christmas gift to my girlfriend as she loves to play games like Categories. 
+                    There are many characters to choose from like mochi, detective mochi, strawberry queen and much much more!
+                    Every game won earns you points which will eventually be used with a store that is in development. The store will 
+                    allow users to unlock more characters!
+                </p>
+            </div>
+
+            <div class="bg-red-light w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
+                <p class="bg-red text-lg font-bold w-full text-left px-4">
+                    Super Secret Message
+                </p>
+                <form action="" class="w-full flex flex-col justify-center items-center">
+                    <p class="text-sm normal-text w-full p-3">
+                        What was your motto for 2020? The one that you would put on your chalkboard.
+                    </p>
+                    <input autofocus [(ngModel)]="submission" name="submission" type="text" 
+                    class="w-10/12 p-1 text-xs h-8" 
+                    placeholder="submit your guess here">
+                    <button (click)="submit()" class="h-8 px-2">
+                        submit
+                    </button>
+                </form>
+            </div>
+
+    </div>
+    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
+        <p class="text-sm">Developed by Xavier La Rosa</p>
+    </footer>
+</div>

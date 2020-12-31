@@ -1,0 +1,105 @@
+<div *ngIf="this.appService.getUserData()" class="min-h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
+    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
+        <button routerLink="/home" class="bg-clear p-3 w-2/12">
+            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
+        </button>
+        <div class="w-8/12 flex flex-col justify-center items-center self-center">
+            <fa-icon [icon]="faCog" class="m-2" size="3x"></fa-icon>
+            <p class="text-xl w-full text-center">
+                Preferences
+            </p>
+        </div>
+    </nav>
+
+    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+        <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                Icon
+            </div>
+            <carousel *ngIf="selectedPlayer" cellWidth="100%" dots="'true'">
+                <div class="carousel-cell w-full h-full" *ngFor="let image of images; let index = index" (click)="playerSelected(index)">
+                    <img *ngIf="!image.selected" src='../../../{{image.path}}'>
+                    <img *ngIf="image.selected" class="border-4 border-red-lightest" src='../../../{{image.path}}'>
+                </div>
+            </carousel>
+            <p class="bg-red text-lg font-bold w-full text-center px-4 normal-text">
+                Selected: <span *ngIf="selectedPlayer" class="normal-text">{{selectedPlayer.name}}</span> 
+            </p>
+        </div>
+
+        <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                Account
+            </div>
+            <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                <form action="" class="w-full flex flex-col justify-center items-center normal-text py-1 px-3">
+                    <div class="flex flex-row justify-between items-center w-full my-2">
+                        <p class="mr-1 text-base">
+                            username
+                        </p>
+                        <input autofocus [(ngModel)]="username" name="username" type="text" 
+                        class="w-6/12 p-1 text-xs h-8" 
+                        placeholder="{{this.appService.getUserData().username}}">
+                    </div>
+                    <div class="flex flex-row justify-between items-center w-full my-2">
+                        <p class="mr-1 text-base">
+                            new password
+                        </p>
+                        <input [(ngModel)]="password" name="password" type="text" 
+                        class="w-6/12 p-1 text-xs h-8" 
+                        placeholder="new password">
+                    </div>
+                    <div class="flex flex-row justify-between items-center w-full my-2">
+                        <p class="mr-1 text-base">
+                            confirm password
+                        </p>
+                        <input [(ngModel)]="password2" name="password2" type="text" 
+                        class="w-6/12 p-1 text-xs h-8" 
+                        placeholder="confirm new password">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
+                Audio
+            </div>
+            <div class="overflow-y-scroll rounded-bl-lg w-full bg-red-light">
+                <div class="flex flex-row justify-center items-center w-full">
+                    <p class="text-base normal-text mr-1">volume</p>
+                    <mat-slider class="w-6/12 mr-1" min="0.00" max="1.00" step="0.05" [(ngModel)]="this.getMusicService().volume" (input)="onInputChange($event)"></mat-slider>
+                    <mat-slide-toggle class="w-3/12 text-sm" ([ngModel])="this.getMusicService().isMuted"  (change)="this.getMusicService().toggleMute()">mute</mat-slide-toggle>
+                </div>
+                <p class="w-full text-right text-xs normal-text px-2 pb-1">all music is credited to 
+                    <span><a href="https://www.youtube.com/c/8BitUniverse/about" target="_blank" class="font-bold">8bit Universe</a></span> 
+                </p>
+                <!-- <div class="flex flex-row justify-center items-center w-full mb-3 mt-2">
+                    <button class="mx-1">
+                        <span><fa-icon [icon]="faBackward" size="2x"></fa-icon></span>
+                    </button>
+                    <button (click)="this.getMusicService().pauseAudio()" class="mx-1" *ngIf="!this.getMusicService().isPaused">
+                        <span><fa-icon [icon]="faPauseCircle" size="2x"></fa-icon></span>
+                    </button>
+                    <button (click)="this.getMusicService().playAudio()" class="mx-1" *ngIf="this.getMusicService().isPaused">
+                        <span><fa-icon [icon]="faPlayCircle" size="2x"></fa-icon></span>
+                    </button>
+                    <button (click)="this.getMusicService().stopAudio()" class="mx-1">
+                        <span><fa-icon [icon]="faStopCircle" size="2x"></fa-icon></span>
+                    </button>
+                    <button class="mx-1">
+                        <span><fa-icon [icon]="faForward" size="2x"></fa-icon></span>
+                    </button>
+                </div> -->
+            </div>
+        </div>
+
+        <button (click)="confirm()" class="text-2xl">Confirm</button>
+        <p class="mb-3">or</p>
+        <button class="normal-text text-sm mb-6 bg-red-700 rounded-full px-3 py-2 hover:bg-red-600">Permanently Delete User</button>
+    </div>
+
+    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
+        <p class="text-sm">Developed by Xavier La Rosa</p>
+    </footer>
+</div>
