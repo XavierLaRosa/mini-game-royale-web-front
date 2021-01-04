@@ -12,7 +12,7 @@
                 <p class="text-lg font-bold w-full text-left px-2">
                     Submit your Key
                 </p>
-                <input type="text" name="keyEntry" [(ngModel)]="keyEntry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="key entry">
+                <input type="text" [(ngModel)]="keyEntry" name="keyEntry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="key entry">
             </div>
             <button (click)="submitKey()" class="bg-purple-400 p-3 text-lg text-center rounded-lg">
                 Submit Key
@@ -24,7 +24,7 @@
                 <p class="text-lg font-bold w-full text-left px-2">
                     Choose Type of Submission
                 </p>
-                <select class="text-black p-1 w-full" [(ngModel)]="selectedType" (ngModelChange)="updateType()">
+                <select class="text-black p-1 w-full" name="selectType" [(ngModel)]="selectedType" (ngModelChange)="updateType()">
                     <option [ngValue]="'new'">
                         new category
                     </option>
@@ -34,25 +34,25 @@
                 </select>
             </div>
     
-            <div *ngIf="selectedType=='new'" class="w-full flex flex-col justify-center items-center">
+            <form *ngIf="selectedType=='new'" class="w-full flex flex-col justify-center items-center">
                 <div class="bg-purple-400 w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
                     <p class="text-lg font-bold w-full text-left px-2">
                         Submit a Category
                     </p>
-                    <input type="text" name="catEntry" [(ngModel)]="catEntry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="category entry">
+                    <input autofocus type="text" [(ngModel)]="catEntry" name="catEntry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="category entry">
                 </div>
     
                 <button (click)="addCategory()" class="bg-purple-400 p-3 text-lg text-center rounded-lg">
                     Submit
                 </button>
-            </div>
+            </form>
             
-            <div *ngIf="selectedType=='add'" class="w-full flex flex-col justify-center items-center">
+            <form *ngIf="selectedType=='add'" class="w-full flex flex-col justify-center items-center">
                 <div class="bg-purple-400 overflow-y-scroll w-10/12 rounded-tr-lg rounded-bl-lg shadow my-2 flex flex-col justify-start items-center">
                     <p class="text-lg font-bold w-full text-left px-2">
                         Choose Category Genre
                     </p>
-                    <select class="text-black p-1 w-full" [(ngModel)]="selectedGenre" (ngModelChange)="updateGenre()">
+                    <select class="text-black p-1 w-full" name="selectGenre" [(ngModel)]="selectedGenre" (ngModelChange)="updateGenre()">
                         <option *ngFor="let category of categories" [ngValue]="category._id">
                             {{category.category}}
                         </option>
@@ -63,13 +63,13 @@
                     <p class="text-lg font-bold w-full text-left px-2">
                         Submit an Entry
                     </p>
-                    <input type="text" name="entry" [(ngModel)]="entry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="entry">
+                    <input autofocus type="text" name="entry" [(ngModel)]="entry" name="entry" class="w-full rounded-lg px-2 py-1 text-black" placeholder="entry">
                 </div>
     
                 <button (click)="addEntry()" class="bg-purple-400 p-3 text-lg text-center rounded-lg">
                     Submit
                 </button>
-            </div>
+            </form>
         </div>
 
 
