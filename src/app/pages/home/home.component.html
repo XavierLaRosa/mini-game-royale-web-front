@@ -25,8 +25,8 @@
     </ng-sidebar>
 
     <!-- Page content -->
-    <div ng-sidebar-content class="bg-red font-red-lightest flex flex-col justify-between items-center">
-        <nav class="bg-red p-3 w-full flex flex-row justify-between items-center shadow sticky top-0">
+    <div ng-sidebar-content class="font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+        <nav class="bg-red p-3 w-full flex flex-row justify-between items-center shadow">
             <div class="flex flex-row justify-center items-center">
                 <img src="../../../{{iconPath}}" class="h-8 w-8 rounded-full shadow-xl mx-1"/>
                 <img class="w-5 h-5 mx-1" src="../../../assets/gold-coin/gold-coin.gif" alt="">
@@ -86,14 +86,14 @@
             </div>
     
     
-            <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
+            <!-- <div class="bg-red w-11/12 rounded-tr-lg rounded-bl-lg shadow-xl my-6">
                 <div class="bg-red font-red-lightest shadow-sm py-2 px-3 rounded-tr-lg text-left w-full">
                     Games ({{this.appService.getUserData().games.length}})
                 </div>
                 <div class="h-64 overflow-y-scroll rounded-bl-lg w-full bg-red-light">
                     <app-game-list-item [isPendingGames]="false" [games]="this.appService.getUserData().games"></app-game-list-item>
                 </div>
-            </div>
+            </div> -->
         </div>
         <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
             <p class="text-sm">Developed by <span class="font-bold">Xavier La Rosa</span></p>
