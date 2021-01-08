@@ -1,5 +1,5 @@
-<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
+<div class="h-screen font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+    <nav class="bg-red shadow h-32 p-3 w-full flex flex-row justify-start items-start">
         <button routerLink="/home" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
@@ -10,7 +10,7 @@
             </p>
         </div>
     </nav>
-    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+    <div class="w-full flex flex-col justify-start items-center">
 
             <div class="bg-red-light h-64 w-10/12 rounded-t-lg rounded-bl-lg shadow-xl my-6 flex flex-col justify-start items-center">
                 <p class="bg-red text-lg font-bold w-full text-left px-4">
@@ -33,7 +33,7 @@
                 <p class="bg-red text-lg font-bold w-full text-left px-4">
                     Choose Category
                 </p>
-                <select class="bg-red-light w-full h-8" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()" style="-webkit-appearance: none;">
+                <select class="bg-red-light w-full h-12" [(ngModel)]="selectedCategory" (ngModelChange)="updateCategory()" style="-webkit-appearance: none;">
                     <option class="p-3" *ngFor="let category of categories" [ngValue]="category._id">
                       {{ category.category }}
                     </option>

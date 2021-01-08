@@ -1,5 +1,5 @@
-<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
+<div class="h-screen font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+    <nav class="bg-red shadow h-32 p-3 w-full flex flex-row justify-start items-start">
         <button routerLink="/friends" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
@@ -16,7 +16,7 @@
         </div>
     </nav>
 
-    <div class="w-full h-full overflow-y-scroll flex flex-col justify-start items-center">
+    <div class="w-full flex flex-col justify-start items-center">
         <div *ngIf="matches" class="w-full flex flex-col justify-start items-center">
             <section class="w-11/12 h-20 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let match of matches">
                 <div class="w-8/12 flex flex-row justify-start items-center p-3">

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: righteous;
-    src: url(assets/fonts/Righteous/Righteous-Regular.ttf) format("opentype");
+    src: url(assets/fonts/Lato/Lato-Regular.ttf) format("opentype");
 }
 
 .normal-text {
@@ -9,6 +9,13 @@
 }
 body {
     font-family: 'righteous';
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4e546a+0,454a5e+20,454a5e+20,3d4152+46,333745+100 */
+    background: #4e546a; /* Old browsers */
+    background: -moz-linear-gradient(top,  #4e546a 0%, #454a5e 20%, #454a5e 20%, #3d4152 46%, #333745 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #4e546a 0%,#454a5e 20%,#454a5e 20%,#3d4152 46%,#333745 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #4e546a 0%,#454a5e 20%,#454a5e 20%,#3d4152 46%,#333745 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e546a', endColorstr='#333745',GradientType=0 ); /* IE6-9 */
+
 }
 
 .bg-red {
@@ -93,6 +100,14 @@ body {
 
 p {
     color: #FDEFED;
+}
+
+input {
+    border-radius: 0;
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
 }
 
 input[type="text"] {
