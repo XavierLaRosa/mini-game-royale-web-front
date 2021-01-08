@@ -1,25 +1,19 @@
-<div *ngIf="game" class="min-h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-start items-start">
-        <button routerLink="/home" class="bg-clear p-3 w-2/12">
+<div *ngIf="game" class="h-screen font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+    <nav class="p-3 w-full flex flex-row justify-start items-center">
+        <button routerLink="/home" class="bg-clear p-3">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
-        <div class="w-8/12 flex flex-col justify-center items-center self-center">
-            <fa-icon [icon]="faGamepad" class="m-2" size="3x"></fa-icon>
-            <p class="text-xl w-full text-center">
-                {{game.name}}
-            </p>
-            <span *ngIf="game.is_tie == false">
-                {{game.winner.username}} is the winner !!!
-            </span> 
-            <span *ngIf="game.is_tie == true">
-                It's a tie !!!
-            </span> 
-        </div>
+        <p class="text-lg font-bold">
+            Categories
+        </p>
     </nav>
 
-    <div class="w-full h-full overflow-y-scroll flex flex-col justify-between items-center">
+    <div class="w-full flex flex-col justify-between items-center">
         <div class="w-full flex flex-col justify-center items-center my-6">
-            <div class="bg-red-light p-2 flex flex-col justify-between items-center w-10/12 my-2 ">
+            <div class="p-2 flex flex-col justify-between items-center w-10/12 my-2 ">
+                <p *ngIf="game.is_tie" class="text-xl text-center w-full mb-2">
+                    It's a tie !!!
+                </p> 
                 <p *ngIf="!game.is_tie" class="text-xl text-center w-full mb-2">{{game.winner.username}} won by {{pointsDifference}} points !</p>
                 <img *ngIf="game.is_tie" class="w-full" src="../../../assets/results/draw(x2).png" alt="">
                 <img *ngIf="!game.is_tie" class="6/12" src="../../../assets/players/{{game.winner.icon}}/happy/{{game.winner.icon}}.gif" alt="">
@@ -34,7 +28,7 @@
         </div>
 
     </div>
-    <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">
+    <footer class="p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>
     </footer>
 </div>
