@@ -1,5 +1,5 @@
-<div class="h-screen bg-red-light font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red shadow h-40 p-3 w-full flex flex-row justify-around items-start">
+<div *ngIf="notifications" class="h-screen font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+    <nav class="bg-red shadow h-32 p-3 w-full flex flex-row justify-around items-start">
         <button routerLink="/home" class="bg-clear p-3 w-2/12">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
@@ -19,41 +19,37 @@
         </div>
     </nav>
 
-    <div class="self-start w-full h-full overflow-y-scroll flex flex-col justify-start items-center p-2">
-        <div *ngIf="notifications" class="w-full flex flex-col justify-start items-center">
-            
-            <section class="w-11/12 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let notif of notifications">
-                <div class="w-8/12 flex flex-row justify-start items-center p-3">
-                    <img src="../../../assets/players/{{notif.icon}}/icon/{{notif.icon}}-icon.gif" class="h-12 w-12 bg-red-lightest shadow rounded-full" alt="">
+    <div class="w-full flex flex-col justify-start items-center p-2">            
+        <section class="w-11/12 my-2 bg-red-light shadow-lg rounded-xl flex flex-row justify-between items-center" *ngFor="let notif of notifications">
+            <div class="w-8/12 flex flex-row justify-start items-center p-3">
+                <img src="../../../assets/players/{{notif.icon}}/icon/{{notif.icon}}-icon.gif" class="h-12 w-12 bg-red-lightest shadow rounded-full" alt="">
 
-                    <div class="w-10/12 flex flex-col justify-start items-start ml-3">
-                        <p class="normal-text font-red-lightest text-base font-bold">
-                            {{notif.username}}
-                        </p>
-                        <p class="normal-text font-red-lightest text-xs">
-                            {{notif.message}}
-                        </p>
-                    </div>
-
+                <div class="w-10/12 flex flex-col justify-start items-start ml-3">
+                    <p class="normal-text font-red-lightest text-base font-bold">
+                        {{notif.username}}
+                    </p>
+                    <p class="normal-text font-red-lightest text-xs">
+                        {{notif.message}}
+                    </p>
                 </div>
-                <div class="w-4/12 flex flex-row justify-center items-center p-3">
-                    <div *ngIf="notif.type == 'FROM_FRIEND' || notif.type == 'FROM_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
-                        <button (click)="accept(notif.type, notif.gid, notif._id)">
-                            <fa-icon [icon]="faCheckCircle" class="mx-2" size="lg"></fa-icon>
-                        </button>
-                        <button (click)="decline(notif.type, notif.gid, notif._id)">
-                            <fa-icon [icon]="faTimesCircle" class="mx-2" size="lg"></fa-icon>
-                        </button>
-                    </div>
-                    <div *ngIf="notif.type == 'TO_FRIEND' || notif.type == 'TO_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
-                        <button (click)="unsend(notif.type, notif.gid, notif._id)" class="font-bold text-base">
-                            unsend
-                        </button>
-                    </div>
-                </div>
-            </section>
 
-        </div>
+            </div>
+            <div class="w-4/12 flex flex-row justify-center items-center p-3">
+                <div *ngIf="notif.type == 'FROM_FRIEND' || notif.type == 'FROM_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
+                    <button (click)="accept(notif.type, notif.gid, notif._id)">
+                        <fa-icon [icon]="faCheckCircle" class="mx-2" size="lg"></fa-icon>
+                    </button>
+                    <button (click)="decline(notif.type, notif.gid, notif._id)">
+                        <fa-icon [icon]="faTimesCircle" class="mx-2" size="lg"></fa-icon>
+                    </button>
+                </div>
+                <div *ngIf="notif.type == 'TO_FRIEND' || notif.type == 'TO_GAME'" class="flex flex-row justify-center items-center w-full mb-2">
+                    <button (click)="unsend(notif.type, notif.gid, notif._id)" class="font-bold text-base">
+                        unsend
+                    </button>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer class="bg-red shadow p-3 w-full flex flex-row justify-between">

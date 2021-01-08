@@ -6,7 +6,7 @@ import {Howl, Howler} from 'howler';
 })
 export class MusicService {
 
-  volume: number = 0.05
+  volume: number = 0.00
   isPaused: boolean = false
   isMuted: boolean = false
   songs: string[] = [

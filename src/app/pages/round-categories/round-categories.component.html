@@ -1,5 +1,5 @@
-<div *ngIf="game" class="h-screen bg-red font-red-lightest flex flex-col justify-between items-center">
-    <nav class="bg-red-light shadow p-3 w-full flex flex-row justify-start items-center">
+<div *ngIf="game" class="h-screen font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+    <nav class="p-3 w-full flex flex-row justify-start items-center">
         <button routerLink="/home" class="bg-clear p-3">
             <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
         </button>
@@ -7,7 +7,7 @@
             Categories
         </p>
     </nav>
-    <div class="w-full h-full flex flex-col justify-start items-center">
+    <div class="w-full flex flex-col justify-start items-center">
         <div class="w-full flex flex-col justify-center items-center my-6">
             <p class="bg-red-light p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2 text-2xl text-center">
                 Round {{ game.round }}
@@ -65,7 +65,7 @@
         </div>
 
     </div>
-    <footer class="bg-red-light shadow p-3 w-full flex flex-row justify-between">
+    <footer class="p-3 w-full flex flex-row justify-between">
         <p class="text-sm">Developed by Xavier La Rosa</p>
     </footer>
 </div>
