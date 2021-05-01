@@ -1,0 +1,81 @@
+<div *ngIf="game" class="min-h-screen font-red-lightest flex flex-col justify-between items-center overflow-y-auto">
+    <nav class="p-3 w-full flex flex-row justify-start items-center">
+        <button routerLink="/home" class="bg-clear p-3">
+            <fa-icon [icon]="faChevronLeft" size="lg"></fa-icon>
+        </button>
+        <p class="text-lg font-bold">
+            Categories Game
+        </p>
+    </nav>
+    <div class="w-full flex flex-col justify-start items-center">
+        <div class="w-full flex flex-col justify-center items-center my-6">
+            <p class="bg-red-light p-2 flex flex-col justify-around items-center w-10/12 rounded-lg shadow my-2 text-2xl text-center">
+                Round {{ game.round }}
+            </p>
+            <div class="bg-red-light p-2 flex flex-col justify-between items-center w-10/12 rounded-lg shadow my-2 ">
+                <div class="w-full flex flex-row justify-center items-center text-center">
+                    <p *ngIf="game.player_1_points > game.player_2_points">
+                        {{ game.player_1_id.username }} is in the lead!
+                    </p>
+                    <p *ngIf="game.player_2_points > game.player_1_points">
+                        {{ game.player_2_id.username }} is in the lead!
+                    </p>
+                    <p *ngIf="game.player_1_points == game.player_2_points">
+                        It's going to be a tight game!
+                    </p>
+                </div>
+                <div *ngIf="game.player_1_points > game.player_2_points" class="w-full flex flex-row justify-around items-center">
+                    <img src="../../../assets/players/{{game.player_1_id.icon}}/happy/{{game.player_1_id.icon}}.gif" class="w-24 h-auto" alt="">
+                    <img src="../../../assets/players/{{game.player_2_id.icon}}/sad/{{game.player_2_id.icon}}-sad.gif" class="w-24 h-auto" alt="">
+                </div>
+                <div *ngIf="game.player_1_points < game.player_2_points" class="w-full flex flex-row justify-around items-center">
+                    <img src="../../../assets/players/{{game.player_1_id.icon}}/sad/{{game.player_1_id.icon}}-sad.gif" class="w-24 h-auto" alt="">
+                    <img src="../../../assets/players/{{game.player_2_id.icon}}/happy/{{game.player_2_id.icon}}.gif" class="w-24 h-auto" alt="">
+                </div>
+                <div *ngIf="game.player_1_points == game.player_2_points" class="w-full flex flex-row justify-around items-center">
+                    <img src="../../../assets/players/{{game.player_1_id.icon}}/happy/{{game.player_1_id.icon}}.gif" class="w-24 h-auto" alt="">
+                    <img src="../../../assets/players/{{game.player_2_id.icon}}/happy/{{game.player_2_id.icon}}.gif" class="w-24 h-auto" alt="">
+                </div>
+                <div class="w-full flex flex-row justify-around items-center">
+                    <div class="flex flex-col justify-center items-center w-6/12">
+                        <p class="text-xl text-center w-full">{{ game.player_1_id.username }}</p>
+                        <p class="text-sm font-bold text-center w-full">{{ game.player_1_points}} points</p>
+                    </div> 
+                    <div class="flex flex-col justify-center items-center w-6/12">
+                        <p class="text-xl text-center w-full">{{ game.player_2_id.username }}</p>
+                        <p class="text-sm font-bold text-center w-full">{{ game.player_2_points}} points</p>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="bg-red-light pt-2 flex flex-col justify-between items-center w-10/12 h-64 rounded-lg shadow my-2">
+                <div class="flex flex-row justify-center items-center">
+                    <p class="text-center text-lg uppercase font-bold">{{game.genre_id.category}}</p>
+                </div>
+                <p class="text-3xl text-center w-full font-bold">{{minutes}} min {{seconds}} seconds</p>
+                <form class="w-full flex flex-col justify-center items-center">
+                    <input [@error]="animateError" autofocus [(ngModel)]="answer" class="block w-8/12 p-2 text-center mb-2" type="text" name="answer" placeholder="guess a word">
+                    <div class="w-full flex flex-row justify-center items-center">
+                        <button type="submit" (click)="checkClicked()" class="text-2xl w-6/12 h-18 bg-blue-700 rounded-bl-lg hover:bg-blue-600">Check</button>
+                        <button (click)="openModal(template)" class="text-2xl w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <footer class="p-3 w-full flex flex-row justify-between">
+        <p class="text-sm">Developed by Xavier La Rosa</p>
+    </footer>
+</div>
+
+<ng-template #template>
+    <div class="modal-header bg-red font-red-lightest border-none">
+        <h4 class="modal-title pull-left">Are you sure you want to forfeit the match?</h4>
+      </div>
+    <div class="font-red-lightest w-full flex flex-row justify-center items-center">
+        <button (click)="modalRef.hide()" type="submit" class="p-1 text-base w-6/12 h-18 bg-gray-700 rounded-bl-lg hover:bg-gray-600">Cancel</button>
+        <button (click)="giveupClicked()" class="p-1 text-base w-6/12 h-18 bg-red-700 rounded-br-lg hover:bg-red-600">Give Up</button>
+    </div>
+  </ng-template>

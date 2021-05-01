@@ -29,13 +29,18 @@
                 </p>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <button *ngIf="appService.getUserData()._id == game.current_turn_id._id" class="button-red-lightest rounded-lg p-2 m-1 text-sm w-full">
+                <!-- <button *ngIf="appService.getUserData()._id == game.current_turn_id._id" class="button-red-lightest rounded-lg p-2 m-1 text-sm w-full">
                     <a *ngIf="game.name=='categories'" [routerLink]="['/round-categories', game._id]">
                         PLAY
                     </a>
                 </button>
                 <button [routerLink]="['/game-waiting', game._id, 'WAITING_TURN']" *ngIf="appService.getUserData()._id != game.current_turn_id._id" class="rounded-lg bg-red-light p-2 m-1 text-sm w-full">
                     WAITING
+                </button> -->
+                <button class="button-red-lightest rounded-lg p-2 m-1 text-sm w-full">
+                    <a *ngIf="game.name === 'categories'" [routerLink]="['/categories-game', game._id]">
+                        View
+                    </a>
                 </button>
             </div>
         </div>

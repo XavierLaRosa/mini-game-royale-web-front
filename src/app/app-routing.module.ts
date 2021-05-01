@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
+import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
 import { ChooseCharacterComponent } from './pages/choose-character/choose-character.component';
 import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
 import { FriendsComponent } from './pages/friends/friends.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'results-categories/:gid', component: ResultsCategoriesComponent },
   { path: 'submit-categories', component: SubmitCategoriesComponent },
   { path: 'preferences', component: PreferencesComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'about', component: AboutComponent },
+  { path: 'categories-game/:gid', component: CategoriesPageComponent }
 ];
 
 @NgModule({
