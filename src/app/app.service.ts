@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-  static URL = `https://shrouded-earth-55441.herokuapp.com` //http://localhost:3000
-  static KEY = ''
-  static id: string = ''
+  static URL = `http://localhost:3000` //https://shrouded-earth-55441.herokuapp.com
+  static KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI1ZmVkOGY0NWM4ZGJjNzU2MTA5YjU5YTciLCJpYXQiOjE2MTAyMzU5Mzh9.nxfEP3FuALveXdfXtORoFs0cTTO-M4wFXseIpeopYYw'
+  static id: string = '5fed8f45c8dbc756109b59a7'
   static user: User
   static playerPathTail = ".gif"
   static playerPathTailx2 = " (1).gif"

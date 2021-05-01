@@ -57,12 +57,12 @@ export class HomeComponent implements OnInit {
     }
     
      /** spinner starts on init */
-     this.spinner.show();
+     //this.spinner.show();
  
-     setTimeout(() => {
-       /** spinner ends after 5 seconds */
-       this.spinner.hide();
-     }, 2000);
+    //  setTimeout(() => {
+    //    /** spinner ends after 5 seconds */
+    //    this.spinner.hide();
+    //  }, 2000);
 
     this.intervalId = setInterval( e =>{
       this.appService.getUser(AppService.id).subscribe({ // get user data
