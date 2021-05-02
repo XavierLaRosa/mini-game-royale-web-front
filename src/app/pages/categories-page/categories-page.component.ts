@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { AppService, Game, GameState } from 'src/app/app.service';
+import { AppService, CategoryG, Game, GameState, Player } from 'src/app/app.service';
 import { timer } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 import { GameListItemComponent } from 'src/app/components/game-list-item/game-list-item.component';
@@ -25,11 +25,15 @@ export class CategoriesPageComponent implements OnInit {
   animateError = false;
   faChevronLeft = faChevronLeft
   answer: string
-  game: Game
+  game: CategoryG
   totalTime: number = 0
   seconds: number = 0
   minutes: number = 0
   modalRef: BsModalRef
+  intervalId
+  gid = null
+  state = null
+  randomPath = "../../../"
 
   constructor(public appService: AppService, private activatedRoute: ActivatedRoute, private router: Router, private toastr: ToastrService, private modalService: BsModalService) { }
 
@@ -38,6 +42,8 @@ export class CategoriesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.randomPath = this.randomPath + this.appService.getRandomPlayerPath()
+
     timer(0, 1000).subscribe(ellapsedCycles => {
       this.totalTime++
       if(this.seconds < 59){
@@ -47,78 +53,42 @@ export class CategoriesPageComponent implements OnInit {
         this.minutes++
       }
     });
+
     this.activatedRoute.params.subscribe(params => {
-      let gid = params['gid'];
-      this.appService.getGame(gid).subscribe({
+      this.gid = params['gid'];
+    });
+
+    this.intervalId = setInterval( e =>{
+      this.appService.getCategoryG(this.gid).subscribe({
         next: data => {
-          console.log("Game API Success: ", data)
-          this.game = data as Game
+          console.log("Category Game API Success: ", data)
+          this.game = data as CategoryG
+          this.state = this.getState()
         },
         error: error => {
           console.log("API Error: ", error)
         }
       })
-      });
+    }, 2000);  
   }
 
-  checkClicked() {
-    if(this.answer) {
-      this.appService.checkCategoryAnswer(this.game.genre_id._id, this.answer, this.game._id).subscribe({
-        next: data => {
-          console.log("Check API Success: ", data)
-          if(data.is_valid == true){
-            this.appService.incrementCategoryGame(this.game._id, this.totalTime).subscribe({
-              next: data => {
-                console.log("Increment API Success: ", data)
-                // display points
-                if(data.is_done == false){
-                  this.router.navigate([`game-waiting/${data._id}/${GameState.WAITING_TURN}`]);
-                } else {
-                  this.router.navigate([`results-categories/${data._id}`]);
-                }
-              },
-              error: error => {
-                console.log("API Error: ", error)
-              }
-            })
-          } else if(data.is_valid == false){
-            this.answer = ""
-            this.animateError = true;
-            setTimeout(() => {
-              this.animateError = false;
-            }, 500);
-            this.showInfo(data.message)
-          }
-        },
-        error: error => {
-          console.log("API Error: ", error)
-        }
-      })
-    } else {
-      this.animateError = true;
-      setTimeout(() => {
-        this.animateError = false;
-      }, 500);
-      this.showInfo("input field is empty!")
+  getState(): string {
+    if(this.game.is_done || this.game.is_tie){
+      return "DONE"
     }
-  }
-
-  giveupClicked() {
-    // TODO: modal pop up confirmation
-    console.log("data to send: ", this.game)
-
-    console.log("data to send: ", this.game._id, AppService.id)
-    this.appService.forfeitGame(this.game._id, AppService.id).subscribe({
-      next: data => {
-        this.modalRef.hide()
-        console.log("Forfeit Game API Success: ", data)
-        this.game = data as Game
-        this.router.navigate([`results-categories/${this.game._id}`]);
-      },
-      error: error => {
-        console.log("API Error: ", error)
+    let thisPlayer = null
+    const id = AppService.id
+    this.game.players.forEach(p => {
+      if(p.user_id === id){
+        console.log("found")
+        thisPlayer = {...p}
       }
     })
+    if(thisPlayer && thisPlayer.number == this.game.current_player_turn_number){
+      console.log("returning turn")
+      return "TURN"
+    }
+    return "WAITING"
   }
 
   showInfo(message: string) {
@@ -128,6 +98,11 @@ export class CategoriesPageComponent implements OnInit {
       positionClass: "toast-top-center",
       tapToDismiss: true
     });
+  }
+
+  getLeaderboard(): Player[] {
+    return this.game.players.sort((p1, p2) => p1.points < p2.points ? -1 : p1.points > p2.points ? 1 : 0)
+
   }
 
 }

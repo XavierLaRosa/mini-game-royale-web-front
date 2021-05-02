@@ -156,6 +156,30 @@ export class AppService {
   getPlayerFromPath(path: string): string {
     return path.match(new RegExp("players/" + "(.*)" + "/"))[1]
   }
+
+  getCategoriesG(): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL + `/categoriesG`, {headers})
+  }
+
+  postCategoryG(body: Object): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.post<any>(AppService.URL+`/categoriesG`, body, {headers})
+  }
+
+  getCategoryG(id: string): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.get<any>(AppService.URL+`/categoriesG/${id}`, {headers})
+  }
+
+  updateCategoryG(id, body: object): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('auth-token', AppService.KEY)
+    return this.http.put<any>(AppService.URL+`/categoriesG/${id}`, body, {headers})
+  }
 }
 
 export enum Notification {
@@ -209,5 +233,44 @@ export class Friend {
     public _id: string,
     public username: string,
     public icon: string
+  ){}
+}
+
+export class CategoryG {
+  constructor(
+    public type: string,
+    public genre: string,
+    public description: string,
+    public players: [Player],
+    public answers: [Answer],
+    public is_done: boolean,
+    public is_tie: boolean,
+    public round: number,
+    public current_player_turn_number: number
+  ){}
+}
+
+export class Player {
+  constructor(
+    public number: number,
+    public user_id: string,
+    public username: string,
+    public icon: string,
+    public is_winner: boolean,
+    public points: number,
+    public earnings: number,
+    public forfeited: boolean
+  ){}
+}
+
+export class Answer {
+  constructor(
+    public entry: string,
+    public player: Player,
+    public points: number,
+    public up_votes: number,
+    public down_votes: number,
+    public max_votes: number,
+    public approved: boolean
   ){}
 }
